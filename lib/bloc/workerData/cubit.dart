@@ -72,21 +72,22 @@ class workerDataCubit extends Cubit<workerDataStates>
   var response;
   dynamic jsonResponse;
   try {
+    
     // final imageBytes = (imageFile != null) ? await imageFile.readAsBytes() : null;
     // final imageString = (imageBytes != null) ? base64.encode(imageBytes) : null;
     var request = http.MultipartRequest('Put', url);
     request.headers['content-type'] = 'multipart/form-data';
     
-     (firstName != null) ? request.fields['FirstName'] = firstName : request.fields['FirstName'] =workerResponse![0].firstName ;
+     (firstName != null) ? request.fields['FirstName'] = firstName.trim() : request.fields['FirstName'] =workerResponse![0].firstName ;
      request.fields['Specializ']=workerResponse![0].cate!.id.toString();
     
-     (lastName != null) ? request.fields['LastName'] = lastName: request.fields['LastName'] =  workerResponse![0].lastName;
+     (lastName != null) ? request.fields['LastName'] = lastName.trim(): request.fields['LastName'] =  workerResponse![0].lastName;
     
-     (location != null) ? request.fields['Location'] = location:request.fields['Location'] = workerResponse![0].location;
+     (location != null) ? request.fields['Location'] = location.trim():request.fields['Location'] = workerResponse![0].location;
     
-     (username != null) ? request.fields['UserName'] = username: request.fields['UserName'] = workerResponse![0].username;
+     (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = workerResponse![0].username;
     
-     (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber: request.fields['PhonNumber'] = workerResponse![0].phonenumber!;
+     (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber.trim(): request.fields['PhonNumber'] = workerResponse![0].phonenumber!;
     
      (bio != null) ?  request.fields['Bio'] = bio : request.fields['Bio'] = workerResponse![0].bio ?? ' '; 
     
@@ -147,7 +148,7 @@ class workerDataCubit extends Cubit<workerDataStates>
         workerResponse![0].bio = bio;
       }
       if (username != null) {
-        workerResponse![0].email = username;
+        workerResponse![0].username = username;
       }
       if (phoneNumber != null) {
         workerResponse![0].phonenumber = phoneNumber;
