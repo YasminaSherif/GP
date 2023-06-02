@@ -26,6 +26,10 @@ class _CraftWorkImagesEditingState extends State<CraftWorkImagesEditing> {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text('تم الرفع بنجاح')));
           }
+          if(state is UpdateProfileError){
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                  content: Text('حاول مره اخري')));
+          }
         } ,
         builder:(context, state){
         var cubit=workerDataCubit.get(context);

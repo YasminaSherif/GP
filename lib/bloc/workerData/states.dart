@@ -5,9 +5,11 @@ class workerInitialState extends workerDataStates {}
 class GetworkerDataLoading extends workerDataStates {}
 class GetworkerDataSuccessful extends workerDataStates {}
 class GetworkerDataError extends workerDataStates {}
+
 class UpdateProfileLoading extends workerDataStates {}
 class UpdateProfileSuccessful extends workerDataStates {}
 class UpdateProfileError extends workerDataStates {}
+
 
 class getRequestLoadingsState extends workerDataStates{}
 class getRequestSuccessState extends workerDataStates{}

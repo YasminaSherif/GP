@@ -71,6 +71,9 @@ class workerDataCubit extends Cubit<workerDataStates>
   var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/EditCraft?CraftManId=${Constant.getData(key: 'id')}');
   var response;
   dynamic jsonResponse;
+  if(firstName==null && lastName==null &&  bio==null &&  username==null && location==null && phoneNumber==null&& profilePic==null && workImage==null){
+    emit(UpdateProfileError());
+  }
   try {
     
     // final imageBytes = (imageFile != null) ? await imageFile.readAsBytes() : null;
