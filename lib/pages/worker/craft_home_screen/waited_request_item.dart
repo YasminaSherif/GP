@@ -7,10 +7,10 @@ import 'package:fortestpages/bloc/workerData/cubit.dart';
 import '../../../models/request.dart';
 
 class WaitedRequestItem extends StatefulWidget {
-  final requests request;
+ 
 
-  const WaitedRequestItem({Key? key, required this.request}) : super(key: key);
-
+   WaitedRequestItem({Key? key, required this.request}) : super(key: key);
+  requests request;
   @override
   State<WaitedRequestItem> createState() => _State();
 }

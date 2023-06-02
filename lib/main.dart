@@ -5,15 +5,12 @@ import 'package:fortestpages/src/app_root.dart';
 import 'package:fortestpages/src/const.dart';
 
 import 'bloc/bloc_observer.dart';
-void main()async{
-WidgetsFlutterBinding.ensureInitialized();
-await Constant.init();
-//await Firebase.initializeApp();
-BlocOverrides.runZoned(
-() => runApp(const AppRoot()),
-blocObserver: MyBlocObserver()
-);
-
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Constant.init();
+  //await Firebase.initializeApp();
+  Bloc.observer = MyBlocObserver();
+  runApp(const AppRoot());
 }
 
 

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import '../../../models/request.dart';
 
 class AcceptedRequestItem extends StatefulWidget {
-  final requests request;
-  const AcceptedRequestItem ({Key? key,required this.request}) : super(key: key);
-
+  
+   AcceptedRequestItem ({Key? key,required this.request}) : super(key: key);
+requests request;
   @override
   State<AcceptedRequestItem> createState() => _State();
 }

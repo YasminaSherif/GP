@@ -123,7 +123,10 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding:   EdgeInsets.all(5.0),
-                  child: TextFormField(
+                  child: TextField(
+                    onChanged: (val){
+                      search=val;
+                    },
                     textAlign: TextAlign.end,
                     decoration: InputDecoration(
                         hintText: 'البحث',
