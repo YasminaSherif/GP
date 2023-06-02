@@ -66,6 +66,7 @@ class mainCubit extends Cubit<mainStates>
     search (String search)async{
       catResponse=null;
       emit(searchLoadingsState());
+      search=search.trim();
       Map<String, int> cate = {
   'نجار': 1,
   'حداد': 2,

@@ -19,12 +19,12 @@ Rating({Key? key, required this.worker}) : super(key: key);
   
     return BlocConsumer<userDataCubit, userDataStates>(
         listener:(context, state){
-          if(state is sendRequestSuccessState){
+          if(state is sendReviewSuccessState){
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text('تم ارسال التقييم،شكرا لك')));
             
           }
-          if(state is sendRequestFaillState){
+          if(state is sendReviewFaillState){
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text('حدث خطاء ما حاول مره اخري')));
             

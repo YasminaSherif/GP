@@ -222,6 +222,7 @@ CircleAvatar(
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: MaterialButton(onPressed: (){
+                            cubit.logout();
                             navigateAndNotBack(context, SignIn());
                           },
                             child: Row(

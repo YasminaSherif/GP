@@ -211,13 +211,13 @@ class userDataCubit extends Cubit<userDataStates>
     request.headers['content-type'] = 'multipart/form-data';
      //request.fields['id'] = userResponse![0].id;
     // request.fields['CustomerId'] =  userResponse![0].id;
-     (firstName != null) ? request.fields['FirstName'] = firstName : request.fields['FirstName'] =userResponse![0].firstName ;
+     (firstName != null) ? request.fields['FirstName'] = firstName.trim() : request.fields['FirstName'] =userResponse![0].firstName ;
     
-     (lastName != null) ? request.fields['LastName'] = lastName: request.fields['LastName'] =  userResponse![0].lastName;
-     (username != null) ? request.fields['UserName'] = username: request.fields['UserName'] = userResponse![0].username;
+     (lastName != null) ? request.fields['LastName'] = lastName.trim(): request.fields['LastName'] =  userResponse![0].lastName;
+     (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = userResponse![0].username;
     
-     (location != null) ? request.fields['Location'] = location: request.fields['Location'] = userResponse![0].location;
-     (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber : request.fields['PhonNumber'] = userResponse![0].phonenumber!;
+     (location != null) ? request.fields['Location'] = location.trim(): request.fields['Location'] = userResponse![0].location;
+     (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber.trim() : request.fields['PhonNumber'] = userResponse![0].phonenumber!;
     
     if (imageFile != null) {
       var stream = http.ByteStream(imageFile.openRead());
@@ -334,7 +334,7 @@ class userDataCubit extends Cubit<userDataStates>
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }
       else{
-        emit(sendReviewSuccessState());
+        emit(sendReviewFaillState());
       }
     } on FormatException {
       print("format exception");
@@ -347,7 +347,7 @@ class userDataCubit extends Cubit<userDataStates>
       print(e);
       emit(sendRequestFaillState());
     }
-  }
+  } 
 
   List<workerData>? worker;
     getWorkerData(String workerId) async {
@@ -449,9 +449,6 @@ class userDataCubit extends Cubit<userDataStates>
     }
   }
 
-   
-
-
 List<userData>? user;
     getUser(String customerid) async {
       user=null;
@@ -492,6 +489,20 @@ List<userData>? user;
 
     }
   }
+
+ logout(){
+  userResponse=null;
+  panding =null;
+  accepted=null;
+  declined=null;
+  worker=null;
+  workerForRequest=null;
+  user=null;
+  userUpdateResponse=null;
+
+ }
+
+
 
 }
 

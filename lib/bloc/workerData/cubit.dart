@@ -63,8 +63,7 @@ class workerDataCubit extends Cubit<workerDataStates>
 
     }
   }
-
-
+  
   workerData? workerUpdateResponse;
   updateWorker({String? firstName, String? lastName,String? bio,  String?  username, String? location, String? phoneNumber, File? profilePic,File? workImage}) async {
   emit(UpdateProfileLoading());
@@ -269,7 +268,6 @@ class workerDataCubit extends Cubit<workerDataStates>
     }
   }
 
-
  declineRequest (String craftid,int requestId)async{
     emit(declineRequestLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/DeclineRequest?CraftManId=${craftid}&RequestId=${requestId}');
@@ -305,7 +303,6 @@ class workerDataCubit extends Cubit<workerDataStates>
   }
 }
  
-
    acceptRequest (String craftid,requests req)async{
     emit(declineRequestLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/AcceptRequest?CraftManId=${craftid}&RequestId=${req.id}');
@@ -347,6 +344,14 @@ class workerDataCubit extends Cubit<workerDataStates>
   }
 }
 
+ logout(){
+  workerResponse=null;
+  panding =null;
+  accepted=null;
+  user=null;
+  workerUpdateResponse=null;
+
+ }
 //accecpt delete update
 
     }

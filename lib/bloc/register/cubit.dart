@@ -46,7 +46,11 @@ class RegisterCubit extends Cubit<RegisterState>
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Auth/register');
     var response;
     dynamic jsonResponse;
-    
+    username=username.trim();
+    email=email.trim();
+    firstName=firstName.trim();
+    lastName=lastName.trim();
+    location=location.trim();
     try {
             var request=http.MultipartRequest('POST',url);
             request.headers['content-type']='multipart/form-data';
