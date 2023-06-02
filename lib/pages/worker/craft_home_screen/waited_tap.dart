@@ -20,7 +20,7 @@ class WaitedTap extends StatelessWidget {
           color: Colors.grey[350],
           child: (state is getRequestLoadingsState)
               ? const Center(child: CircularProgressIndicator())
-              : (state is getRequestSuccessState || cubit.panding != null && cubit.panding!.isNotEmpty)
+              : ( cubit.panding != null && cubit.panding!.isNotEmpty)
                   ? Expanded(
                       child: ListView.separated(
                         itemBuilder: (context, index) =>

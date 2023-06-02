@@ -20,7 +20,7 @@ class AcceptedTap extends StatelessWidget {
           color: Colors.grey[350],
           child: (state is getRequestLoadingsState)
               ? const Center(child: CircularProgressIndicator())
-              : (state is getRequestSuccessState || cubit.accepted != null && cubit.accepted!.isNotEmpty)
+              : ( cubit.accepted != null && cubit.accepted!.isNotEmpty)
                   ? Expanded(
                       child: ListView.separated(
                         itemBuilder: (context, index) =>
