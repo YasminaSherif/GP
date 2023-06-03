@@ -45,6 +45,7 @@ dependencies:
   pin_code_fields: ^7.4.0 
   flutter_rating_bar: ^4.0.1
   flutter_slidable: ^3.0.0
+  flutter_screenutil: ^5.8.4
   full_screen_image: any
   
 
