@@ -21,14 +21,18 @@ class AcceptedTap extends StatelessWidget {
           child: (state is getRequestLoadingsState)
               ? const Center(child: CircularProgressIndicator())
               : ( cubit.accepted != null && cubit.accepted!.isNotEmpty)
-                  ? Expanded(
-                      child: ListView.separated(
-                        itemBuilder: (context, index) =>
-                            AcceptedRequestItem(request: cubit.accepted![index]),
-                        separatorBuilder: (context, index) => const SizedBox(height: 5),
-                        itemCount: cubit.accepted!.length,
-                      ),
-                    )
+                  ? Column(
+                    children: [
+                      Expanded(
+                          child: ListView.separated(
+                            itemBuilder: (context, index) =>
+                                AcceptedRequestItem(request: cubit.accepted![index]),
+                            separatorBuilder: (context, index) => const SizedBox(height: 5),
+                            itemCount: cubit.accepted!.length,
+                          ),
+                        ),
+                    ],
+                  )
                   : Center(
                       child: Text(
                         "لا يوجد طلبات",

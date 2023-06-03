@@ -21,14 +21,18 @@ class WaitedTap extends StatelessWidget {
           child: (state is getRequestLoadingsState)
               ? const Center(child: CircularProgressIndicator())
               : ( cubit.panding != null && cubit.panding!.isNotEmpty)
-                  ? Expanded(
-                      child: ListView.separated(
-                        itemBuilder: (context, index) =>
-                            WaitedRequestItem(request: cubit.panding![index]),
-                        separatorBuilder: (context, index) => const SizedBox(height: 5),
-                        itemCount: cubit.panding!.length,
-                      ),
-                    )
+                  ? Column(
+                    children: [
+                      Expanded(
+                          child: ListView.separated(
+                            itemBuilder: (context, index) =>
+                                WaitedRequestItem(request: cubit.panding![index]),
+                            separatorBuilder: (context, index) => const SizedBox(height: 5),
+                            itemCount: cubit.panding!.length,
+                          ),
+                        ),
+                    ],
+                  )
                   : Center(
                       child: Text(
                         "لا يوجد طلبات",
