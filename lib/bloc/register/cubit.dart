@@ -31,7 +31,7 @@ class RegisterCubit extends Cubit<RegisterState>
 
 
   // speciality,userType are the values you wanna catch
-  void specialityChanged(int value){
+  void specialityChanged(int? value){
     emit(state.copyWith(speciality: value));
   }
 
@@ -40,7 +40,7 @@ class RegisterCubit extends Cubit<RegisterState>
   }
 
 
-  Register(String firstName,String lastName,String username,String location,String email, String password,String conPassword,String phoneNumber,int role, int? specialization,File? imageFile) async {
+  Register (String firstName,String lastName,String username,String location,String email, String password,String conPassword,String phoneNumber,int role, int? specialization,File? imageFile) async {
     emit(RegisterLoadingState());
     var client= http.Client();
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Auth/register');

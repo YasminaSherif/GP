@@ -431,8 +431,8 @@ final scaffoldState = GlobalKey<ScaffoldState>();
                         height: 2,
                       ),
                       DropdownButtonFormField<int>(
-                        validator: (value) =>
-                            value == null ? 'Please select a speciality' : null,
+                        // validator: (value) =>
+                        //     value == null ? 'Please select a speciality' : null,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -452,7 +452,7 @@ final scaffoldState = GlobalKey<ScaffoldState>();
                           this.value2 = value;
                         },
                         onSaved: (value) {
-                          cubit.specialityChanged(value!);
+                          cubit.specialityChanged(value);
                           this.value2 = value;
                         },
                       ),
@@ -460,6 +460,11 @@ final scaffoldState = GlobalKey<ScaffoldState>();
 
 
                       const SizedBox(height: 20, width: 0),
+                      (state is RegisterLoadingState)
+                       ?const Center(
+                       child: CircularProgressIndicator())
+                       
+                       :
                       FormButton(
                         width: 300,
                         height: 50,
@@ -475,13 +480,10 @@ final scaffoldState = GlobalKey<ScaffoldState>();
                                  cubit.Register(firstname, lastname, username, location, email, password, confirmP, phoneNumber, value!, value2,cubitImage.fileImage);
 
                             formKey.currentState!.save();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('You have registered')));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('invalid Credentials')));
+                            
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //       const SnackBar(
+                          //           content: Text('يوجد خطأ بالمعلومات المدخله')));
                           }
                           print(firstname);
                         },
@@ -492,7 +494,9 @@ final scaffoldState = GlobalKey<ScaffoldState>();
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                navigateAndNotBack(context, SignIn());
+                              },
                               child: const Text('تسجيل الدخول',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
