@@ -308,7 +308,7 @@ class workerDataCubit extends Cubit<workerDataStates>
 }
  
    acceptRequest (String craftid,requests req)async{
-    emit(declineRequestLoadingsState());
+    emit(acceptedRequestLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/AcceptRequest?CraftManId=${craftid}&RequestId=${req.id}');
     
       //var client = http.Client();
@@ -330,7 +330,7 @@ class workerDataCubit extends Cubit<workerDataStates>
 }else{
   accepted=[req];
 }
-      emit(declineRequestSuccessState());
+      emit(acceptedRequestSuccessState());
       //client.close();
     } else {
       print("error code is");
@@ -341,10 +341,10 @@ class workerDataCubit extends Cubit<workerDataStates>
     emit(declineRequestFaillState());
   } on SocketException {
     print("problem in connecting to internet");
-    emit(declineRequestFaillState());
+    emit(acceptedRequestFaillState());
   } catch (e) {
     print(e);
-    emit(declineRequestFaillState());
+    emit(acceptedRequestFaillState());
   }
 }
 

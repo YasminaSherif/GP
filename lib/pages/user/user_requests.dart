@@ -72,9 +72,9 @@ class UserRequests extends StatelessWidget {
                           ),
                         ),
 
-                        (state is getRequestLoadingsState || cubit.panding==null)
+                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState)
                 ? const Center(child: CircularProgressIndicator())
-            :  (cubit.panding!.isNotEmpty)
+            :  (cubit.panding!=null && cubit.panding!.isNotEmpty)
                    ? 
                         Expanded(
                           child: ListView.separated(
@@ -120,9 +120,9 @@ class UserRequests extends StatelessWidget {
                             ),
                           ),
                         ),
-                        (state is getRequestLoadingsState || cubit.accepted==null)
+                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState)
                 ? const Center(child: CircularProgressIndicator())
-            :  (cubit.accepted!.isNotEmpty)
+            :  ( cubit.accepted!=null && cubit.accepted!.isNotEmpty)
                    
                        ? Expanded(
                           child: ListView.separated(
@@ -164,9 +164,10 @@ class UserRequests extends StatelessWidget {
                               fontSize: 20.0,
                             ),
                           ),
-                        ),(state is getRequestLoadingsState || cubit.declined==null)
+                        ),
+                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState )
                 ? const Center(child: CircularProgressIndicator())
-            :  (cubit.declined!.isNotEmpty)
+            :  (cubit.declined!=null && cubit.declined!.isNotEmpty)
                    ? 
                         Expanded(
                           child: ListView.separated(

@@ -23,3 +23,7 @@ class GetUserDataError extends workerDataStates {}
 class declineRequestLoadingsState extends workerDataStates{}
 class declineRequestSuccessState extends workerDataStates{}
 class declineRequestFaillState extends workerDataStates{}
+
+class acceptedRequestLoadingsState extends workerDataStates{}
+class acceptedRequestSuccessState extends workerDataStates{}
+class acceptedRequestFaillState extends workerDataStates{}

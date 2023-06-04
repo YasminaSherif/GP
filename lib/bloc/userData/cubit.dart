@@ -84,7 +84,7 @@ class userDataCubit extends Cubit<userDataStates>
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }
              else if (response.statusCode == 400){
-                emit(getRequestFaillState());
+                emit(getRequestSuccessState());
                 // panding = [];
                 // accepted = [];
                 // declined = [];
