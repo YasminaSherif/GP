@@ -17,7 +17,7 @@ class BestWorkersOfCategory extends StatelessWidget {
         var cubit=mainCubit.get(context);
     return  Scaffold(
        body: Container(
-          color: Colors.grey[300],
+          color: Colors.grey[250],
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -26,7 +26,7 @@ class BestWorkersOfCategory extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                  height: 127,
+                  height: 117,
                   color: const Color(0xffD9AD30),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

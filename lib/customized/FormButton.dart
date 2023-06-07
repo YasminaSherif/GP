@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FormButton extends StatelessWidget{
    final Widget child;
@@ -11,16 +12,16 @@ class FormButton extends StatelessWidget{
      Key? key,
      required this.child,
     this.gradient,
-    this.width = 300,
-    this.height = 50.0,
+    this.width=400.0,
+    this.height=50.0 ,
     required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
-      height: 50.0,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         gradient: gradient,
         borderRadius: BorderRadius.all(Radius.circular(11))

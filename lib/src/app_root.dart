@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/workerData/cubit.dart';
 
 import '../bloc/craftHome/cubit.dart';
@@ -27,10 +28,15 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context) => workerDataCubit()),
         BlocProvider(create: (context) => CraftCubit()),
       ],
-      child: const MaterialApp(
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child)=>const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: StartingPage(),
       ),
+        ),
     );
   }
 }

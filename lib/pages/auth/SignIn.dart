@@ -2,6 +2,7 @@
 ////////////////////////////////////////// SIGN IN PAGE //////////////////////////////////////
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
@@ -48,7 +49,8 @@ class SignIn extends StatelessWidget {
           var cubit=SignInCubit.get(context);
           return Scaffold(
             body: Container(
-              color: Colors.grey.shade100,
+              height: double.infinity,
+              color: Colors.grey[250],
              // padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
               child: Form(
                 key: formKey,
@@ -78,8 +80,8 @@ class SignIn extends StatelessWidget {
                         //   ),
                         // ),
                         Container(
-                          width: 400,
-                          height: 250,
+                          width: 400.w,
+                          height: 200.h,
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           decoration: const BoxDecoration(
                               color: Colors.white,
@@ -88,12 +90,15 @@ class SignIn extends StatelessWidget {
                           ),
                         ),
 
-                        const SizedBox(height: 11,),
-                        const Center(
-                            child: Text(
-                              'تسجيل الدخول',
-                              style: TextStyle( fontWeight: FontWeight.bold, fontSize: 30 ),)),
-                        const SizedBox(height: 30,),
+                         
+                         Center(
+                            child: Padding(
+                              padding:  EdgeInsets.only(top: 11.r, bottom: 25.r),
+                              child: Text(
+                                'تسجيل الدخول',
+                                style: TextStyle( fontWeight: FontWeight.bold, fontSize: 25.sp ),),
+                            )),
+                        
                         // email
                         buildTextFormField(
                             validator: (email){
@@ -106,7 +111,7 @@ class SignIn extends StatelessWidget {
                             },
                             icon: const Icon(Icons.email_outlined, color: Colors.amber)),
 
-                        const SizedBox(height: 25,),
+                         SizedBox(height: 25.h,),
                         // password
                         buildTextFormField(
                             validator: (password){
@@ -119,13 +124,16 @@ class SignIn extends StatelessWidget {
                             },
                             icon: const Icon(Icons.remove_red_eye_outlined, color: Colors.amber,)
                         ),
-                        const SizedBox(height: 30,), (state is SignInLoadingState)
+                         SizedBox(height: 30.h,), (state is SignInLoadingState)
                        ?const Center(
                        child: CircularProgressIndicator())
                        
                        :FormButton(
-                          width: 200,
-                            height: 45,
+                        width: 300.w,
+                         gradient: LinearGradient(colors: <Color>[
+                                const Color(0xffD9AD30),
+                                Colors.amber.shade200,
+                              ]),
                       onPressed: (){
                             final isValid = formKey.currentState!.validate();
                             if(isValid){
@@ -134,15 +142,18 @@ class SignIn extends StatelessWidget {
                             }
                           },
                             child:
-                            const Text('تسجيل', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),)
+                            const Text('تسجيل',
+                            style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),)
                         ),
 
-                        const SizedBox(height: 10,),
+                         SizedBox(height: 10.h,),
                         TextButton(
                           onPressed: (){
                            navigateWithBack(context,ForgetPassword());
                           },
-                          child: const Text('نسيت كلمة المرور', style: TextStyle(fontSize: 16, color: Colors.black,decoration: TextDecoration.underline),),
+                          child:  Text('نسيت كلمة المرور', style: TextStyle(fontSize: 16.sp, color: Colors.black,decoration: TextDecoration.underline),),
                         ),
 
                         Row(
@@ -153,7 +164,7 @@ class SignIn extends StatelessWidget {
                               onPressed: (){
                                 navigateWithBack(context, RegisterForm());
                               },
-                              child: const Text('انشاء حساب جديد', style: TextStyle(fontSize: 14, color: Colors.black,decoration: TextDecoration.underline),),
+                              child:  Text('انشاء حساب جديد', style: TextStyle(fontSize: 14.sp, color: Colors.black,decoration: TextDecoration.underline),),
                             ),
                             const Text('عندك حساب ؟'),
                           ],
