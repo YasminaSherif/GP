@@ -45,7 +45,7 @@ class userData {
   late String id;
   late String firstName;
   late String lastName;
-  late String name=firstName+lastName;
+  late String name=firstName+" "+lastName;
   late String username;
   late String location;
   late String email;
@@ -116,7 +116,7 @@ class workerData {
   late String id;
   late String firstName;
   late String lastName;
-  late String name=firstName+lastName;
+  late String name=firstName+" "+lastName;
   late String username;
   late String location;
   late String email;

@@ -124,7 +124,6 @@ class UserRequests extends StatelessWidget {
                         (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState)
                 ? const Center(child: CircularProgressIndicator())
             :  ( cubit.accepted!=null && cubit.accepted!.isNotEmpty)
-                   
                        ? Expanded(
                           child: ListView.separated(
                             itemBuilder:(context, index)=> AcceptedOrderItem(request: cubit.accepted![index],),
@@ -176,7 +175,7 @@ class UserRequests extends StatelessWidget {
                             separatorBuilder:(context, index)=> SizedBox(height: 11.h) ,
                             itemCount: cubit.declined!.length,
                           ),
-                          
+                        
                         )
                        :  Center(
                         child: Text(

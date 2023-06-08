@@ -186,7 +186,7 @@ class workerDataCubit extends Cubit<workerDataStates>
     emit(UpdateProfileError());
   }
 }
-
+  List<userData>? usersToChat;
   List<requests>? panding;
   List<requests>? accepted;
   GetRequests() async {
@@ -213,6 +213,13 @@ class workerDataCubit extends Cubit<workerDataStates>
             }
         panding=allRequests.where((r) => r.status == 0).toList();
         accepted=allRequests.where((r) => r.status == 1).toList();
+        if(accepted!=null){
+        for(var item in accepted!){
+        if (usersToChat!=null && !usersToChat!.any((user) => user.id == item.user!.id) ) {
+        usersToChat!.add(item.user!);
+          }else if(usersToChat ==null){
+           usersToChat=[item.user!];
+          }}}
         emit(getRequestSuccessState());
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }
@@ -323,13 +330,19 @@ class workerDataCubit extends Cubit<workerDataStates>
     // response = await response.stream.bytesToString();
     //jsonResponse = convert.jsonDecode(response) as Map<String, dynamic>;
     if (response.statusCode == 200) {
-      
+      await getUser(req.customerId);
      if (accepted!=null) {
   accepted!.add(req);
   panding!.removeWhere((item) => item == req); 
 }else{
   accepted=[req];
 }
+if (usersToChat!=null && !usersToChat!.any((item) => item.id == user![0]!.id) ) {
+        usersToChat!.add(user![0]);
+          }else{
+           usersToChat=[user![0]];
+          }
+
       emit(acceptedRequestSuccessState());
       //client.close();
     } else {
@@ -354,8 +367,9 @@ class workerDataCubit extends Cubit<workerDataStates>
   accepted=null;
   user=null;
   workerUpdateResponse=null;
+  usersToChat=null;
 
  }
-//accecpt delete update
+
 
     }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/workerData/cubit.dart';
 
+import '../bloc/chat/chat_cubit.dart';
 import '../bloc/craftHome/cubit.dart';
 import '../bloc/register/cubit.dart';
 import '../bloc/signin/cubit.dart';
@@ -27,6 +28,7 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context) => mainCubit()),
         BlocProvider(create: (context) => workerDataCubit()),
         BlocProvider(create: (context) => CraftCubit()),
+        BlocProvider(create: (context) => ChatCubit())
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
