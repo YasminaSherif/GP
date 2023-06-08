@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fortestpages/bloc/userData/cubit.dart';
 import 'package:fortestpages/models/request.dart';
@@ -11,244 +12,607 @@ import '../../bloc/workerData/cubit.dart';
 import 'Rating.dart';
 import 'craft_profile/craft_profile.dart';
 
-class OrderItem extends StatefulWidget {
-   OrderItem({Key? key,required this.request}) : super(key: key);
+class PandingOrderItem extends StatefulWidget {
+  PandingOrderItem({Key? key, required this.request}) : super(key: key);
   requests request;
   @override
-  State<OrderItem> createState() => _OrderItemState();
+  _PandingOrderItemState createState() => _PandingOrderItemState();
 }
 
-class _OrderItemState extends State<OrderItem> {
+class _PandingOrderItemState extends State<PandingOrderItem > {
   bool detailsIsOpened = false;
   @override
   Widget build(BuildContext context) {
-      var cubit=userDataCubit();
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Slidable(
-            startActionPane: ActionPane(
-                   motion: const BehindMotion(),
-                   children: [
-                     SlidableAction(
-                       icon: Icons.delete,
-                       backgroundColor: Colors.red,
-                       onPressed: (BuildContext context) {
-                         var cubit = BlocProvider.of<userDataCubit>(context);
-                               
-                        cubit.deleteRequest(widget.request.customerId,widget.request);
-                       },
+    var cubit = userDataCubit();
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Slidable(
+        startActionPane: ActionPane(
+          motion: const BehindMotion(),
+          children: [
+            SlidableAction(
+              icon: Icons.delete,
+              backgroundColor: Colors.red,
+              onPressed: (BuildContext context) {
+                var cubit = BlocProvider.of<userDataCubit>(context);
 
-                     ),
-                   ],
-                 ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              height: 45.0,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      detailsIsOpened
-                          ? Icons.arrow_drop_up
-                          : Icons.arrow_drop_down,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        detailsIsOpened = !detailsIsOpened;
-                      });
-                      print(detailsIsOpened);
-                    },
-                  ),
-                  const Spacer(),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children:  [
-                          Text(
-                             widget.request.id.toString()+'#'+'طلب',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 13.0,
-                                height: 1),
-                          ),
-                          // Text(
-                          //   'تم الطلب في 10 اكتوبر 2019',
-                          //   textAlign: TextAlign.end,
-                          //   style: TextStyle(
-                          //       color: Colors.grey,
-                          //       fontSize: 8.0,
-                          //       fontWeight: FontWeight.w700,
-                          //       height: 1.1),
-                          // ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 2,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 15),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 26.0,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "assets/day9-toolbox-removebg-preview.png"),
-                        radius: 26.0,
-                        backgroundColor: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                cubit.deleteRequest(widget.request.customerId, widget.request);
+              },
             ),
-          ),
+          ],
         ),
-        if (detailsIsOpened)
-        Padding(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Container(
-            height: 65.0,
+            height: 45.0,
             color: Colors.white,
             child: Row(
-              children:  [
+              children: [
                 const SizedBox(
                   width: 10.0,
                 ),
-
-                   GestureDetector(
-                     onTap: (){
-                      navigateWithBack(context, Rating(worker: widget.request.worker!,));
-                     },
-                     child: Row(
-                       children: const[
-                          Icon(
-                          Icons.arrow_left_sharp,
-                          size: 22,
-                         ),
-
-                         Text('الانتقال لتقييمه',
-                           style: TextStyle(
-                               fontSize: 10.0,
-                               height: 1.1,
-                               fontWeight: FontWeight.bold
-                           ),
-                         ),
-
-                       ],
-                     ),
-                   ),
+                IconButton(
+                  icon: Icon(
+                    detailsIsOpened
+                        ? Icons.arrow_drop_up
+                        : Icons.arrow_drop_down,
+                    size: 30,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      detailsIsOpened = !detailsIsOpened;
+                    });
+                    print(detailsIsOpened);
+                  },
+                ),
                 const Spacer(),
-
                 Expanded(
                   child: Container(
-
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:   [
+                      children: [
+                        Text(
+                          widget.request.id.toString() + '#' + 'طلب',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 13.0,
+                              height: 1),
+                        ),
+                      
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 2,
+                ),
+                 Padding(
+                  padding: EdgeInsets.only(right: 15),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 26.0.r,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(
+                          "assets/day9-toolbox-removebg-preview.png"),
+                      radius: 26.0.r,
+                      backgroundColor: Colors.transparent,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      if (detailsIsOpened)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            height: 65.0.h,
+            color: Colors.white,
+            child: Row(
+              children: [ 
+               const Spacer(),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.star_rate,
+                            color: Colors.amber,
+                            size: 18.0,
+                          ),
+                          Text(
+                            widget.request.worker!.rating.toString(),
+                            style: TextStyle(
+                              height: 1.0.h,
+                              fontSize: 11.0.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                           SizedBox(
+                            width: 5.0.w,
+                          ),
+                          Text(
+                            widget.request.worker!.firstName +
+                                " " +
+                                widget.request.worker!.lastName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 11.0.sp,
+                              height: 1.h,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
+                       Text(
+                        'الطلب',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 11.0.sp,
+                          height: 1.h,
+                        ),
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 200,
+                                child: Text(
+                                  widget.request.details,
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    fontSize: 10.0.sp,
+                                    height: 0.8.h,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // navigateWithBack(context, CraftProfile(workerid: widget.request.workerId,));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 15),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 26.0.r,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 20.0.r,
+                        child: CircleAvatar(
+                          backgroundImage: widget.request.worker!.image != null
+                              ? MemoryImage(
+                                  base64Decode(widget.request.worker!.image!))
+                              : null,
+                          radius: 20.0.r,
+                          backgroundColor: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+    ]);
+  }
+}
 
+
+
+
+class AcceptedOrderItem extends StatefulWidget {
+  AcceptedOrderItem({Key? key, required this.request}) : super(key: key);
+  requests request;
+  @override
+  State<AcceptedOrderItem> createState() => _AcceptedOrderItemState();
+}
+
+class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
+  bool detailsIsOpened = false;
+  @override
+  Widget build(BuildContext context) {
+    var cubit = userDataCubit();
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Container(
+          height: 45.0.h,
+          color: Colors.white,
+          child: Row(
+            children: [
+               SizedBox(
+                width: 10.0.w,
+              ),
+              IconButton(
+                icon: Icon(
+                  detailsIsOpened
+                      ? Icons.arrow_drop_up
+                      : Icons.arrow_drop_down,
+                  size: 30,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  setState(() {
+                    detailsIsOpened = !detailsIsOpened;
+                  });
+                  print(detailsIsOpened);
+                },
+              ),
+              const Spacer(),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0).r,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.request.id.toString() + '#' + 'طلب',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 13.0.sp,
+                            height: 1.h),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 2,
+              ),
+               Padding(
+                padding: EdgeInsets.only(right: 15),
+                child: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 26.0.r,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(
+                        "assets/day9-toolbox-removebg-preview.png"),
+                    radius: 26.0.r,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      if (detailsIsOpened)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            height: 65.0.h,
+            color: Colors.white,
+            child: Row(
+              children: [
+                 SizedBox(
+                  width: 10.0.w,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    navigateWithBack(
+                        context,
+                        Rating(
+                          worker: widget.request.worker!,
+                        ));
+                  },
+                  child: Row(
+                    children:  [
+                      const Icon(
+                        Icons.arrow_left_sharp,
+                        size: 22,
+                      ),
+                      Text(
+                        'الانتقال لتقييمه',
+                        style: TextStyle(
+                            fontSize: 10.0.sp,
+                            height: 1.1.h,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0).r,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children:  [
-                            Icon(Icons.star_rate,
+                          children: [
+                            const Icon(
+                              Icons.star_rate,
                               color: Colors.amber,
-                              size:18.0 ,
+                              size: 18.0,
                             ),
-                            Text(widget.request.worker!.rating.toString(),
+                            Text(
+                              widget.request.worker!.rating.toString(),
                               style: TextStyle(
-                                height: 1.0,
-                                fontSize: 11.0,
+                                height: 1.0.h,
+                                fontSize: 11.0.sp,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-
                             SizedBox(
-                              width: 2.0,
+                              width: 2.0.w,
                             ),
-                            Text(widget.request.worker!.firstName+" "+widget.request.worker!.lastName,
+                            Text(
+                              widget.request.worker!.firstName +
+                                  " " +
+                                  widget.request.worker!.lastName,
                               style: TextStyle(
                                 fontWeight: FontWeight.w900,
-                                fontSize: 11.0,
-                                height: 1,
+                                fontSize: 11.0.sp,
+                                height: 1.h,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
                           ],
                         ),
-
-
-                        const Text('الطلب',
+                         Text(
+                          'الطلب',
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
-                            fontSize: 11.0,
-                            height: 1,
+                            fontSize: 11.0.sp,
+                            height: 1.h,
                           ),
                         ),
-
-
-                         Text(widget.request.details,
+                        Text(
+                          widget.request.details,
                           textAlign: TextAlign.end,
                           style: TextStyle(
-                            fontSize: 8.0,
-                            height: 0.8,
+                            fontSize: 10.0.sp,
+                            height: 0.8.h,
                           ),
                         ),
-
-
                       ],
                     ),
                   ),
                 ),
-                
-                 GestureDetector(
+                GestureDetector(
                   onTap: () {
-
-                   // navigateWithBack(context, CraftProfile(workerid: widget.request.workerId,));
+                    // navigateWithBack(context, CraftProfile(workerid: widget.request.workerId,));
                   },
-                   child: Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(right: 15),
                     child: CircleAvatar(
                       backgroundColor: Colors.transparent,
-                      radius: 26.0,
+                      radius: 26.0.r,
                       child: CircleAvatar(
-  backgroundColor: Colors.transparent,
-  radius: 20.0,
-  child: CircleAvatar(
-      
-    backgroundImage: widget.request.worker!.image != null
-        ? MemoryImage(base64Decode(widget.request.worker!.image!))
-        : null,
-    radius: 20.0,
-    backgroundColor: Colors.grey,
-  ),
-),
+                        backgroundColor: Colors.transparent,
+                        radius: 20.0.r,
+                        child: CircleAvatar(
+                          backgroundImage: widget.request.worker!.image != null
+                              ? MemoryImage(
+                                  base64Decode(widget.request.worker!.image!))
+                              : null,
+                          radius: 20.0.r,
+                          backgroundColor: Colors.grey,
+                        ),
+                      ),
                     ),
-                                 ),
-                 ),
-      ],
-    ),
+                  ),
                 ),
+              ],
+            ),
+          ),
+        ),
+    ]);
+  }
+}
+
+
+
+
+
+
+
+class RejectedOrderItem extends StatefulWidget {
+  RejectedOrderItem({Key? key, required this.request}) : super(key: key);
+  requests request;
+  @override
+  State<RejectedOrderItem> createState() => _RejectedOrderItemState();
+}
+
+class _RejectedOrderItemState extends State<RejectedOrderItem> {
+  bool detailsIsOpened = false;
+  @override
+  Widget build(BuildContext context) {
+    var cubit = userDataCubit();
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Container(
+          height: 45.0.h,
+          color: Colors.white,
+          child: Row(
+            children: [
+               SizedBox(
+                width: 10.0.w,
+              ),
+              IconButton(
+                icon: Icon(
+                  detailsIsOpened
+                      ? Icons.arrow_drop_up
+                      : Icons.arrow_drop_down,
+                  size: 30,
+                  color: Colors.grey,
                 ),
-    ]
-    );
+                onPressed: () {
+                  setState(() {
+                    detailsIsOpened = !detailsIsOpened;
+                  });
+                  print(detailsIsOpened);
+                },
+              ),
+              const Spacer(),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0).r,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.request.id.toString() + '#' + 'طلب',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 13.0.sp,
+                            height: 1.h),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 2,
+              ),
+               Padding(
+                padding: EdgeInsets.only(right: 15),
+                child: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 26.0.r,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(
+                        "assets/day9-toolbox-removebg-preview.png"),
+                    radius: 26.0.r,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      if (detailsIsOpened)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            height: 65.0.h,
+            color: Colors.white,
+            child: Row(
+              children: [
+                const Spacer(),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0).r,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.star_rate,
+                              color: Colors.amber,
+                              size: 18.0,
+                            ),
+                            Text(
+                              widget.request.worker!.rating.toString(),
+                              style: TextStyle(
+                                height: 1.0.h,
+                                fontSize: 11.0.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 2.0.w,
+                            ),
+                            Text(
+                              widget.request.worker!.firstName +
+                                  " " +
+                                  widget.request.worker!.lastName,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 11.0.sp,
+                                height: 1.h,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                         Text(
+                          'الطلب',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 11.0.sp,
+                            height: 1.h,
+                          ),
+                        ),
+                        Text(
+                          widget.request.details,
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            fontSize: 10.0.sp,
+                            height: 0.8.h,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // navigateWithBack(context, CraftProfile(workerid: widget.request.workerId,));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 15),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 26.0.r,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 20.0.r,
+                        child: CircleAvatar(
+                          backgroundImage: widget.request.worker!.image != null
+                              ? MemoryImage(
+                                  base64Decode(widget.request.worker!.image!))
+                              : null,
+                          radius: 20.0.r,
+                          backgroundColor: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+    ]);
   }
 }

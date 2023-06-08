@@ -19,7 +19,7 @@ class CraftCubit extends Cubit<CraftStates>
 
   List<Widget> screens= [
     const CraftHomeScreen(),
-    const UserProfile(),
+    const CraftProfileEditing(),
     const ChatsScreen(),
   ];
 

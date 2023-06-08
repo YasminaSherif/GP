@@ -488,10 +488,6 @@ class _RegisterFormState extends State<RegisterForm> {
                         ? const Center(child: CircularProgressIndicator())
                         : FormButton(
                             width: 300.w,
-                            gradient: LinearGradient(colors: <Color>[
-                              const Color(0xffD9AD30),
-                              Colors.amber.shade200,
-                            ]),
                             child: const Text(
                               'تسجيل',
                               style: TextStyle(fontWeight: FontWeight.bold),

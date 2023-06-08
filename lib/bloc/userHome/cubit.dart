@@ -20,7 +20,6 @@ class AppCubit extends Cubit<AppStates>
   
   List<Widget> screens= [
     HomeScreen(),
-    const UserProfile(),
     const ChatsScreen(),
   ];
 

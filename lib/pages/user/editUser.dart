@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../bloc/editUser/cubit.dart';
 import '../../bloc/userData/cubit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -62,7 +63,7 @@ class _ImagePickerState extends State<ImagePicker> {
      phoneNum= cubituser.userResponse![0].phonenumber;
     Widget bottomSheet() {
       return Container(
-        height: 100,
+        height: 100.h,
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: SingleChildScrollView(
@@ -72,8 +73,8 @@ class _ImagePickerState extends State<ImagePicker> {
                 'اختر صوره شخصيه',
                 style: TextStyle(fontSize: 20.0),
               ),
-              const SizedBox(
-                height: 20,
+               SizedBox(
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -112,14 +113,14 @@ class _ImagePickerState extends State<ImagePicker> {
               backgroundColor: const Color.fromRGBO(217, 173, 48, 1),
               toolbarHeight: 100,
               elevation: 0,
-              title: const Padding(
-                padding: EdgeInsets.only(left: 60, right: 5),
+              title: Padding(
+                padding: EdgeInsets.only(left: 60.r, right: 5.r),
                 child: Text(
                   'معلومات شخصية',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      fontSize: 23,
+                      fontSize: 23.sp,
                       color: Colors.black),
                 ),
               ),
@@ -133,7 +134,7 @@ class _ImagePickerState extends State<ImagePicker> {
                   )),
             ),
             body: Container(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+              padding: EdgeInsets.only(left: 15.r, right: 15.r, top: 10.r),
 
               child: GestureDetector(
                 onTap: () {
@@ -147,10 +148,10 @@ class _ImagePickerState extends State<ImagePicker> {
                         child: Stack(
                           children: [
                             Container(
-  width: 130,
-  height: 130,
+  width: 130.w,
+  height: 130.w,
   decoration: BoxDecoration(
-    border: Border.all(width: 4, color: Colors.white),
+    border: Border.all(width: 4.w, color: Colors.white),
     boxShadow: [
       BoxShadow(
         spreadRadius: 2,
@@ -183,12 +184,12 @@ class _ImagePickerState extends State<ImagePicker> {
                                 bottom: 0,
                                 right: 0,
                                 child: Container(
-                                  height: 40,
-                                  width: 40,
+                                  height: 40.h,
+                                  width: 40.w,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border:
-                                        Border.all(width: 4, color: Colors.white),
+                                        Border.all(width: 4.w, color: Colors.white),
                                     color: Colors.amber,
                                   ),
                                   child: InkWell(
@@ -207,19 +208,19 @@ class _ImagePickerState extends State<ImagePicker> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 30),
-                      const Text(
+                       SizedBox(height: 30.h),
+                       Text(
                         'عشان تغير اى من معلوماتك الشخصية دوس عليها',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 17, color: Colors.black),
+                        style: TextStyle(fontSize: 17.sp, color: Colors.black),
                       ),
                       Form(
                         key: formKey,
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              const SizedBox(
-                                height: 12,
+                               SizedBox(
+                                height: 12.h,
                               ),
                               //Name
                               Row(
@@ -271,7 +272,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                 ],
                               ),
 
-                              const SizedBox(height: 7,),
+                               SizedBox(height: 7.h,),
 
                               //email
                               buildTextFormField(
@@ -284,8 +285,8 @@ class _ImagePickerState extends State<ImagePicker> {
                                 icon: const Icon(Icons.person_3_outlined , color: Colors.amberAccent,),
                               ),
 
-                              const SizedBox(
-                                height: 10,
+                               SizedBox(
+                                height: 10.h,
                               ),
                               buildTextFormField(
                                 onSaved: (value) {
@@ -296,8 +297,8 @@ class _ImagePickerState extends State<ImagePicker> {
                                 icon: const Icon(Icons.phone, color: Colors.amberAccent,),
                               ),
                               //phone number
-                              const SizedBox(
-                                height: 10,
+                               SizedBox(
+                                height: 10.h,
                               ),
 
                               //location
@@ -310,34 +311,34 @@ class _ImagePickerState extends State<ImagePicker> {
                                 obscureText: false,
                                 icon: const Icon(Icons.location_on_outlined, color: Colors.amberAccent,),
                               ),
-                              const SizedBox(
-                                height: 10,
+                               SizedBox(
+                                height: 10.h,
                               ),
 
                               // Button
-                              const SizedBox(
-                                height: 20,
+                               SizedBox(
+                                height: 20.h,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   FormButton(
-                                    width:100,
-                                      height: 50,
-                                      child: const Text('الغاء', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.5),),
+                                    width:100.w,
+                                      height: 50.h,
+                                      child: Text('الغاء', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.5.sp),),
                                       onPressed: (){
                                         Navigator.pop(context);
                                       }),
 
                                   FormButton(
-                                      width: 100,
-                                      height: 50,
-                                      child: const Text(
+                                      width: 100.w,
+                                      height: 50.h,
+                                      child: Text(
                                         'حفظ التغيرات',
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 16.5),
+                                            fontSize: 16.5.sp),
                                       ),
                                       onPressed: () {
                                         formKey.currentState!.save();

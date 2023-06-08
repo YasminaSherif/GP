@@ -46,9 +46,9 @@ class BestWorkersOfCategory extends StatelessWidget {
 
             ],
           ),
-           Column(
+           const Column(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children:  const [
+            children:  [
              Padding(
             padding: EdgeInsets.only(
             right: 10.0,

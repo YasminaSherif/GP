@@ -1,7 +1,9 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/pages/worker/craft_home_screen/waited_tap.dart';
 import 'package:fortestpages/pages/worker/craft_profile_editing/craft_profile_editing.dart';
 import 'package:flutter/material.dart';
 
+import '../craft_profile_editing/settings.dart';
 import 'accepted_tab.dart';
 
 class CraftHomeScreen extends StatelessWidget {
@@ -13,24 +15,24 @@ class CraftHomeScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         body: Container(
-          color: Colors.grey[350],
+          color: Colors.grey[250],
           child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
             Stack(
               clipBehavior: Clip.none,
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3.0),
+                    borderRadius: BorderRadius.circular(3.0).r,
                     color: const Color.fromRGBO(217, 173, 48, 1),
                   ),
-                  height: 127.0,
+                  height: 117.0.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
 
                       Padding(
-                        padding: const EdgeInsets.only(
-                          right: 20.0,
+                        padding: EdgeInsets.only(
+                          right: 20.0.r,
                         ),
                         child: IconButton(
                           icon: const Icon(
@@ -41,7 +43,7 @@ class CraftHomeScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    const CraftProfileEditing(),
+                                    const CraftSetting(),
                               ),
                             );
                           },
@@ -52,35 +54,35 @@ class CraftHomeScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  left: 20.0,
-                  top: 95.0,
+                  left: 20.0.r,
+                  top: 95.0.r,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(10.0).r,
                       color: const Color.fromRGBO(47, 52, 76, 1),
                     ),
-                    width: 320.0,
-                    height: 90.0,
+                    width: 320.0.w,
+                    height: 90.0.h,
                     child: Row(children: [
                       Container(
-                        width: 152.0,
+                        width: 152.0.w,
                         color: Colors.transparent,
-                        child: const Text(
+                        child: Text(
                           'الطلبات تنتظرك! باشر عملك الان',
                           textAlign: TextAlign.end,
                           style: TextStyle(
                               color: Colors.amber,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              height: 1.0),
+                              fontSize: 20.0.sp,
+                              height: 1.0.h),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10.0,
+                       SizedBox(
+                        width: 10.0.w,
                       ),
                       Container(
-                        width: 158.0,
-                        height: 85.0,
+                        width: 158.0.w,
+                        height: 85.0.h,
                         color: Colors.transparent,
                         child: const Image(
                           fit: BoxFit.cover,
@@ -95,10 +97,11 @@ class CraftHomeScreen extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(
-                top: 60.0,
+              margin: EdgeInsets.only(
+                top: 65.0.r,
               ),
-              child: const TabBar(
+              child: TabBar(
+                indicatorColor: const Color.fromRGBO(217, 173, 48, 1),
                 tabs: [
                   Tab(
                     child: Text(
@@ -106,7 +109,7 @@ class CraftHomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: 17.sp,
                       ),
                     ),
                   ),
@@ -116,7 +119,7 @@ class CraftHomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: 17.sp,
                       ),
                     ),
                   ),

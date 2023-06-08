@@ -45,16 +45,11 @@ class _UserHome extends State<HomeLayout> {
               {
                 cubit.changeIndex(index);
               },
-              items:    const [
+              items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined,
                   ),
                   label: 'home',
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person_pin,
-                    ),
-                    label: 'profile'
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.chat,

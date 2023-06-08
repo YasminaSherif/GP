@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/request.dart';
 
 class AcceptedRequestItem extends StatefulWidget {
-  
-   AcceptedRequestItem ({Key? key,required this.request}) : super(key: key);
-requests request;
+  AcceptedRequestItem({Key? key, required this.request}) : super(key: key);
+  requests request;
   @override
   State<AcceptedRequestItem> createState() => _State();
 }
@@ -19,27 +19,25 @@ class _State extends State<AcceptedRequestItem> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
             color: Colors.white,
-            height: 96,
+            height: 96.h,
             child: Row(
               children: [
-                const SizedBox(
-                  width: 10.0,
+                SizedBox(
+                  width: 10.0.w,
                 ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                      const Text(
+                      Text(
                         'تم القبول',
                         style: TextStyle(
                           color: Colors.green,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 16.0,
-
+                          fontWeight: FontWeight.w900,
+                          fontSize: 13.0.sp,
                         ),
                       ),
                       IconButton(
@@ -58,44 +56,43 @@ class _State extends State<AcceptedRequestItem> {
                         },
                       ),
                     ]),
-
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.0).r,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
+                      children: [
                         Text(
-                         widget.request.id.toString()+'#'+'طلب',
+                          widget.request.id.toString() + '#' + 'طلب',
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize: 13.0,
-                              height: 1),
+                              fontSize: 13.0.sp,
+                              height: 1.h),
                         ),
-                       
-                        Text(widget.request.details,
+                        Text(
+                          widget.request.details,
                           textAlign: TextAlign.end,
                           style: TextStyle(
-                            fontSize: 10.0,
-                            height: 1,
+                            fontSize: 10.0.sp,
+                            height: 1.h,
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 15),
+                Padding(
+                  padding: EdgeInsets.only(right: 15.r),
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
-                    radius: 30.0,
+                    radius: 30.0.r,
                     child: CircleAvatar(
                       backgroundImage: AssetImage(
                           "assets/day9-toolbox-removebg-preview.png"),
-                      radius: 30.0,
+                      radius: 30.0.r,
                       backgroundColor: Colors.transparent,
                     ),
                   ),
@@ -104,19 +101,16 @@ class _State extends State<AcceptedRequestItem> {
             ),
           ),
         ),
-
-
         if (detailsIsOpened)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.r),
             child: Container(
-              height: 50,
+              height: 55.h,
               color: Colors.white,
               child: Row(
-
                 children: [
-                  const SizedBox(
-                    width: 10.0,
+                  SizedBox(
+                    width: 10.0.w,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,47 +123,46 @@ class _State extends State<AcceptedRequestItem> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        Text(widget.request.user!.name,
+                      children: [
+                        Text(
+                          widget.request.user!.name,
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
-                        Text(widget.request.user!.location,
+                        Text(
+                          widget.request.user!.location,
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ],
                     ),
                   ),
-
-                   Padding(
-                    padding: EdgeInsets.only(right: 15),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 32.0,
-                      child:  CircleAvatar(
-  backgroundColor: Colors.transparent,
-  radius: 18.0,
-  child: CircleAvatar(
-      
-    backgroundImage: widget.request.user!.image != null
-        ? MemoryImage(base64Decode(widget.request.user!.image!))
-        : null,
-    radius: 18.0,
-    backgroundColor: Colors.grey,
-  ),
-),)
-                  ),
+                  Padding(
+                      padding: EdgeInsets.only(right: 15),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 32.0.r,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          radius: 18.0.r,
+                          child: CircleAvatar(
+                            backgroundImage: widget.request.user!.image != null
+                                ? MemoryImage(
+                                    base64Decode(widget.request.user!.image!))
+                                : null,
+                            radius: 18.0.r,
+                            backgroundColor: Colors.grey,
+                          ),
+                        ),
+                      )),
                 ],
               ),
             ),
           ),
       ],
     );
-
-
   }
 }

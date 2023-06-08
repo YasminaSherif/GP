@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/models/loginDataResponse.dart';
 import 'package:fortestpages/pages/user/user_requests.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
@@ -45,10 +46,10 @@ class Request extends StatelessWidget {
               children: [
               Container(
               decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3.0),
+              borderRadius: BorderRadius.circular(3.0).r,
           color: const Color.fromRGBO(217, 173, 48, 1),
           ),
-          height: 127.0,
+          height: 117.0.h,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -62,11 +63,11 @@ class Request extends StatelessWidget {
                                   )),
                             ])),
                 Positioned(
-                  left: 70.0,
-                  top: 60.0,
+                  left: 70.0.r,
+                  top: 60.0.r,
                   child: Container(
-                    height: 150,
-                    width: 240,
+                    height: 150.h,
+                    width: 240.w,
                     child: Image.asset(
                       'assets/disaster-or-mental-health-crisis.png',
                       fit: BoxFit.cover,
@@ -79,35 +80,35 @@ class Request extends StatelessWidget {
 
                   ],
                 ),
-                const SizedBox(
-                  height: 72,
+                 SizedBox(
+                  height: 72.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       'انشاء طلب',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900,),
+                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900,),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 8,
+                 SizedBox(
+                  height: 8.h,
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 200,
-                    right:15,
+                 Padding(
+                  padding: EdgeInsets.only(left: 100.r,
+                    right:15.r,
                   ),
                   child: Text(
                     'وصف المهمة المطلوبة',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
+                 SizedBox(
+                  height: 8.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  padding: EdgeInsets.only(left: 15.r, right: 15.r),
                   child: TextField(
                     onChanged: (val){
                       request=val;
@@ -126,19 +127,19 @@ class Request extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
-                        const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
+                         EdgeInsets.symmetric(vertical: 50.r, horizontal: 10.r),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(5))),
+                            borderRadius: BorderRadius.circular(5).r)),
                   ),
                 ),
 
-                const SizedBox(
-                  height: 25,
+                 SizedBox(
+                  height: 25.h,
                 ),
                 // the button
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(left: 20.r, right: 20.r),
                   
                                     child:
                                      FormButton(

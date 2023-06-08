@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fortestpages/pages/user/settings.dart';
 
 import '../../../bloc/mainUser/cubit.dart';
 import '../../../services/methods/navigation.dart';
@@ -33,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           builder: ( context,  state){
             var cubit=mainCubit.get(context);
     return Container(
-        color: Colors.grey[350],
+        color: Colors.grey[250],
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -45,53 +47,58 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(3.0),
                     color: const Color.fromRGBO(217, 173, 48, 1),
                   ),
-                  height: 127.0,
+                  height: 117.0.h,
 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
+                    children:  [
                       Padding(
                         padding: EdgeInsets.only(
-                          right: 20.0,
+                          right: 20.0.r,
                         ),
-                        child: Icon(
-                          Icons.settings,
+                        child: IconButton(
+                          onPressed: () {
+                             navigateWithBack(context, const UserProfile());
+                          },
+                          icon: const Icon(
+                            Icons.settings,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
                 Positioned(
-                  left: 20.0,
-                  top: 95.0,
+                  left: 20.0.r,
+                  top: 88.0.r,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10.0).r,
+                      color: Colors.grey[350],
                     ) ,
-                    width: 320.0,
-                    height: 90.0,
+                    width: 320.0.w,
+                    height: 90.0.h,
                     child: Row(
                       children:   [
                         Container(
-                          width: 152.0,
+                          width: 152.0.w,
                           color: Colors.transparent,
-                          child: const Text('الحل الامثل لجميع صيانات منزلك',
+                          child: Text('الحل الامثل لجميع صيانات منزلك',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              height: 1.0
+                              fontSize: 20.0.sp,
+                              height: 1.0.h
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 10.0,
+                         SizedBox(
+                          width: 10.0.w,
                         ),
 
                         Container(
-                          width: 158.0,
-                          height: 85.0,
+                          width: 158.0.w,
+                          height: 85.0.h,
                           color: Colors.transparent,
                           child:  const Image(
                             fit: BoxFit.cover,
@@ -108,21 +115,21 @@ class HomeScreen extends StatelessWidget {
             ),
             
            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.0.r,
               ),
               child: Container(
                   width: double.infinity,
-                  height: 50,
-                margin: const EdgeInsets.only(
-                  top: 66.0,
+                  height: 50.h,
+                margin: EdgeInsets.only(
+                  top: 66.0.r,
                 ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(10.0).r,
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding:   EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: TextField(
                     onChanged: (val){
                       search=val;
@@ -139,10 +146,10 @@ class HomeScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
-                        const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                         EdgeInsets.symmetric(vertical: 2.r, horizontal: 10.r),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(5)
+                            borderRadius: BorderRadius.circular(5).r
                         )
                     ),
                   ),
@@ -154,16 +161,16 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.only(
-                        top: 5.0,
-                        right: 20.0,
+                        top: 5.0.r,
+                        right: 20.0.r,
                       ),
                       child: Text('فئاتنا الرئيسية',
                         textAlign: TextAlign.end,
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          fontSize: 20.0,
+                          fontSize: 20.0.sp,
                         ),
                       ),
                     ),
@@ -178,27 +185,27 @@ class HomeScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                width: 110.0,
-                                height: 100.0,
+                                width: 120.0.w,
+                                height: 110.0.h,
                                 color: const Color.fromRGBO(104, 140, 40, 1),
                               ),
 
-                              const Positioned(
-                                left: 65.0,
+                               Positioned(
+                                left: 70.0.r,
                                 child: Text('نجار',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0,
+                                    fontSize: 19.0.sp,
                                   ),
                                 ),
                               ),
                               
                               Positioned(
-                                top: 30.0,
+                                top: 40.0.r,
                                 child: Container(
-                                  width: 60.0,
-                                  height: 80.0,
+                                  width: 60.0.w,
+                                  height: 80.0.h,
                                   color: Colors.transparent,
                                   child:  const Image(
                                     fit: BoxFit.cover,
@@ -220,27 +227,27 @@ class HomeScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                width: 110.0,
-                                height: 100.0,
+                                width: 120.0.w,
+                                height: 110.0.h,
                                 color: Colors.yellow,
                               ),
 
-                              const Positioned(
-                                left: 55.0,
+                               Positioned(
+                                left: 45.0.r,
                                 child: Text('كهربائي',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0,
+                                    fontSize: 19.0.sp,
                                   ),
                                 ),
                               ),
 
                               Positioned(
-                                top: 30.0,
+                                top: 30.0.r,
                                 child: Container(
-                                  width: 60.0,
-                                  height: 80.0,
+                                  width: 60.0.w,
+                                  height: 80.0.h,
                                   color: Colors.transparent,
                                   child:  const Image(
                                     fit: BoxFit.cover,
@@ -258,8 +265,8 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(
-                      height: 5.0,
+                     SizedBox(
+                      height: 10.0.h,
                     ),
 
                     Row(
@@ -271,27 +278,27 @@ class HomeScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                width: 110.0,
-                                height: 100.0,
+                                width: 120.0.w,
+                                height: 110.0.h,
                                 color: const Color.fromRGBO(47, 52, 76, 1),
                               ),
 
-                              const Positioned(
-                                left: 65.0,
+                               Positioned(
+                                left: 65.0.r,
                                 child: Text('حداد',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0,
+                                    fontSize: 19.0.sp,
                                   ),
                                 ),
                               ),
 
                               Positioned(
-                                top: 30.0,
+                                top: 35.0.r,
                                 child: Container(
-                                  width: 60.0,
-                                  height: 80.0,
+                                  width: 70.0.w,
+                                  height: 90.0.h,
                                   color: Colors.transparent,
                                   child:  const Image(
                                     fit: BoxFit.cover,
@@ -313,27 +320,27 @@ class HomeScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                width: 110.0,
-                                height: 100.0,
+                                width: 120.0.w,
+                                height: 110.0.h,
                                 color: const Color.fromRGBO(50, 135, 140, 1),
                               ),
 
-                              const Positioned(
-                                left: 65.0,
+                               Positioned(
+                                left: 65.0.r,
                                 child: Text('سباك',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0,
+                                    fontSize: 19.0.sp,
                                   ),
                                 ),
                               ),
 
                               Positioned(
-                                top: 30.0,
+                                top: 37.0.r,
                                 child: Container(
-                                  width: 60.0,
-                                  height: 80.0,
+                                  width: 70.0.w,
+                                  height: 90.0.h,
                                   color: Colors.transparent,
                                   child:  const Image(
                                     fit: BoxFit.cover,
@@ -352,8 +359,8 @@ class HomeScreen extends StatelessWidget {
                     ),
 
 
-                    const SizedBox(
-                      height: 5.0,
+                     SizedBox(
+                      height: 10.0.h,
                     ),
 
                     Row(
@@ -365,14 +372,14 @@ class HomeScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                width: 110.0,
-                                height: 100.0,
+                                width: 120.0.w,
+                                height: 110.0.h,
                                 color: const Color.fromRGBO(140, 131, 50, 1),
                               ),
 
-                              const Positioned(
-                                left: 65.0,
-                                child: Text('تعقيم',
+                               Positioned(
+                                left: 65.0.r,
+                                child: const Text('تعقيم',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -382,10 +389,11 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                               Positioned(
-                                top: 30.0,
+                                right: 50,
+                                top: 50.0.r,
                                 child: Container(
-                                  width: 60.0,
-                                  height: 80.0,
+                                  width: 70.0.w,
+                                  height: 90.0.h,
                                   color: Colors.transparent,
                                   child:  const Image(
                                     fit: BoxFit.cover,

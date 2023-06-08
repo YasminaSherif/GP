@@ -25,7 +25,8 @@ class UserProfile extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = userDataCubit.get(context);
-        return Container(
+        return Scaffold( 
+          body: Container(
           color: Colors.grey[250],
           child: Column(
             children: [
@@ -41,9 +42,14 @@ class UserProfile extends StatelessWidget {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(20.0).w,
-                          child: const Icon(
-                            Icons.arrow_back_sharp,
+                          padding: const EdgeInsets.all(10.0).w,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_sharp,
+                            ),
                           ),
                         ),
                       ],
@@ -54,7 +60,7 @@ class UserProfile extends StatelessWidget {
                   else
                     Positioned(
                       left: 90.0.r,
-                      top: 90.0.r,
+                      top: 85.0.r,
                       child: Column(
                         children: [
                           Stack(
@@ -200,6 +206,7 @@ class UserProfile extends StatelessWidget {
                 ),
               )
             ],
+          ),
           ),
         );
       },

@@ -117,15 +117,11 @@ class CraftProfile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Expanded(
-                          flex: 1,
+                         SizedBox(height: 100.h,),
+                        Expanded(                        
                           child: Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.only(
-                              top: 105.0.r,
-                            ),
-                            color: Colors.white,
-                            
+                            width: double.infinity,                          
+                            color: Colors.white,                         
                             child: Padding(
                               padding: EdgeInsets.only(
                                 left: 65.0.r,
@@ -169,10 +165,8 @@ class CraftProfile extends StatelessWidget {
                           height: 7.0.h,
                         ),
                         Expanded(
-                          flex: 1,
                           child: Container(
-                            color: Colors.white,
-                            
+                            color: Colors.white,                            
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -231,10 +225,8 @@ class CraftProfile extends StatelessWidget {
                           height: 7.0.h,
                         ),
                         Expanded(
-                          flex: 1,
                           child: Container(
-                            color: Colors.white,
-                           
+                            color: Colors.white,                           
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -312,7 +304,8 @@ class CraftProfile extends StatelessWidget {
                         )
                       ],
                     ),
-                  ));
+                  )
+                  );
       },
     );
   }

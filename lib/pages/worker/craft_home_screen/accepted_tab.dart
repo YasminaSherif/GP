@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../bloc/mainUser/cubit.dart';
 import '../../../bloc/workerData/cubit.dart';
@@ -17,7 +18,7 @@ class AcceptedTap extends StatelessWidget {
       builder: (context, state) {
         var cubit = workerDataCubit.get(context);
         return Container(
-          color: Colors.grey[350],
+          color: Colors.grey[250],
           child: (state is getRequestLoadingsState)
               ? const Center(child: CircularProgressIndicator())
               : (cubit.accepted != null && cubit.accepted!.isNotEmpty)
@@ -27,7 +28,7 @@ class AcceptedTap extends StatelessWidget {
                           child: ListView.separated(
                             itemBuilder: (context, index) =>
                                 AcceptedRequestItem(request: cubit.accepted![index]),
-                            separatorBuilder: (context, index) => const SizedBox(height: 5),
+                            separatorBuilder: (context, index) =>  SizedBox(height: 5.h),
                             itemCount: cubit.accepted!.length,
                           ),
                         ),
@@ -37,8 +38,8 @@ class AcceptedTap extends StatelessWidget {
                       child: Text(
                         "لا يوجد طلبات",
                         style: TextStyle(
-                          height: 1.0,
-                         fontSize: 12.0,
+                          height: 1.0.h,
+                         fontSize: 12.0.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),

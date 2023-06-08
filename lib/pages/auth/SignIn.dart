@@ -129,11 +129,8 @@ class SignIn extends StatelessWidget {
                        child: CircularProgressIndicator())
                        
                        :FormButton(
-                        width: 300.w,
-                         gradient: LinearGradient(colors: <Color>[
-                                const Color(0xffD9AD30),
-                                Colors.amber.shade200,
-                              ]),
+                      
+                        
                       onPressed: (){
                             final isValid = formKey.currentState!.validate();
                             if(isValid){
