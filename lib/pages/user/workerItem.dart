@@ -29,7 +29,7 @@ class workerOfCate extends StatelessWidget {
         return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: Container(
-      height: 70.0,
+      height: 72.0,
       color: Colors.white,
       child: Row(
         children:  [
@@ -80,7 +80,7 @@ class workerOfCate extends StatelessWidget {
                      Text(worker.firstName +" "+worker.lastName,
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          fontSize: 16.0,
+                          fontSize: 15.0,
                           height: 1.0
                       ),
                     ),

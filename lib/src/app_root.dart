@@ -30,16 +30,15 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context) => CraftCubit()),
         BlocProvider(create: (context) => ChatCubit())
       ],
-      child:  ScreenUtilInit(
-        designSize: const Size(360, 640),
-        minTextAdapt:true,
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
         splitScreenMode: true,
-        builder: (context,child)=>
-        const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: StartingPage(),
-        ),
+        builder: (context, child)=>const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: StartingPage(),
       ),
+        ),
     );
   }
 }

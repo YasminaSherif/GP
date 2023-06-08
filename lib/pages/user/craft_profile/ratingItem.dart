@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/models/loginDataResponse.dart';
 import 'package:fortestpages/models/reviews.dart';
 
@@ -22,55 +23,58 @@ reviews review;
               ),
                Text(review.rateOfthisWork.toString(),
                 style: TextStyle(
-                  height: 1.0,
+                  height: 1.0.h,
                   fontSize: 12.0,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(
-                width: 40.0,
+               SizedBox(
+                width: 40.0.w,
               ),
               Expanded(
                 child: Container(
-                  height: 33.0,
+                  height: 30.0.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.grey[350],
+                    color: Colors.grey[300],
                   ),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children:  [
-                      Text(review.user!.firstName+" "+review.user!.lastName,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 12.0,
+                
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children:  [
+                        Text(review.user!.firstName+" "+review.user!.lastName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 10.0.sp,
+                          ),
                         ),
-                      ),
-                      Text(review.details,
-                        style: TextStyle(
-                          color: Colors.black,
-                          height: 0.7,
-                          fontSize: 8.0,
-                          fontWeight: FontWeight.w700,
-
+                        Text(review.details,
+                          style: TextStyle(
+                            color: Colors.black,
+                            height: 0.6.h,
+                            fontSize: 8.0.sp,
+                            fontWeight: FontWeight.w700,
+                                  
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 7,
+               SizedBox(
+                width: 7.w,
               ),
               CircleAvatar(
             backgroundColor: Colors.transparent,
-            radius: 19.0,
+            radius: 17.0.r,
             child: CircleAvatar(
               backgroundImage: MemoryImage(review.user!.image != null
                   ? base64Decode(review.user!.image!)
                   : Uint8List(0)),
-              radius: 19.0,
+              radius: 17.0.r,
               backgroundColor: Colors.grey,
             ),
           ),

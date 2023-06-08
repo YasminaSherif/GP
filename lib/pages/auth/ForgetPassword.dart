@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../services/methods/navigation.dart';
@@ -28,16 +29,16 @@ class ForgetPassword extends StatelessWidget {
         builder: (context, state){
           var cubit=SignInCubit.get(context);
           return Scaffold(
-            backgroundColor: const Color(0xffF6F6F6),
+            backgroundColor:Colors.grey[250],
             body: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.only(left: 10.r, right: 10.r),
               child: Form(
                 key: formKey,
                 child: ListView(
                   children: [
                     Container(
-                      width: 400,
-                      height: 200,
+                      width: 400.w,
+                      height: 200.h,
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       decoration: const BoxDecoration(
                           color: Colors.white,
@@ -46,12 +47,16 @@ class ForgetPassword extends StatelessWidget {
                       ),
                     ),
 
-                    const Text('Forget Password',
-                      textAlign: TextAlign.center ,style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-                    const SizedBox(height: 60,),
+                    Center(
+                            child: Padding(
+                              padding:  EdgeInsets.only(top: 10.r, bottom: 40.r),
+                              child: Text(
+                               'نسيت كلمة المرور',
+                                style: TextStyle( fontWeight: FontWeight.bold, fontSize: 25.sp ),),
+                            )),
                     //email
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: EdgeInsets.only(left: 10.r, right: 10.r),
                       child: TextFormField(
                         validator: (email){
                           if (email!.isEmpty || !email.contains('@') || !email.contains('.com')){
@@ -61,10 +66,10 @@ class ForgetPassword extends StatelessWidget {
                           //print(email);
                         },
                         decoration: InputDecoration(
-                            hintText: 'Email',
-                            hintStyle: const TextStyle(color: Colors.black26),
+                            hintText: 'الايميل',
+                            hintStyle: const TextStyle(color: Colors.black26,),
                             filled: true,
-                            fillColor: Colors.black.withOpacity(0.1),
+                            fillColor: Colors.white,
                             prefixIcon: IconButton(
                               icon: const Icon(Icons.email_rounded, color: Colors.grey,),
                               onPressed: (){
@@ -72,28 +77,34 @@ class ForgetPassword extends StatelessWidget {
                                 // });
                               },
                             ),
-                            contentPadding: const EdgeInsets.symmetric(vertical:20 ,horizontal:10),
+                            contentPadding: EdgeInsets.symmetric(vertical:20.r ,horizontal:10.r),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(10)
+                                borderRadius: BorderRadius.circular(10).r
                             )
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                     SizedBox(height: 10.h,),
 
                     //password
-                    const SizedBox(height: 20,),
+                     SizedBox(height: 20.h,),
 
                     // Button
                     Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
+                      padding: EdgeInsets.only(left: 30.r, right: 30.r),
                       child: FormButton(
-                          gradient: LinearGradient(
-                              colors: <Color>[ Colors.amber.shade600 ,Colors.amber.shade200,]
-                          ),
-                          child: const Text('Send Code', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),),
-                          onPressed: (){
+                          width: 300.w,
+                         gradient: LinearGradient(colors: <Color>[
+                                const Color(0xffD9AD30),
+                                Colors.amber.shade200,
+                              ]),
+child:
+                            const Text('ارسال الكود',
+                            style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),),                       
+                       onPressed: (){
                             formKey.currentState!.save();
                             cubit.ForgetPassword(email);
                           }),
