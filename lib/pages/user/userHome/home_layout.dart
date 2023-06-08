@@ -21,7 +21,7 @@ class _UserHome extends State<HomeLayout> {
     userDataCubit usercubit=BlocProvider.of<userDataCubit>(context);
     //  mainCubit maicCubit=BlocProvider.of<mainCubit>(context);
     usercubit.getUserData(); 
-    // usercubit.GetRequests();
+    usercubit.GetRequests();
   }
 
   @override

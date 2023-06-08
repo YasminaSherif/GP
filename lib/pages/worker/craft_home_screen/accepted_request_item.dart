@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortestpages/bloc/workerData/cubit.dart';
 import '../../../models/request.dart';
+import '../../../services/methods/navigation.dart';
+import '../../chat/messages_screen_Worker.dart';
 
 class AcceptedRequestItem extends StatefulWidget {
   
@@ -121,8 +124,18 @@ class _State extends State<AcceptedRequestItem> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.chat),
+                    children: [
+                      IconButton(icon:  Icon(Icons.chat),
+                      
+                      onPressed: () { 
+                        var cubit = BlocProvider.of<workerDataCubit>(context);
+                        navigateWithBack(context, MessagesScreen(
+                receiverId: widget.request.customerId,
+                receiverName: widget.request.user!.name,
+                worker:cubit.workerResponse![0],
+              ));
+                       },
+                      ),
                     ],
                   ),
                   Expanded(

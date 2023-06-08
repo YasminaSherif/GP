@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../pages/chats_screen.dart';
+import '../../pages/chat/chats_screen_worker.dart';
 import '../../pages/worker/craft_home_screen/craft_home_screen.dart';
 import '../../pages/worker/craft_profile_editing/craft_profile_editing.dart';
 import '../../pages/worker/craft_profile_editing/settings.dart';
@@ -20,7 +20,7 @@ class CraftCubit extends Cubit<CraftStates>
   List<Widget> screens= [
     const CraftHomeScreen(),
     const UserProfile(),
-    const ChatsScreen(),
+    ChatsScreen(),
   ];
 
   void changeIndex(int index)

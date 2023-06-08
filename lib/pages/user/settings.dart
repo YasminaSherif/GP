@@ -155,7 +155,7 @@ CircleAvatar(
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: MaterialButton(onPressed: (){
-                            cubit.GetRequests();
+                            // cubit.GetRequests();
                              navigateWithBack(context, UserRequests());
                           },
                             child: Row(

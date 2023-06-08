@@ -56,6 +56,7 @@ class userDataCubit extends Cubit<userDataStates>
   List<requests>? panding;
   List<requests>? accepted;
   List<requests>? declined;
+  List<workerData>? workersToChat;
   GetRequests() async {
     emit(getRequestLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/GetAllRequests?UserId=${Constant.getData(key: 'id')}');
@@ -69,17 +70,26 @@ class userDataCubit extends Cubit<userDataStates>
               return requests.fromJson(e);
             }).toList();
           for (var request in allRequests) {
-          if (request.user == null) {
-          request.user = userResponse![0];
-        }
+        //   if (request.user == null) {
+        //   request.user = userResponse![0];
+        // }
         if (request.worker == null) {
           await getWorkerDataForRequest(request.workerId);
           request.worker = worker![0];
+          
         }
       }
         panding=allRequests.where((r) => r.status == 0).toList();
         accepted=allRequests.where((r) => r.status == 1).toList();
-        declined=allRequests.where((r) => r.status == 2).toList();
+        declined=allRequests.where((r) => r.status == 2).toList(); 
+        if(accepted!=null){
+        for(var item in accepted!){
+        if (workersToChat!=null && !workersToChat!.any((worker) => worker.id == item.worker!.id)) {
+        workersToChat!.add(item.worker!);
+          }else if(workersToChat==null){
+           workersToChat=[item.worker!];
+          }}}
+        
         emit(getRequestSuccessState());
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }
@@ -152,7 +162,7 @@ class userDataCubit extends Cubit<userDataStates>
     emit(sendRequestLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/MakeRequest');
     http.Response response;
-    dynamic jsonResponse;
+    //dynamic jsonResponse;
     try {
       response = await http.post(url,
           headers: {
@@ -203,7 +213,7 @@ class userDataCubit extends Cubit<userDataStates>
   var client = http.Client();
   var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/EditCustomer?CustomerId=${Constant.getData(key: 'id')}');
   var response;
-  dynamic jsonResponse;
+  //dynamic jsonResponse;
   try {
     // final imageBytes = (imageFile != null) ? await imageFile.readAsBytes() : null;
     // final imageString = (imageBytes != null) ? base64.encode(imageBytes) : null;
@@ -499,6 +509,7 @@ List<userData>? user;
   workerForRequest=null;
   user=null;
   userUpdateResponse=null;
+  workersToChat=null;
 
  }
 

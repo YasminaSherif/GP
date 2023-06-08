@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "224517705200",
+    "project_id": "ficraft",
+    "storage_bucket": "ficraft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224517705200:android:bfbf249e71e706b3c72135",
+        "android_client_info": {
+          "package_name": "com.example.fortestpages"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224517705200-8a39vqbg8kh31v1satn8qtm96g78aecs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9hEBDXYYjO3EYgtm2fZNczSR9a7pB3DY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224517705200-8a39vqbg8kh31v1satn8qtm96g78aecs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

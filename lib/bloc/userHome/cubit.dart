@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortestpages/bloc/signin/cubit.dart';
 
-import '../../pages/chats_screen.dart';
+import '../../pages/chat/chats_screen_user.dart';
 import '../../pages/user/userHome/userHome.dart';
 import '../../pages/user/settings.dart';
 import '../../models/loginDataResponse.dart';
@@ -21,7 +21,7 @@ class AppCubit extends Cubit<AppStates>
   List<Widget> screens= [
     HomeScreen(),
     const UserProfile(),
-    const ChatsScreen(),
+    ChatsScreen(),
   ];
 
 void changeIndex(int index)
