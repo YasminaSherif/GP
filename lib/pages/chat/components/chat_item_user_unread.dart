@@ -32,38 +32,44 @@ class ChatItem extends StatelessWidget {
             );
           },
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.r),
+            padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                 Expanded(
-                   child: Column(
+
+                Padding(
+                    padding: EdgeInsets.only(bottom: 40.r),
+                    child: const CircleAvatar(
+                      radius: 7,
+                      backgroundColor: Colors.redAccent,
+                    ),
+                  ),
+               
+               Expanded(
+                  child: Column(
                     children: [
-                      Text(worker.name,  style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),),
+                      Text(worker.name, style: TextStyle(fontSize: 13.sp,fontFamily: 'Tajawal',fontWeight: FontWeight.bold),),
                        Text('رجاء متي موعد تنفيذ الطلب  تحديداتحديداتحديداتحديداتحديدا',
-                       style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),
+                      style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),
                          textDirection: TextDirection.rtl,
                          maxLines: 1,
                          overflow: TextOverflow.ellipsis,
                       ),
                     ],
-                                 ),
-                 ),
-
-                 SizedBox(
+                  ),
+                ),
+                SizedBox(
                   width: 10.h,
                 ),
-
-               
                 CircleAvatar(
-                  radius: 25.0.r,
+                  radius: 25.0,
                   backgroundImage:worker.image != null
         ? MemoryImage(base64Decode(worker.image!))
         : null,
     backgroundColor: Colors.grey,
                 ),
 
-               
-               
+                
+
                 
                  
               ],

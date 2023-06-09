@@ -81,6 +81,7 @@ class CraftProfileEditing extends StatelessWidget {
                                     cubit.workerResponse![0].lastName,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w900,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ),
                               Text(
@@ -90,6 +91,7 @@ class CraftProfileEditing extends StatelessWidget {
                                   height: 0.7.h,
                                   fontSize: 12.0.sp,
                                   fontWeight: FontWeight.w700,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ),
                               Row(
@@ -106,6 +108,7 @@ class CraftProfileEditing extends StatelessWidget {
                                       height: 1.0.h,
                                       fontSize: 12.0.sp,
                                       fontWeight: FontWeight.w700,
+                                      fontFamily: 'Tajawal',
                                     ),
                                   ),
                                 ],
@@ -149,6 +152,7 @@ class CraftProfileEditing extends StatelessWidget {
                                      style: TextStyle(
                                        fontSize: 17.0.sp,
                                        fontWeight: FontWeight.w900,
+                                       fontFamily: 'Tajawal',
                                      ),
                                    ),
                                 ],
@@ -166,6 +170,7 @@ class CraftProfileEditing extends StatelessWidget {
                                           height: 1.h,
                                           fontSize: 10.sp,
                                           fontWeight: FontWeight.w700,
+                                          fontFamily: 'Tajawal',
                                         ),
                                       ),
                                     ],
@@ -213,6 +218,7 @@ class CraftProfileEditing extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 17.0.sp,
                                       fontWeight: FontWeight.w900,
+                                      fontFamily: 'Tajawal',
                                     ),
                                   ),
                                 ),
@@ -226,6 +232,7 @@ class CraftProfileEditing extends StatelessWidget {
                                   color: Colors.grey,
                                   fontSize: 16.0.sp,
                                   fontWeight: FontWeight.w900,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ))
                             else
@@ -272,6 +279,7 @@ class CraftProfileEditing extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 17.0.sp,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ),
                             ),
@@ -283,6 +291,7 @@ class CraftProfileEditing extends StatelessWidget {
                                   color: Colors.grey,
                                   fontSize: 16.0.sp,
                                   fontWeight: FontWeight.w900,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ))
                             else

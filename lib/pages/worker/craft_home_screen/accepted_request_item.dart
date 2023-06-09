@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../bloc/workerData/cubit.dart';
 import '../../../models/request.dart';
 import '../../../services/methods/navigation.dart';
 import '../../chat/messages_screen_Worker.dart';
@@ -39,7 +41,8 @@ class _State extends State<AcceptedRequestItem> {
                         style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.w900,
-                          fontSize: 13.0.sp,
+                          fontSize: 12.0.sp,
+                          fontFamily: 'Tajawal',
                         ),
                       ),
                       IconButton(
@@ -72,7 +75,9 @@ class _State extends State<AcceptedRequestItem> {
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 13.0.sp,
-                              height: 1.h),
+                              height: 1.h,
+                              fontFamily: 'Tajawal',
+                              ),
                         ),
                         Text(
                           widget.request.details,
@@ -80,6 +85,7 @@ class _State extends State<AcceptedRequestItem> {
                           style: TextStyle(
                             fontSize: 10.0.sp,
                             height: 1.h,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                       ],
@@ -92,7 +98,7 @@ class _State extends State<AcceptedRequestItem> {
                     backgroundColor: Colors.transparent,
                     radius: 30.0.r,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
+                      backgroundImage: const AssetImage(
                           "assets/day9-toolbox-removebg-preview.png"),
                       radius: 30.0.r,
                       backgroundColor: Colors.transparent,
@@ -141,19 +147,21 @@ class _State extends State<AcceptedRequestItem> {
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w900,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                         Text(
                           widget.request.user!.location,
                           style: TextStyle(
                             fontSize: 12.sp,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.only(right: 15),
+                      padding: EdgeInsets.only(right: 15.r),
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         radius: 32.0.r,

@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fortestpages/pages/user/previous_requests.dart';
 import 'package:fortestpages/pages/user/user_requests.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
 //import '../../models/userModel.dart';
@@ -35,7 +36,7 @@ class UserProfile extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3.0),
+                      borderRadius: BorderRadius.circular(3.0).r,
                       color: const Color.fromRGBO(217, 173, 48, 1),
                     ),
                     height: 117.0.h,
@@ -56,10 +57,10 @@ class UserProfile extends StatelessWidget {
                     ),
                   ),
                   if (cubit.userResponse == null)
-                    const Center(child: CircularProgressIndicator())
+                    const Center(child: CircularProgressIndicator(color: Color(0xffD9AD30),))
                   else
                     Positioned(
-                      left: 90.0.r,
+                      left: 95.0.r,
                       top: 85.0.r,
                       child: Column(
                         children: [
@@ -86,6 +87,7 @@ class UserProfile extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 14.0.sp,
                               fontWeight: FontWeight.w900,
+                              fontFamily: 'Tajawal',
                             ),
                           ),
                           Text(
@@ -95,6 +97,7 @@ class UserProfile extends StatelessWidget {
                               height: 1.0.h,
                               fontSize: 12.0.sp,
                               fontWeight: FontWeight.w700,
+                              fontFamily: 'Tajawal',
                             ),
                           ),
                         ],
@@ -103,7 +106,7 @@ class UserProfile extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: const EdgeInsets.only(top: 90).w,
+                margin: EdgeInsets.only(top: 90.r),
                 child: Column(
                   children: [
                     Padding(
@@ -124,8 +127,9 @@ class UserProfile extends StatelessWidget {
                             Text(
                               'معلومات شخصية',
                               style: TextStyle(
-                                fontSize: 15.0.sp,
-                                fontWeight: FontWeight.w900,
+                                fontSize: 13.0.sp,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Tajawal',
                               ),
                             ),
                             SizedBox(
@@ -140,7 +144,7 @@ class UserProfile extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0).w,
+                      padding: EdgeInsets.symmetric(horizontal: 10.0.r),
                       child: MaterialButton(
                         onPressed: () {
                           cubit.GetRequests();
@@ -156,10 +160,46 @@ class UserProfile extends StatelessWidget {
                             ),
                             const Spacer(),
                             Text(
-                              'طلباتي',
+                              'الطلبات الجاريه',
                               style: TextStyle(
                                 fontSize: 15.0.sp,
-                                fontWeight: FontWeight.w900,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Tajawal',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            const Icon(
+                              Icons.account_box_outlined,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0).w,
+                      child: MaterialButton(
+                        onPressed: () {
+                          cubit.GetRequests();
+                          navigateWithBack(context, const PreviousRequests());
+                        },
+                        child:  Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.navigate_before_outlined,
+                              size: 30,
+                              color: Colors.grey,
+                            ),
+                            const Spacer(),
+                            Text(
+                              'الطلبات السابقه',
+                              style: TextStyle(
+                                fontSize: 13.0.sp,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Tajawal',
                               ),
                             ),
                             SizedBox(
@@ -174,7 +214,7 @@ class UserProfile extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0).w,
+                      padding: EdgeInsets.symmetric(horizontal: 10.0.r),
                       child: MaterialButton(
                         onPressed: () {
                           cubit.logout();
@@ -186,8 +226,9 @@ class UserProfile extends StatelessWidget {
                             Text(
                               'تسجيل خروج',
                               style: TextStyle(
-                                fontSize: 15.0.sp,
-                                fontWeight: FontWeight.w900,
+                                fontSize: 13.0.sp,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Tajawal',
                               ),
                             ),
                             SizedBox(

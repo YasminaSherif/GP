@@ -55,33 +55,37 @@ class CraftHomeScreen extends StatelessWidget {
                 ),
                 Positioned(
                   left: 20.0.r,
-                  top: 95.0.r,
+                  top: 88.0.r,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0).r,
                       color: const Color.fromRGBO(47, 52, 76, 1),
                     ),
                     width: 320.0.w,
-                    height: 90.0.h,
+                    height: 80.0.h,
                     child: Row(children: [
                       Container(
-                        width: 152.0.w,
+                        width: 160.0.w,
+                         height: 40.0.h,
                         color: Colors.transparent,
                         child: Text(
                           'الطلبات تنتظرك! باشر عملك الان',
                           textAlign: TextAlign.end,
                           style: TextStyle(
-                              color: Colors.amber,
+                              color: const Color.fromRGBO(217, 173, 48, 1),
                               fontWeight: FontWeight.bold,
-                              fontSize: 20.0.sp,
-                              height: 1.0.h),
+                              fontSize: 16.0.sp,
+                              height: 1.0.h,
+                              fontFamily: 'Tajawal',
+                              ),
+                              
                         ),
                       ),
                        SizedBox(
                         width: 10.0.w,
                       ),
                       Container(
-                        width: 158.0.w,
+                        width: 148.0.w,
                         height: 85.0.h,
                         color: Colors.transparent,
                         child: const Image(
@@ -109,7 +113,8 @@ class CraftHomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
+                        fontFamily: 'Tajawal',
                       ),
                     ),
                   ),
@@ -119,7 +124,8 @@ class CraftHomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
+                        fontFamily: 'Tajawal',
                       ),
                     ),
                   ),

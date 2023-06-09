@@ -76,8 +76,6 @@ class Request extends StatelessWidget {
                   ),
                 ),
 
-
-
                   ],
                 ),
                  SizedBox(
@@ -88,7 +86,7 @@ class Request extends StatelessWidget {
                   children: [
                     Text(
                       'انشاء طلب',
-                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900,),
+                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900,fontFamily: 'Tajawal',),
                     ),
                   ],
                 ),
@@ -101,7 +99,7 @@ class Request extends StatelessWidget {
                   ),
                   child: Text(
                     'وصف المهمة المطلوبة',
-                    style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold,fontFamily: 'Tajawal',),
                   ),
                 ),
                  SizedBox(
@@ -123,7 +121,7 @@ class Request extends StatelessWidget {
                     // },
                     decoration: InputDecoration(
                         hintText: 'اخبرنا عن طلبك',
-                        hintStyle: const TextStyle(color: Colors.black45),
+                        hintStyle: const TextStyle(color: Colors.black45,fontFamily: 'Tajawal',),
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
@@ -153,7 +151,7 @@ class Request extends StatelessWidget {
                       child: const Text(
                         'ارسال طلب',
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontWeight: FontWeight.bold,fontFamily: 'Tajawal',),
                       )),
                 ),
               ]),

@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3.0),
+                    borderRadius: BorderRadius.circular(3.0).r,
                     color: const Color.fromRGBO(217, 173, 48, 1),
                   ),
                   height: 117.0.h,
@@ -77,28 +77,30 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.grey[350],
                     ) ,
                     width: 320.0.w,
-                    height: 90.0.h,
+                    height: 80.0.h,
                     child: Row(
                       children:   [
                         Container(
-                          width: 152.0.w,
+                          width: 170.0.w,
+                           height: 40.0.h,
                           color: Colors.transparent,
                           child: Text('الحل الامثل لجميع صيانات منزلك',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20.0.sp,
-                              height: 1.0.h
+                              fontSize: 16.0.sp,
+                              height: 1.1.h,
+                              fontFamily: 'Tajawal',
                             ),
                           ),
                         ),
                          SizedBox(
-                          width: 10.0.w,
+                          width: 2.0.w,
                         ),
 
                         Container(
-                          width: 158.0.w,
-                          height: 85.0.h,
+                          width: 148.0.w,
+                          height: 80.0.h,
                           color: Colors.transparent,
                           child:  const Image(
                             fit: BoxFit.cover,
@@ -122,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 50.h,
                 margin: EdgeInsets.only(
-                  top: 66.0.r,
+                  top: 58.0.r,
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0).r,
@@ -142,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                           cubit.search(search);
                          },
                          ),
-                        hintStyle: const TextStyle(color: Colors.black45),
+                        hintStyle: const TextStyle(color: Colors.black45,fontFamily: 'Tajawal',),
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
@@ -163,14 +165,16 @@ class HomeScreen extends StatelessWidget {
                   children: [
                      Padding(
                       padding: EdgeInsets.only(
-                        top: 5.0.r,
+                        top: 10.0.r,
                         right: 20.0.r,
+                        bottom: 5.r,
                       ),
                       child: Text('فئاتنا الرئيسية',
                         textAlign: TextAlign.end,
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 20.0.sp,
+                          fontFamily: 'Tajawal',
                         ),
                       ),
                     ),
@@ -191,12 +195,14 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                                Positioned(
+                                top: 5.r,
                                 left: 70.0.r,
                                 child: Text('نجار',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0.sp,
+                                    fontSize: 17.0.sp,
+                                    fontFamily: 'Tajawal',
                                   ),
                                 ),
                               ),
@@ -233,12 +239,14 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                                Positioned(
-                                left: 45.0.r,
+                                top: 5.r,
+                                left: 35.0.r,
                                 child: Text('كهربائي',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0.sp,
+                                    fontSize: 17.0.sp,
+                                    fontFamily: 'Tajawal',
                                   ),
                                 ),
                               ),
@@ -284,12 +292,14 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                                Positioned(
+                                top: 8.r,
                                 left: 65.0.r,
                                 child: Text('حداد',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0.sp,
+                                    fontSize: 17.0.sp,
+                                    fontFamily: 'Tajawal',
                                   ),
                                 ),
                               ),
@@ -326,12 +336,14 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                                Positioned(
-                                left: 65.0.r,
+                                top: 5.r,
+                                left: 60.0.r,
                                 child: Text('سباك',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0.sp,
+                                    fontSize: 17.0.sp,
+                                    fontFamily: 'Tajawal',
                                   ),
                                 ),
                               ),
@@ -383,7 +395,7 @@ class HomeScreen extends StatelessWidget {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19.0,
+                                    fontSize: 17.0,
                                   ),
                                 ),
                               ),
@@ -415,10 +427,13 @@ class HomeScreen extends StatelessWidget {
                       child: TextButton(onPressed: (){
                         navigateWithBack(context, Catalogs());
                       },
-                          child: const Text('المزيد من الفئات',
+                          child:  Text('المزيد من الفئات',
                             style: TextStyle(
                               color: Colors.black,
                               decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w200,
+                              fontSize: 13.sp,
+                              fontFamily: 'Lemonada',
                             ),
                           )
                       ),

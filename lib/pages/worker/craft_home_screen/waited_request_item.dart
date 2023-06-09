@@ -21,7 +21,7 @@ class _State extends State<WaitedRequestItem> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
             color: Colors.white,
             height: 96.h,
@@ -89,7 +89,9 @@ class _State extends State<WaitedRequestItem> {
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 13.0.sp,
-                              height: 1.h),
+                              height: 1.h,
+                              fontFamily: 'Tajawal',
+                              ),
                         ),
                         Text(
                           widget.request.details,
@@ -97,6 +99,7 @@ class _State extends State<WaitedRequestItem> {
                           style: TextStyle(
                             fontSize: 10.0.sp,
                             height: 1.h,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                       ],
@@ -104,12 +107,12 @@ class _State extends State<WaitedRequestItem> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 15).r,
+                  padding: EdgeInsets.only(right: 15.r),
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     radius: 30.0.r,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
+                      backgroundImage: const AssetImage(
                           "assets/day9-toolbox-removebg-preview.png"),
                       radius: 30.0.r,
                       backgroundColor: Colors.transparent,
@@ -140,12 +143,14 @@ class _State extends State<WaitedRequestItem> {
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w900,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                         Text(
                           widget.request.user!.location,
                           style: TextStyle(
                             fontSize: 12.sp,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/workerData/cubit.dart';
 import '../../bloc/chat/chat_cubit.dart';
 import '../../bloc/userData/cubit.dart';
@@ -12,14 +13,56 @@ class ChatsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = userDataCubit.get(context);
-        return (cubit.workersToChat == null)
+        return  Container(
+          color: Colors.grey[250],
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+            Stack(
+            alignment: AlignmentDirectional.center,
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                  height: 117.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3.0).r,
+                    color: const Color.fromRGBO(217, 173, 48, 1),
+                  ),
+              ),
+
+            ],
+          ),
+
+          Padding(
+                          padding: EdgeInsets.only(
+                            right: 10.0.r,
+                            top: 10.0.r,
+                          ),
+                          child: Text(' الرسائل',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 18.0.sp,
+                              fontFamily: 'Tajawal',
+                            ),
+                          ),
+                        ),
+
+         (cubit.workersToChat == null)
             ? const Center(child: CircularProgressIndicator())
             : (cubit.workersToChat!.isEmpty)
                 ? const Text("No Users Found")
-                : ListView.builder(
+                : ListView.separated(
                     itemBuilder: (context, index) =>
                         ChatItem(worker: cubit.workersToChat![index]),
-                    itemCount: cubit.workersToChat!.length);
+                        separatorBuilder: (context, index) =>
+                                             Divider(height: 15.h),
+                    itemCount: cubit.workersToChat!.length)
+
+
+              ]
+          ),
+       
+        );
       },
     );
   }
