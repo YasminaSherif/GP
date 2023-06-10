@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/pages/auth/SignIn.dart';
 import 'package:fortestpages/pages/user/userHome/home_layout.dart';
 import 'package:fortestpages/pages/worker/craft_home_layout.dart';
@@ -36,8 +37,8 @@ class _StartingPage extends State<StartingPage>  {
           children:  [
           Container(
 
-            height: 120,
-            width: 170,
+            height: 120.h,
+            width: 170.w,
 
             child: Image(
             fit: BoxFit.cover,
@@ -45,12 +46,14 @@ class _StartingPage extends State<StartingPage>  {
     ),
             ),
           ),
-            const Text('حرفي',
+             Text('حرفي',
               style: TextStyle(
 
-                fontSize: 36,
+                fontSize: 30.sp,
                 fontWeight: FontWeight.w600,
-                height: 0.8
+                height: 0.8.h,
+                fontFamily: 'Lemonada',
+  
               ),
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/pages/user/workerItem.dart';
 
 import '../../bloc/mainUser/cubit.dart';
@@ -28,7 +29,7 @@ class BestWorkersOfCategory extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                  height: 117,
+                  height: 117.h,
                   color: const Color(0xffD9AD30),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -48,17 +49,19 @@ class BestWorkersOfCategory extends StatelessWidget {
 
             ],
           ),
-           const Column(
+            Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children:  [
              Padding(
             padding: EdgeInsets.only(
-            right: 10.0,
+            right: 10.0.r,
+            top: 10.r,
           ),
          child: Text('افضل الصنايعيه المتوفرين',
            style: TextStyle(
              fontWeight: FontWeight.w900,
-             fontSize: 20.0,
+             fontSize: 18.0.sp,
+             fontFamily: 'Tajawal',
            ),
          ),
        ),
@@ -68,19 +71,23 @@ class BestWorkersOfCategory extends StatelessWidget {
       (state is getWorkersLoadingsState )
                 ? const Center(child: CircularProgressIndicator())
          : (  cubit.catResponse == null )
-                   ? const Center(
-                        child: Text(
-                          "لا يوجد عمال في هذه الفئه",
-                          style: TextStyle(
-                  height: 1.0,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w700,
-                       ),
-                      ))
+                   ?  Padding(
+                     padding: EdgeInsets.only(top: 140.r),
+                     child: Center(
+                          child: Text(
+                            "لا يوجد عمال في هذه الفئه",
+                            style: TextStyle(
+                                     height: 1.0.h,
+                                     fontSize: 12.0.sp,
+                                     fontWeight: FontWeight.w700,
+                                     fontFamily: 'Tajawal',
+                         ),
+                        )),
+                   )
                    :  Expanded(
                   child: ListView.separated(
                     itemBuilder:(context, index)=> workerOfCate(worker:cubit.catResponse![index]),
-                    separatorBuilder:(context, index)=> const SizedBox(height: 5) ,
+                    separatorBuilder:(context, index)=> SizedBox(height: 5.h) ,
                     itemCount: cubit.catResponse!.length,
                   ),
                 ),

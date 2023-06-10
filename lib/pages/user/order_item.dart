@@ -41,14 +41,14 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
-            height: 45.0,
+            height: 45.0.h,
             color: Colors.white,
             child: Row(
               children: [
-                const SizedBox(
-                  width: 10.0,
+                 SizedBox(
+                  width: 10.0.w,
                 ),
                 IconButton(
                   icon: Icon(
@@ -69,7 +69,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.0).r,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -79,8 +79,10 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                           widget.request.id.toString() + '#' + 'طلب',
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize: 13.0,
-                              height: 1),
+                              fontSize: 13.0.sp,
+                              height: 1,
+                              fontFamily: 'Tajawal',
+                              ),
                         ),
                       
                       ],
@@ -91,7 +93,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                   width: 2,
                 ),
                  Padding(
-                  padding: EdgeInsets.only(right: 15),
+                  padding: EdgeInsets.only(right: 15.r),
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     radius: 26.0.r,
@@ -110,7 +112,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
       ),
       if (detailsIsOpened)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
             height: 65.0.h,
             color: Colors.white,
@@ -119,7 +121,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                const Spacer(),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
+                    borderRadius: BorderRadius.circular(5.0).r,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -128,7 +130,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star_rate,
                             color: Colors.amber,
                             size: 18.0,
@@ -139,6 +141,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                               height: 1.0.h,
                               fontSize: 11.0.sp,
                               fontWeight: FontWeight.w700,
+                              fontFamily: 'Tajawal',
                             ),
                           ),
                            SizedBox(
@@ -152,6 +155,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                               fontWeight: FontWeight.w900,
                               fontSize: 11.0.sp,
                               height: 1.h,
+                              fontFamily: 'Tajawal',
                               decoration: TextDecoration.underline,
                             ),
                           ),
@@ -163,6 +167,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                           fontWeight: FontWeight.w900,
                           fontSize: 11.0.sp,
                           height: 1.h,
+                          fontFamily: 'Tajawal',
                         ),
                       ),
                       Expanded(
@@ -170,13 +175,14 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                           child: Column(
                             children: [
                               Container(
-                                width: 200,
+                                width: 200.w,
                                 child: Text(
                                   widget.request.details,
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
                                     fontSize: 10.0.sp,
                                     height: 0.8.h,
+                                    fontFamily: 'Tajawal',
                                   ),
                                 ),
                               ),
@@ -222,14 +228,14 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
 
 
 
-class AcceptedOrderItem extends StatefulWidget {
-  AcceptedOrderItem({Key? key, required this.request}) : super(key: key);
+class DoneOrderItem extends StatefulWidget {
+  DoneOrderItem({Key? key, required this.request}) : super(key: key);
   requests request;
   @override
-  State<AcceptedOrderItem> createState() => _AcceptedOrderItemState();
+  State<DoneOrderItem> createState() => _DoneOrderItemState();
 }
 
-class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
+class _DoneOrderItemState extends State<DoneOrderItem> {
   bool detailsIsOpened = false;
   @override
   Widget build(BuildContext context) {
@@ -275,22 +281,24 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 13.0.sp,
-                            height: 1.h),
+                            height: 1.h,
+                            fontFamily: 'Tajawal',
+                            ),
                       ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 2,
+               SizedBox(
+                width: 2.w,
               ),
                Padding(
-                padding: EdgeInsets.only(right: 15),
+                padding: EdgeInsets.only(right: 15.r),
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
                   radius: 26.0.r,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage(
+                    backgroundImage: const AssetImage(
                         "assets/day9-toolbox-removebg-preview.png"),
                     radius: 26.0.r,
                     backgroundColor: Colors.transparent,
@@ -303,7 +311,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
       ),
       if (detailsIsOpened)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
             height: 65.0.h,
             color: Colors.white,
@@ -331,6 +339,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                         style: TextStyle(
                             fontSize: 10.0.sp,
                             height: 1.1.h,
+                            fontFamily: 'Tajawal',
                             fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -360,6 +369,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                                 height: 1.0.h,
                                 fontSize: 11.0.sp,
                                 fontWeight: FontWeight.w700,
+                                fontFamily: 'Tajawal',
                               ),
                             ),
                             SizedBox(
@@ -373,6 +383,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                                 fontWeight: FontWeight.w900,
                                 fontSize: 11.0.sp,
                                 height: 1.h,
+                                fontFamily: 'Tajawal',
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -384,6 +395,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                             fontWeight: FontWeight.w900,
                             fontSize: 11.0.sp,
                             height: 1.h,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                         Text(
@@ -392,6 +404,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                           style: TextStyle(
                             fontSize: 10.0.sp,
                             height: 0.8.h,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                       ],
@@ -403,7 +416,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                     // navigateWithBack(context, CraftProfile(workerid: widget.request.workerId,));
                   },
                   child: Padding(
-                    padding: EdgeInsets.only(right: 15),
+                    padding: EdgeInsets.only(right: 15.r),
                     child: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       radius: 26.0.r,
@@ -489,7 +502,9 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 13.0.sp,
-                            height: 1.h),
+                            height: 1.h,
+                            fontFamily: 'Tajawal',
+                            ),
                       ),
                     ],
                   ),
@@ -499,12 +514,12 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                 width: 2,
               ),
                Padding(
-                padding: EdgeInsets.only(right: 15),
+                padding: EdgeInsets.only(right: 15.r),
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
                   radius: 26.0.r,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage(
+                    backgroundImage: const AssetImage(
                         "assets/day9-toolbox-removebg-preview.png"),
                     radius: 26.0.r,
                     backgroundColor: Colors.transparent,
@@ -517,7 +532,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
       ),
       if (detailsIsOpened)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
             height: 65.0.h,
             color: Colors.white,
@@ -546,6 +561,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                               style: TextStyle(
                                 height: 1.0.h,
                                 fontSize: 11.0.sp,
+                                fontFamily: 'Tajawal',
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -560,6 +576,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                                 fontWeight: FontWeight.w900,
                                 fontSize: 11.0.sp,
                                 height: 1.h,
+                                fontFamily: 'Tajawal',
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -571,6 +588,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                             fontWeight: FontWeight.w900,
                             fontSize: 11.0.sp,
                             height: 1.h,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                         Text(
@@ -579,6 +597,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                           style: TextStyle(
                             fontSize: 10.0.sp,
                             height: 0.8.h,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                       ],

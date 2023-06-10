@@ -12,8 +12,8 @@ reviews review;
   @override
   Widget build(BuildContext context) {
     return Padding(
-         padding: const EdgeInsets.only(
-           right: 10.0,
+         padding: EdgeInsets.only(
+           right: 10.0.r,
          ),
          child: Row(
             children:  [
@@ -24,8 +24,9 @@ reviews review;
                Text(review.rateOfthisWork.toString(),
                 style: TextStyle(
                   height: 1.0.h,
-                  fontSize: 12.0,
+                  fontSize: 12.0.sp,
                   fontWeight: FontWeight.w700,
+                  fontFamily: 'Tajawal',
                 ),
               ),
                SizedBox(
@@ -35,12 +36,12 @@ reviews review;
                 child: Container(
                   height: 30.0.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(5.0).r,
+                    color: Colors.grey[250],
                   ),
                 
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 5),
+                    padding: EdgeInsets.only(right: 5.r),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children:  [
@@ -48,6 +49,7 @@ reviews review;
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 10.0.sp,
+                            fontFamily: 'Tajawal',
                           ),
                         ),
                         Text(review.details,

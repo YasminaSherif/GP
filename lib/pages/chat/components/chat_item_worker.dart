@@ -36,22 +36,43 @@ class ChatItem extends StatelessWidget {
               ),
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 25.0,
-                  backgroundImage:user.image != null
-        ? MemoryImage(base64Decode(user.image!))
-        : null,
-    backgroundColor: Colors.grey,
-                ),
-                SizedBox(
-                  width: 10.h,
-                ),
-                Text(user.name, style: AppTextStyle.title()),
-              ],
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.r),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(user.name, style: TextStyle(fontSize: 13.sp,fontFamily: 'Tajawal',fontWeight: FontWeight.bold),),
+                       
+                          Text('رجاء متي موعد تنفيذ الطلب  تحديداتحديداتحديداتحديداتحديدا',
+                         style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),
+                         textDirection: TextDirection.rtl,
+                         maxLines: 1,
+                         overflow: TextOverflow.ellipsis,
+                         
+                                           ),
+                        
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.h,
+                  ),
+                  CircleAvatar(
+                    radius: 25.0.r,
+                    backgroundImage:user.image != null
+                  ? MemoryImage(base64Decode(user.image!))
+                  : null,
+              backgroundColor: Colors.grey,
+                  ),
+                ],
+              ),
             ),
           ),
         );

@@ -38,7 +38,7 @@ class CraftSetting extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3.0),
+                        borderRadius: BorderRadius.circular(3.0).r,
                         color: const Color.fromRGBO(217, 173, 48, 1),
                       ),
                       height: 117.0.h,
@@ -62,8 +62,8 @@ class CraftSetting extends StatelessWidget {
                       const Center(child: CircularProgressIndicator())
                     else
                       Positioned(
-                        left: 120.0.r,
-                        top: 75.0.r,
+                        left: 130.0.r,
+                        top: 85.0.r,
                         child: Column(
                           children: [
                             Stack(
@@ -88,6 +88,7 @@ class CraftSetting extends StatelessWidget {
                               cubit.workerResponse![0].username,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w900,
+                                fontFamily: 'Tajawal',
                               ),
                             ),
                             Text(
@@ -97,6 +98,7 @@ class CraftSetting extends StatelessWidget {
                                 height: 1.0.h,
                                 fontSize: 12.0.sp,
                                 fontWeight: FontWeight.w700,
+                                fontFamily: 'Tajawal',
                               ),
                             ),
                           ],
@@ -108,39 +110,7 @@ class CraftSetting extends StatelessWidget {
                   margin: EdgeInsets.only(top: 90.r),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0.r),
-                        child: MaterialButton(
-                          onPressed: () {
-                            navigateWithBack(context, const CraftProfileEditing());
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Icon(
-                                Icons.navigate_before_outlined,
-                                size: 30,
-                                color: Colors.grey,
-                              ),
-                              Spacer(),
-                              Text(
-                                'الصفحه الشخصية',
-                                style: TextStyle(
-                                  fontSize: 15.0.sp,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              const Icon(
-                                Icons.person_3_outlined,
-                                size: 20,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0.r),
                         child: MaterialButton(
@@ -160,8 +130,9 @@ class CraftSetting extends StatelessWidget {
                               Text(
                                 'معلومات شخصيه',
                                 style: TextStyle(
-                                  fontSize: 15.0.sp,
+                                  fontSize: 13.0.sp,
                                   fontWeight: FontWeight.w900,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ),
                               SizedBox(
@@ -189,8 +160,9 @@ class CraftSetting extends StatelessWidget {
                               Text(
                                 'تسجيل خروج',
                                 style: TextStyle(
-                                  fontSize: 15.0.sp,
+                                  fontSize: 13.0.sp,
                                   fontWeight: FontWeight.w900,
+                                  fontFamily: 'Tajawal',
                                 ),
                               ),
                               SizedBox(
