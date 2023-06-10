@@ -5,14 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/userData/cubit.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
-// import 'package:social_app/bloc/main/main_cubit.dart';
-
-// import '../../../core/styles/texts/app_text_styles.dart';
-
 import '../../../bloc/workerData/cubit.dart';
-import '../../../models/loginDataResponse.dart';
+import '../../../models/persons.dart';
 import '../messages_screen_worker.dart';
-import '../styles/texts/app_text_styles.dart';
+
 
 class ChatItem extends StatelessWidget {
   userData user;

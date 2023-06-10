@@ -8,7 +8,7 @@ import 'package:fortestpages/services/methods/navigation.dart';
 
 import '../../../models/persons.dart';
 import '../messages_screen_user.dart';
-import '../styles/texts/app_text_styles.dart';
+
 
 class ChatItem extends StatelessWidget {
   workerData worker;

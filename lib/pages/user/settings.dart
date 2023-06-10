@@ -61,6 +61,7 @@ class UserProfile extends StatelessWidget {
                   else
                     Positioned(
                       left: 95.0.r,
+                      right: 95.0.r,
                       top: 85.0.r,
                       child: Column(
                         children: [
@@ -162,7 +163,7 @@ class UserProfile extends StatelessWidget {
                             Text(
                               'الطلبات الجاريه',
                               style: TextStyle(
-                                fontSize: 15.0.sp,
+                                fontSize: 13.0.sp,
                                 fontWeight: FontWeight.w800,
                                 fontFamily: 'Tajawal',
                               ),

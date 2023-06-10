@@ -68,17 +68,36 @@ class CraftHomeScreen extends StatelessWidget {
                         width: 160.0.w,
                          height: 40.0.h,
                         color: Colors.transparent,
-                        child: Text(
-                          'الطلبات تنتظرك! باشر عملك الان',
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                              color: const Color.fromRGBO(217, 173, 48, 1),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0.sp,
-                              height: 1.0.h,
-                              fontFamily: 'Tajawal',
-                              ),
-                              
+                        child: Column(
+                          children: [
+                            Text(
+                              'الطلبات تنتظرك',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(217, 173, 48, 1),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0.sp,
+                                  height: 1.0.h,
+                                  fontFamily: 'Tajawal',
+                                  ),
+                                  
+                            ),
+                            SizedBox(
+                           height: 6.0.h,
+                           ),
+                            Text(
+                              '!باشر عملك الان',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(217, 173, 48, 1),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0.sp,
+                                  height: 1.0.h,
+                                  fontFamily: 'Tajawal',
+                                  ),
+                                  
+                            ),
+                          ],
                         ),
                       ),
                        SizedBox(

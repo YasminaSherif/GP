@@ -137,15 +137,21 @@ class UserRequests extends StatelessWidget {
                             itemCount: cubit.accepted!.length,
                           ),
                         )
-                        : Center(
-                        child: Text(
-                          "لا يوجد طلبات في هذه الفئه",
-                          style: TextStyle(
-                  height: 1.0.h,
-                  fontSize: 12.0.sp,
-                  fontWeight: FontWeight.w700,
-                       ),
-                        ))
+                        : Padding(
+                          padding:  EdgeInsets.only(top: 40.r),
+                          child: Center(                       
+                          child: Text(
+                            "لا يوجد طلبات في هذه الفئه",
+                            style: TextStyle(
+                                          height: 1.0.h,
+                                          fontSize: 12.0.sp,
+                                          fontWeight: FontWeight.w700,
+                                          fontFamily: 'Tajawal',
+                                               ),
+                          )
+                          
+                          ),
+                        )
                       ]
                   ),
                 ),
