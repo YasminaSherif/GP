@@ -89,7 +89,7 @@ class CraftInfoEditing extends StatelessWidget {
                           lastName: null,
                           bio: bio,
                           username: null,
-                          location: null,
+                          area: null,
                           phoneNumber: null,
                           profilePic: null,
                           workImage: null,

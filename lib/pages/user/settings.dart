@@ -84,7 +84,7 @@ class UserProfile extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            cubit.userResponse![0].username,
+                            cubit.userResponse![0].username!,
                             style: TextStyle(
                               fontSize: 14.0.sp,
                               fontWeight: FontWeight.w900,
@@ -92,7 +92,7 @@ class UserProfile extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            cubit.userResponse![0].email,
+                            cubit.userResponse![0].email!,
                             style: TextStyle(
                               color: Colors.grey,
                               height: 1.0.h,

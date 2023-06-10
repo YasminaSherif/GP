@@ -30,7 +30,7 @@ class _ImagePickerState extends State<ImagePicker> {
   String? password;
   String? firstname ;
   String? lastname;
-  String? location ;
+  String? area ;
   String? phoneNum;
 
   //Info c = Info();
@@ -58,7 +58,7 @@ class _ImagePickerState extends State<ImagePicker> {
      firstname=cubituser.workerResponse![0].firstName;
      lastname=cubituser.workerResponse![0].lastName;
      username = cubituser.workerResponse![0].username;
-     location = cubituser.workerResponse![0].location;
+     area = cubituser.workerResponse![0].area;
      phoneNum= cubituser.workerResponse![0].phonenumber;
     Widget bottomSheet() {
       return Container(
@@ -303,9 +303,9 @@ class _ImagePickerState extends State<ImagePicker> {
                               //location
                               buildTextFormField(
                                 onSaved: (value) {
-                                  location = value?.isEmpty == true ? null : value;
+                                  area = value?.isEmpty == true ? null : value;
                                 },
-                                hintText: location ?? "شبراااا",
+                                hintText: area ?? "شبراااا",
 
                                 obscureText: false,
                                 icon: const Icon(Icons.location_on_outlined, color: Colors.amberAccent,),
@@ -342,7 +342,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                       onPressed: () {
                                         formKey.currentState!.save();
 
-                                        cubituser.updateWorker(firstName: firstname,lastName: lastname,username: username,location: location,phoneNumber: phoneNum,profilePic: cubit.fileImage);
+                                        cubituser.updateWorker(firstName: firstname,lastName: lastname,username: username,area: area,phoneNumber: phoneNum,profilePic: cubit.fileImage);
                                         // final isValid =
                                         //     formKey.currentState!.validate();
                                         // if (isValid) {

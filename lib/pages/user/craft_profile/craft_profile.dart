@@ -8,7 +8,7 @@ import 'package:fortestpages/pages/user/craft_profile/ratingItem.dart';
 import 'package:fortestpages/pages/user/craft_profile/workerImageItem.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
 
-import '../../../bloc/mainUser/cubit.dart';
+
 import '../../../bloc/userData/cubit.dart';
 import '../../../customized/FormButton.dart';
 import '../../../models/persons.dart';

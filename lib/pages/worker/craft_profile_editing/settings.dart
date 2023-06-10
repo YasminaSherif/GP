@@ -85,14 +85,14 @@ class CraftSetting extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              cubit.workerResponse![0].username,
+                              cubit.workerResponse![0].username!,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontFamily: 'Tajawal',
                               ),
                             ),
                             Text(
-                              cubit.workerResponse![0].email,
+                              cubit.workerResponse![0].email!,
                               style: TextStyle(
                                 color: Colors.grey,
                                 height: 1.0.h,

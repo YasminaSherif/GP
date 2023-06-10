@@ -130,7 +130,7 @@ class _State extends State<AcceptedRequestItem> {
                         var cubit = BlocProvider.of<workerDataCubit>(context);
                         navigateWithBack(context, MessagesScreen(
                 receiverId: widget.request.customerId,
-                receiverName: widget.request.user!.name,
+                receiverName: widget.request.customerName!,
                 worker:cubit.workerResponse![0],
               ));
                        },
@@ -143,7 +143,7 @@ class _State extends State<AcceptedRequestItem> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.request.user!.name,
+                          widget.request.customerName!,
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w900,
@@ -151,7 +151,7 @@ class _State extends State<AcceptedRequestItem> {
                           ),
                         ),
                         Text(
-                          widget.request.user!.location,
+                          widget.request.city+","+widget.request.area,
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontFamily: 'Tajawal',
@@ -169,9 +169,9 @@ class _State extends State<AcceptedRequestItem> {
                           backgroundColor: Colors.transparent,
                           radius: 18.0.r,
                           child: CircleAvatar(
-                            backgroundImage: widget.request.user!.image != null
+                            backgroundImage: widget.request.customerImage != null
                                 ? MemoryImage(
-                                    base64Decode(widget.request.user!.image!))
+                                    base64Decode(widget.request.customerImage!))
                                 : null,
                             radius: 18.0.r,
                             backgroundColor: Colors.grey,

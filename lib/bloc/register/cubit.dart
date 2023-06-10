@@ -113,8 +113,8 @@ if (jsonResponse == null) {
      if(jsonResponse!=null){
       if (jsonResponse['message'] == "Register") {
         if (jsonResponse["roles"] == 0) {
-          userData userResponse =
-              userData.fromJson(jsonResponse);
+          person userResponse =
+              person.fromJson(jsonResponse);
           print(userResponse.firstName);
           emit(RegisterUserSuccessfulState(userResponse));
           client.close();

@@ -5,7 +5,7 @@ class reviews{
     late String details;
     late String customerId;
     late String workerId;
-    late userData? user;
+    late person? user;
     late workerData? worker;
     late var rateOfthisWork;
 
@@ -16,17 +16,10 @@ class reviews{
       customerId=json['clientID'];
       workerId=json['craftmanId'];
       details=json["details"];
-      user = json?['customer'] != null ? userData.fromJson(json['customer']) : null;
+      user = json?['customer'] != null ? person.fromJson(json['customer']) : null;
       worker = json?['craftman'] != null ? workerData.fromJson(json['craftman']) : null;
       rateOfthisWork=json["rateOFthisWork"];
       
   }
-  Map<String, dynamic> toJson() {
-  final Map<String, dynamic> data = new Map<String, dynamic>();
-  data['id'] = this.id;
-  data['details'] = this.details;
-  data['user'] = this.user?.toJson();
-  data['rateOfthisWork'] = this.rateOfthisWork;
-  return data;
-}
+ 
 }

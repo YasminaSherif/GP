@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fortestpages/pages/user/craft_profile/craft_profile.dart';
-import '../../bloc/mainUser/cubit.dart';
+
 import '../../bloc/userData/cubit.dart';
 import '../../models/persons.dart';
 import '../../services/methods/navigation.dart';
 
 class Rating extends StatelessWidget {
-  Rating({Key? key, required this.worker}) : super(key: key);
-  workerData worker;
+  Rating({Key? key, required this.workerId}) : super(key: key);
+  String workerId;
   String feedback = '';
   @override
   double rating = 0.0;
@@ -146,7 +146,7 @@ class Rating extends StatelessWidget {
                       ]),
                       onPressed: () {
                         //formKey.currentState!.save();
-                        cubit.sendReview(rating, feedback, worker);
+                        cubit.sendReview(rating, feedback, workerId);
                       },
                       child: const Text(
                         'ارسال التقييم',

@@ -16,7 +16,7 @@ class SignInCubit extends Cubit<SignInStates>
 
   static SignInCubit get(context) => BlocProvider.of(context);
   
-    userData? loginResponse;
+    person? loginResponse;
     login(String email, String password) async {
     emit(SignInLoadingState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Auth/Login');
@@ -39,7 +39,7 @@ class SignInCubit extends Cubit<SignInStates>
         jsonResponse = 
          convert.jsonDecode(response.body) as Map<String, dynamic>;
         if(jsonResponse["roles"] == 0){
-         loginResponse = userData.fromJson(jsonResponse);
+         loginResponse = person.fromJson(jsonResponse);
 
         emit(SignInUserSuccessfulState(loginResponse!));
         //sharedPreferences.setString('id', jsonResponse!["id"]);

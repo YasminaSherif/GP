@@ -136,7 +136,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                             size: 18.0,
                           ),
                           Text(
-                            widget.request.worker!.rating.toString(),
+                            widget.request.rating.toString(),
                             style: TextStyle(
                               height: 1.0.h,
                               fontSize: 11.0.sp,
@@ -148,9 +148,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                             width: 5.0.w,
                           ),
                           Text(
-                            widget.request.worker!.firstName +
-                                " " +
-                                widget.request.worker!.lastName,
+                            widget.request.customerName! ,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 11.0.sp,
@@ -206,9 +204,9 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                         backgroundColor: Colors.transparent,
                         radius: 20.0.r,
                         child: CircleAvatar(
-                          backgroundImage: widget.request.worker!.image != null
+                          backgroundImage: widget.request.workerImage!= null
                               ? MemoryImage(
-                                  base64Decode(widget.request.worker!.image!))
+                                  base64Decode(widget.request.workerImage!))
                               : null,
                           radius: 20.0.r,
                           backgroundColor: Colors.grey,
@@ -325,7 +323,7 @@ class _DoneOrderItemState extends State<DoneOrderItem> {
                     navigateWithBack(
                         context,
                         Rating(
-                          worker: widget.request.worker!,
+                          workerId: widget.request.workerId,
                         ));
                   },
                   child: Row(
@@ -364,7 +362,7 @@ class _DoneOrderItemState extends State<DoneOrderItem> {
                               size: 18.0,
                             ),
                             Text(
-                              widget.request.worker!.rating.toString(),
+                              widget.request.rating.toString(),
                               style: TextStyle(
                                 height: 1.0.h,
                                 fontSize: 11.0.sp,
@@ -376,9 +374,7 @@ class _DoneOrderItemState extends State<DoneOrderItem> {
                               width: 2.0.w,
                             ),
                             Text(
-                              widget.request.worker!.firstName +
-                                  " " +
-                                  widget.request.worker!.lastName,
+                              widget.request.workerName!,
                               style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontSize: 11.0.sp,
@@ -424,9 +420,9 @@ class _DoneOrderItemState extends State<DoneOrderItem> {
                         backgroundColor: Colors.transparent,
                         radius: 20.0.r,
                         child: CircleAvatar(
-                          backgroundImage: widget.request.worker!.image != null
+                          backgroundImage: widget.request.workerImage != null
                               ? MemoryImage(
-                                  base64Decode(widget.request.worker!.image!))
+                                  base64Decode(widget.request.workerImage!))
                               : null,
                           radius: 20.0.r,
                           backgroundColor: Colors.grey,
@@ -557,7 +553,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                               size: 18.0,
                             ),
                             Text(
-                              widget.request.worker!.rating.toString(),
+                              widget.request.rating.toString(),
                               style: TextStyle(
                                 height: 1.0.h,
                                 fontSize: 11.0.sp,
@@ -569,9 +565,7 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                               width: 2.0.w,
                             ),
                             Text(
-                              widget.request.worker!.firstName +
-                                  " " +
-                                  widget.request.worker!.lastName,
+                              widget.request.workerName!,
                               style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontSize: 11.0.sp,
@@ -617,9 +611,9 @@ class _RejectedOrderItemState extends State<RejectedOrderItem> {
                         backgroundColor: Colors.transparent,
                         radius: 20.0.r,
                         child: CircleAvatar(
-                          backgroundImage: widget.request.worker!.image != null
+                          backgroundImage: widget.request.workerImage != null
                               ? MemoryImage(
-                                  base64Decode(widget.request.worker!.image!))
+                                  base64Decode(widget.request.workerImage!))
                               : null,
                           radius: 20.0.r,
                           backgroundColor: Colors.grey,

@@ -9,7 +9,7 @@ import '../bloc/register/cubit.dart';
 import '../bloc/signin/cubit.dart';
 import '../bloc/userData/cubit.dart';
 import '../bloc/userHome/cubit.dart';
-import '../bloc/mainUser/cubit.dart';
+
 import '../pages/auth/SignIn.dart';
 import '../pages/starting_page.dart';
 

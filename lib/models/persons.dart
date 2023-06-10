@@ -9,216 +9,104 @@ import 'package:fortestpages/models/reviews.dart';
 
 
 
-
-// class userDataResponse{
-//   late final String? message;
-//   late userData? data;
-
-//   userDataResponse({
-//     required this.message,
-//     required this.data,
-//   });
-
-//   userDataResponse.fromJson(Map<String, dynamic> json) {
-//     message = json['message'];
-//     data = (json != null) ? userData.fromJson(json) : null;
-//   }
-// }
-
-// class workerDataResponse{
-//   late final String? message;
-//   late workerData? data;
-
-//   workerDataResponse({
-//     required this.message,
-//     required this.data,
-//   });
-
-//   workerDataResponse.fromJson(Map<String, dynamic> json) {
-//     message = json['message'];
-//     data = (json != null) ? workerData.fromJson(json) : null;
-//   }
-// }
-
-
-class userData {
+class person {
   late String id;
   late String firstName;
   late String lastName;
-  late String name=firstName+" "+lastName;
-  late String username;
-  late String location;
-  late String? city;
-  late String email;
+  late String name;
+  late String? username;
+  late String? area;
+  late String? email;
   late String? phonenumber;
   late String? image;
-  late List<requests>? request;
-  // late List<review>? reviews;
+  late String? city;
 
 
-  userData({
+  person({
     required this.id,
     required this.firstName,
     required this.lastName,
-    required this.username,
-    required this.email,
-    required this.location,
-    required city,
+     this.username,
+     this.email,
+    this.area,
     this.image,
     this.phonenumber,
-    this.request,
-    // this.reviews
-   
-    });
-
-
-  userData.fromJson(Map<String,dynamic> json){
-      id=json["id"];
-      firstName=json["firstName"];
-      lastName=json["lastName"];
-      username=json["userName"];
-      email=json["email"];
-      phonenumber=(json["phoneNumber"]!=null)
-      ?json["phoneNumber"]
-      :null;
-      location=json["location"];
-      city=(json["city"]!=null)
-      ?json["city"]
-      :null;
-      image=(json["profilePicture"]!=null)
-      ? json["profilePicture"]
-      : null;
-      request=(json['serviceRequests'] != null)
-                ?List.from(json['serviceRequests']).map((e) => requests.fromJson(e)).toList()
-                :null;
-      // reviews=(json['reviews'] != null)
-      // ?List.from(json['reviews']).map((e) => review.fromJson(e)).toList()
-      // : null;
+    this.city
+  }) {
+    name = firstName + " " + lastName;
   }
 
+  person.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    firstName = json["firstName"];
+    lastName = json["lastName"];
+    username = json["userName"];
+    email = json["email"];
+    phonenumber = (json["phoneNumber"] != null) ? json["phoneNumber"] : null;
+    area = json["location"];
+    image = (json["profilePicture"] != null) ? json["profilePicture"] : null;
+    city = (json["city"] != null) ? json["city"] : null;
+    name = firstName + " " + lastName;
+  }
 
-  Map<String, dynamic> toJson() {
-  final Map<String, dynamic> data = new Map<String, dynamic>();
-  data['id'] = this.id;
-  data['firstName'] = this.firstName;
-  data['lastName'] = this.lastName;
-  data['userName'] = this.username;
-  data['email'] = this.email;
-  data['phoneNumber'] = this.phonenumber;
-  data['location'] = this.location;
-  data['profilePic'] = this.image;
-  data['serviceRequests'] = this.request?.map((e) => e.toJson()).toList();
-  return data;
+ 
 }
-}
 
-
-
-
-
-
-class workerData {
-  late String id;
-  late String firstName;
-  late String lastName;
-  late String name=firstName+" "+lastName;
-  late String username;
-  late String location;
-  late String city;
-  late String email;
-  late String? phonenumber;
-  late String? image;
+class workerData extends person {
   late var rating;
   late category? cate;
-  late List<requests>? request;
   late List<imageOfPastWork>? pastWorkImages;
   late List<reviews>? review;
   late String? bio;
 
   workerData({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.username,
-    required this.email,
-    required this.location,
-    required this.city,
-    this.image,
-    this.phonenumber,
+    required String id,
+    required String firstName,
+    required String lastName,
+    required String username,
+    required String email,
+    required String area,
+    required String city,
+    String? image,
+    String? phonenumber,
     this.rating,
     this.cate,
     this.pastWorkImages,
-    this.request,
     this.review,
-    this.bio
-    });
+    this.bio,
+  }) : super(
+          id: id,
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          email: email,
+          area: area,
+          image: image,
+          phonenumber: phonenumber,
+          city: city
+        );
 
-  workerData.fromJson(Map<String,dynamic> json){
-      id=json['id'];
-      firstName=json["firstName"];
-      lastName=json["lastName"];
-      username=json["userName"];
-      email=json["email"];
-      phonenumber=json["phoneNumber"];
-      location=json["location"];
-      city=json["city"];
-      if (json.containsKey('overAllRating')) {
-      rating = json["overAllRating"];
-      }
-      image=(json["profilePicture"]!=null)
-      ? json["profilePicture"]
-      : null;
-      request=(json['serviceRequests'] != null)
-                ?List.from(json['serviceRequests']).map((e) => requests.fromJson(e)).toList()
-                :null;
-      review=(json['review'] != null)
-      ?List.from(json['review']).map((e) => reviews.fromJson(e)).toList()
-      : null;
-      // if (json.containsKey('specializID')) {
-      //  cate = category(id: json['specializID']);
-      //  }
-
-      if (json.containsKey('specializID')) {
-      cate=category(id: json['specializID']);
-      }
-
-      pastWorkImages=(json['imagesOfPastWorks'] != null )
-      ? List.from(json['imagesOfPastWorks']).map((e) => imageOfPastWork.fromJson(e)).toList()
-      : null;
-      // if (json.containsKey('bios')) {
-      //  bio=json["bios"];
-      //  }
-       bio=json["bios"];
-      
-  }
-
-
-    Map<String, dynamic> toJson() {
-  final Map<String, dynamic> data = new Map<String, dynamic>();
-  data['id'] = this.id;
-  data['firstName'] = this.firstName;
-  data['lastName'] = this.lastName;
-  data['userName'] = this.username;
-  data['email'] = this.email;
-  data['location'] = this.location;
-  data['overAllRating'] = this.rating;
-  data['profilePic'] = this.image;
-  data['serviceRequests'] = this.request?.map((e) => e.toJson()).toList();
-  data['reviews'] = this.review?.map((e) => e.toJson()).toList();
-  data['specializ'] = this.cate?.toJson();
-  data['imagesOfPastWorks'] =
-      this.pastWorkImages?.map((e) => e.toJson()).toList();
-  return data;
-}
-
-
-
+  workerData.fromJson(Map<String, dynamic> json)
+      :
+        rating =
+            (json.containsKey('overAllRating')) ? json["overAllRating"] : null,
+        cate = (json.containsKey('specializID'))
+            ? category(id: json['specializID'])
+            : null,
+        pastWorkImages = (json['imagesOfPastWorks'] != null)
+            ? List.from(json['imagesOfPastWorks'])
+                .map((e) => imageOfPastWork.fromJson(e))
+                .toList()
+            : null,
+        review = (json['review'] != null)
+            ? List.from(json['review'])
+                .map((e) => reviews.fromJson(e))
+                .toList()
+            : null,
+        bio = json["bios"],
+        super.fromJson(json);
 
 }
-
-
-
-
 
 class imageOfPastWork{
 
@@ -238,8 +126,3 @@ class imageOfPastWork{
   return data;
 }
 }
-
-  
-
-
-

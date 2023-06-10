@@ -160,7 +160,7 @@ class _CraftWorkImagesEditingState extends State<CraftWorkImagesEditing> {
                           lastName: null,
                           bio: null,
                           username: null,
-                          location: null,
+                          area: null,
                           phoneNumber: null,
                           profilePic: null,
                           workImage: cubitImage.fileImage,

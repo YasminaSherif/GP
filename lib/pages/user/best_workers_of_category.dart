@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/pages/user/workerItem.dart';
 
-import '../../bloc/mainUser/cubit.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../bloc/userData/cubit.dart';
@@ -68,7 +68,7 @@ class BestWorkersOfCategory extends StatelessWidget {
        ]
        ),
 
-      (state is getWorkersLoadingsState )
+      (cubit.userResponse==null || state is getWorkersLoadingsState)
                 ? const Center(child: CircularProgressIndicator())
          : (  cubit.catResponse == null )
                    ?  Padding(

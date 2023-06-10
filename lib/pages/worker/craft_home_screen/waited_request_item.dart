@@ -139,7 +139,7 @@ class _State extends State<WaitedRequestItem> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.request.user!.name,
+                          widget.request.customerName!,
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w900,
@@ -147,7 +147,7 @@ class _State extends State<WaitedRequestItem> {
                           ),
                         ),
                         Text(
-                          widget.request.user!.location,
+                          widget.request.city+","+widget.request.area,
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontFamily: 'Tajawal',
@@ -162,9 +162,9 @@ class _State extends State<WaitedRequestItem> {
                       backgroundColor: Colors.transparent,
                       radius: 22.0.r,
                       child: CircleAvatar(
-                        backgroundImage: widget.request.user!.image != null
+                        backgroundImage: widget.request.customerImage != null
                             ? MemoryImage(
-                                base64Decode(widget.request.user!.image!))
+                                base64Decode(widget.request.customerImage!))
                             : null,
                         radius: 22.0.r,
                         backgroundColor: Colors.grey,

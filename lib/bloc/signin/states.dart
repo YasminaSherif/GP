@@ -4,7 +4,7 @@ abstract class SignInStates {}
 class SignInInitialState extends SignInStates{}
 class SignInLoadingState extends SignInStates{}
 class SignInUserSuccessfulState extends SignInStates{
-  userData userResponse;
+  person userResponse;
   SignInUserSuccessfulState(this.userResponse);
 }
 class SignInWorkerSuccessfulState extends SignInStates{

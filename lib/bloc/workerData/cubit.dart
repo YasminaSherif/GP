@@ -65,13 +65,13 @@ class workerDataCubit extends Cubit<workerDataStates>
   }
   
   workerData? workerUpdateResponse;
-  updateWorker({String? firstName, String? lastName,String? bio,  String?  username, String? location, String? phoneNumber, File? profilePic,File? workImage}) async {
+  updateWorker({String? firstName, String? lastName,String? bio,  String?  username, String? area, String? phoneNumber, File? profilePic,File? workImage}) async {
   emit(UpdateProfileLoading());
   var client = http.Client();
   var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/EditCraft?CraftManId=${Constant.getData(key: 'workerId')}');
   var response;
   dynamic jsonResponse;
-  if(firstName==null && lastName==null &&  bio==null &&  username==null && location==null && phoneNumber==null&& profilePic==null && workImage==null){
+  if(firstName==null && lastName==null &&  bio==null &&  username==null && area==null && phoneNumber==null&& profilePic==null && workImage==null){
     emit(UpdateProfileError());
   }
   try {
@@ -86,13 +86,14 @@ class workerDataCubit extends Cubit<workerDataStates>
     
      (lastName != null) ? request.fields['LastName'] = lastName.trim(): request.fields['LastName'] =  workerResponse![0].lastName;
     
-     (location != null) ? request.fields['Location'] = location.trim():request.fields['Location'] = workerResponse![0].location;
+     (area != null) ? request.fields['Location'] = area.trim():request.fields['Location'] = workerResponse![0].area!;
     
-     (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = workerResponse![0].username;
+     (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = workerResponse![0].username!;
     
      (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber.trim(): request.fields['PhonNumber'] = workerResponse![0].phonenumber!;
     
      (bio != null) ?  request.fields['Bio'] = bio : request.fields['Bio'] = workerResponse![0].bio ?? ' '; 
+
     
     if (profilePic != null) {
       var stream = http.ByteStream(profilePic.openRead());
@@ -144,8 +145,8 @@ class workerDataCubit extends Cubit<workerDataStates>
       if (lastName != null) {
         workerResponse![0].lastName = lastName;
       }
-      if (location != null) {
-        workerResponse![0].location = location;
+      if (area != null) {
+        workerResponse![0].area = area;
       }
       if (bio != null) {
         workerResponse![0].bio = bio;
@@ -186,7 +187,7 @@ class workerDataCubit extends Cubit<workerDataStates>
     emit(UpdateProfileError());
   }
 }
-  List<userData>? usersToChat;
+  List<person>? usersToChat;
   List<requests>? panding;
   List<requests>? accepted;
   GetRequests() async {
@@ -201,25 +202,25 @@ class workerDataCubit extends Cubit<workerDataStates>
         List<requests> allRequests=jsonResponse.map((e) {
               return requests.fromJson(e);
             }).toList();
-            for (var request in allRequests) {
-          if (request.user == null) {
-          await getUser(request.customerId);
-          request.user = user![0];
-        }
-        // if (request.worker == null) {
-          
-        //   request.worker = workerResponse![0];
+        //     for (var request in allRequests) {
+        //   if (request.user == null) {
+        //   await getUser(request.customerId);
+        //   request.user = user![0];
         // }
-            }
+        // // if (request.worker == null) {
+          
+        // //   request.worker = workerResponse![0];
+        // // }
+        //     }
         panding=allRequests.where((r) => r.status == 0).toList();
         accepted=allRequests.where((r) => r.status == 1).toList();
-        if(accepted!=null){
-        for(var item in accepted!){
-        if (usersToChat!=null && !usersToChat!.any((user) => user.id == item.user!.id) ) {
-        usersToChat!.add(item.user!);
-          }else if(usersToChat ==null){
-           usersToChat=[item.user!];
-          }}}
+        // if(accepted!=null){
+        // for(var item in accepted!){
+        // if (usersToChat!=null && !usersToChat!.any((user) => user.id == item.user!.id) ) {
+        // usersToChat!.add(item.user!);
+        //   }else if(usersToChat ==null){
+        //    usersToChat=[item.user!];
+        //   }}}
         emit(getRequestSuccessState());
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }
@@ -239,7 +240,7 @@ class workerDataCubit extends Cubit<workerDataStates>
     }
   }
 
- List<userData>? user;
+ List<person>? user;
     getUser(String customerid) async {
      //emit(GetUserDataLoading());
     var url ='https://hicraftapi20.azurewebsites.net/api/Craft/GetCustomerById?id=${customerid}';
@@ -257,7 +258,7 @@ class workerDataCubit extends Cubit<workerDataStates>
         jsonResponse =
             convert.jsonDecode(response.body);
         user = jsonResponse.map((e) {
-              return userData.fromJson(e);
+              return person.fromJson(e);
             }).toList();
         // emit(GetUserDataSuccessful());
       }

@@ -31,7 +31,7 @@ class _ImagePickerState extends State<ImagePicker> {
   String? password;
   String? firstname ;
   String? lastname;
-  String? location ;
+  String? area ;
   String? phoneNum;
 
   //Info c = Info();
@@ -55,11 +55,13 @@ class _ImagePickerState extends State<ImagePicker> {
         },
         builder: (context, state)
         {
+
+        
     var cubituser=userDataCubit.get(context);
      firstname=cubituser.userResponse![0].firstName;
      lastname=cubituser.userResponse![0].lastName;
      username = cubituser.userResponse![0].username;
-     location = cubituser.userResponse![0].location;
+     area = cubituser.userResponse![0].area;
      phoneNum= cubituser.userResponse![0].phonenumber;
     Widget bottomSheet() {
       return Container(
@@ -304,9 +306,9 @@ class _ImagePickerState extends State<ImagePicker> {
                               //location
                               buildTextFormField(
                                 onSaved: (value) {
-                                  location = value?.isEmpty == true ? null : value;
+                                  area = value?.isEmpty == true ? null : value;
                                 },
-                                hintText: location ?? "شبراااا",
+                                hintText: area ?? "شبراااا",
 
                                 obscureText: false,
                                 icon: const Icon(Icons.location_on_outlined, color: Colors.amberAccent,),
@@ -343,7 +345,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                       onPressed: () {
                                         formKey.currentState!.save();
 
-                                        cubituser.updateUser(firstName: firstname,lastName: lastname,username: username,location: location,phoneNumber: phoneNum,imageFile: cubit.fileImage);
+                                        cubituser.updateUser(firstName: firstname,lastName: lastname,username: username,area: area,phoneNumber: phoneNum,imageFile: cubit.fileImage);
                                         // final isValid =
                                         //     formKey.currentState!.validate();
                                         // if (isValid) {

@@ -30,7 +30,7 @@ class RegisterLoadingState extends RegisterState {}
 class RegisterChangeState extends RegisterState{}
 
 class RegisterUserSuccessfulState extends RegisterState {
-  final userData userResponse;
+  final person userResponse;
 
   RegisterUserSuccessfulState(this.userResponse);
 }

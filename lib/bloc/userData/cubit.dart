@@ -13,7 +13,7 @@ class userDataCubit extends Cubit<userDataStates>
   userDataCubit(): super(UserInitialState());
   static userDataCubit get(context) => BlocProvider.of(context);
     
-     List<userData>? userResponse;
+     List<person>? userResponse;
     getUserData() async {
     emit(GetUserDataLoading());
     var url = Uri.https('hicraftapi20.azurewebsites.net', '/api/Craft/GetCustomerById', {'id': Constant.getData(key: 'userId')});
@@ -31,7 +31,7 @@ class userDataCubit extends Cubit<userDataStates>
         jsonResponse =
             convert.jsonDecode(response.body);
         userResponse = jsonResponse.map((e) {
-              return userData.fromJson(e);
+              return person.fromJson(e);
             }).toList();
         emit(GetUserDataSuccessful());
       }
@@ -56,7 +56,7 @@ class userDataCubit extends Cubit<userDataStates>
   List<requests>? panding;
   List<requests>? accepted;
   List<requests>? declined;
-  List<workerData>? workersToChat;
+  List<person>? workersToChat;
   GetRequests() async {
     emit(getRequestLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/GetAllRequests?UserId=${Constant.getData(key: 'userId')}');
@@ -69,25 +69,21 @@ class userDataCubit extends Cubit<userDataStates>
         List<requests> allRequests=jsonResponse.map((e) {
               return requests.fromJson(e);
             }).toList();
-          for (var request in allRequests) {
-        //   if (request.user == null) {
-        //   request.user = userResponse![0];
-        // }
-        if (request.worker == null) {
-          await getWorkerDataForRequest(request.workerId);
-          request.worker = worker![0];
-          
-        }
-      }
+         
         panding=allRequests.where((r) => r.status == 0).toList();
         accepted=allRequests.where((r) => r.status == 1).toList();
         declined=allRequests.where((r) => r.status == 2).toList(); 
         if(accepted!=null){
         for(var item in accepted!){
-        if (workersToChat!=null && !workersToChat!.any((worker) => worker.id == item.worker!.id)) {
-        workersToChat!.add(item.worker!);
+                  List<String> nameParts = item.workerName!.split(" ");
+          String firstName = nameParts[0];
+          String lastName = nameParts[1];
+         person Person = person(id: item.workerId, firstName: firstName, lastName: lastName, image: item.workerImage);
+        if (workersToChat!=null && !workersToChat!.any((worker) => worker.id == item.workerId!)) {
+        workersToChat!.add(Person);
           }else if(workersToChat==null){
-           workersToChat=[item.worker!];
+            
+           workersToChat=[Person];
           }}}
         
         emit(getRequestSuccessState());
@@ -95,15 +91,15 @@ class userDataCubit extends Cubit<userDataStates>
         }
              else if (response.statusCode == 400){
                 emit(getRequestSuccessState());
-                // panding = [];
-                // accepted = [];
-                // declined = [];
+                panding = [];
+                accepted = [];
+                declined = [];
       }
       else{
         emit(getRequestFaillState());
-      //   panding = [];
-      //  accepted = [];
-      //  declined = [];
+        panding = [];
+       accepted = [];
+       declined = [];
       }
     } on FormatException {
       print("format exception");
@@ -115,11 +111,18 @@ class userDataCubit extends Cubit<userDataStates>
     } catch (e) {
       print(e);
       emit(getRequestFaillState());
-      //  panding = [];
-      //  accepted = [];
-      //  declined = [];
+       panding = [];
+       accepted = [];
+       declined = [];
     }
   }
+
+
+
+
+
+
+
 
   deleteRequest (String customerid,requests req)async{
     emit(deleteRequestLoadingsState());
@@ -207,8 +210,8 @@ class userDataCubit extends Cubit<userDataStates>
     }
   }
 
-    userData? userUpdateResponse;
-    updateUser({String? firstName, String? lastName, String? username, String? location, String? phoneNumber, File? imageFile}) async {
+    person? userUpdateResponse;
+    updateUser({String? firstName, String? lastName, String? username, String? area, String? phoneNumber, File? imageFile}) async {
   emit(UpdateProfileLoading());
   var client = http.Client();
   var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/EditCustomer?CustomerId=${Constant.getData(key: 'userId')}');
@@ -224,9 +227,9 @@ class userDataCubit extends Cubit<userDataStates>
      (firstName != null) ? request.fields['FirstName'] = firstName.trim() : request.fields['FirstName'] =userResponse![0].firstName ;
     
      (lastName != null) ? request.fields['LastName'] = lastName.trim(): request.fields['LastName'] =  userResponse![0].lastName;
-     (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = userResponse![0].username;
+     (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = userResponse![0].username!;
     
-     (location != null) ? request.fields['Location'] = location.trim(): request.fields['Location'] = userResponse![0].location;
+     (area != null) ? request.fields['Location'] = area.trim(): request.fields['Location'] = userResponse![0].area!;
      (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber.trim() : request.fields['PhonNumber'] = userResponse![0].phonenumber!;
     
     if (imageFile != null) {
@@ -250,8 +253,8 @@ class userDataCubit extends Cubit<userDataStates>
       if (lastName != null) {
         userResponse![0].lastName = lastName;
       }
-      if (location != null) {
-        userResponse![0].location = location;
+      if (area != null) {
+        userResponse![0].area = area;
       }
       if (username != null) {
         userResponse![0].username = username;
@@ -294,7 +297,7 @@ class userDataCubit extends Cubit<userDataStates>
             "content-type":"application/json"
           },
           body: jsonEncode(<String, String>{
-            "email": userResponse![0].email,
+            "email": userResponse![0].email!,
             "password": password,
             "confirmPassword": conPassword,
             
@@ -320,7 +323,7 @@ class userDataCubit extends Cubit<userDataStates>
     }
   }
 
-  sendReview(double rating,String details, workerData worker) async {
+  sendReview(double rating,String details, String workerId) async {
     emit(sendReviewLoadingsState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/CreateReview');
     http.Response response;
@@ -334,7 +337,7 @@ class userDataCubit extends Cubit<userDataStates>
           body: jsonEncode(<String, String>{
           
             "clientID":userResponse![0].id ,
-            "craftmanId": worker.id,
+            "craftmanId": workerId,
             "details": details,
             "rateOFthisWork": rating.toString(),
           }),
@@ -459,7 +462,7 @@ class userDataCubit extends Cubit<userDataStates>
     }
   }
 
-List<userData>? user;
+List<person>? user;
     getUser(String customerid) async {
       user=null;
     //  emit(GetUserDataLoading());
@@ -479,7 +482,7 @@ List<userData>? user;
         
         jsonMap =
             convert.jsonDecode(response.body);
-          user = [userData.fromJson(jsonMap)];
+          user = [person.fromJson(jsonMap)];
         // emit(GetUserDataSuccessful());
       }
       else{
@@ -504,7 +507,7 @@ List<workerData>? catResponse;
     getWorkers(int cateId) async {
       catResponse=null;
     emit(getWorkersLoadingsState());
-    var url='https://hicraftapi20.azurewebsites.net/api/Craft/GetAllCrafts?catid=${cateId.toString()}&City=${userResponse![0].city}';
+    var url='https://hicraftapi20.azurewebsites.net/api/Craft/GetAllCrafts?catid=${cateId.toString()}&City=${userResponse?[0].city??null}';
     http.Response response;
     List<dynamic> jsonResponse;
     List<workerData>? emptyResponse=null;
