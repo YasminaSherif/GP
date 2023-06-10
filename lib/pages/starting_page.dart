@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fortestpages/pages/auth/SignIn.dart';
-
+import 'package:fortestpages/pages/user/userHome/home_layout.dart';
+import 'package:fortestpages/pages/worker/craft_home_layout.dart';
+import 'package:fortestpages/src/const.dart';
 import '../services/methods/navigation.dart';
 
 class StartingPage extends StatefulWidget {
@@ -20,7 +22,7 @@ class _StartingPage extends State<StartingPage>  {
     super.initState();
     Timer(
       const Duration(seconds: 2),
-      () => navigateAndNotBack(context, SignIn()),
+      () => navigateAndNotBack(context, chooseNextScreen()),
     );
   }
   @override
@@ -57,4 +59,17 @@ class _StartingPage extends State<StartingPage>  {
     );
   }
 
+  Widget chooseNextScreen() {
+    String? userId = Constant.getData(key: "userId");
+    String? workerId = Constant.getData(key: "workerId");
+    if (userId != null) {
+      return const HomeLayout();
+    }
+    else if(workerId !=null){
+      return const CraftHomeLayout();
+    }
+     else {
+      return SignIn();
+    }
+  }
 }

@@ -11,7 +11,7 @@ import 'package:fortestpages/services/methods/navigation.dart';
 import '../../../bloc/mainUser/cubit.dart';
 import '../../../bloc/userData/cubit.dart';
 import '../../../customized/FormButton.dart';
-import '../../../models/loginDataResponse.dart';
+import '../../../models/persons.dart';
 import '../Send_Request.dart';
 
 class CraftProfile extends StatelessWidget {

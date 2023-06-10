@@ -8,37 +8,37 @@ import 'package:fortestpages/models/request.dart';
 import 'package:fortestpages/models/reviews.dart';
 
 
-//List<userData> userDataFromJson(String str) => List<userData>.from(json.decode(str).map((x) => userData.fromJson(x)));
 
-class userDataResponse{
-  late final String? message;
-  late userData? data;
 
-  userDataResponse({
-    required this.message,
-    required this.data,
-  });
+// class userDataResponse{
+//   late final String? message;
+//   late userData? data;
 
-  userDataResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    data = (json != null) ? userData.fromJson(json) : null;
-  }
-}
+//   userDataResponse({
+//     required this.message,
+//     required this.data,
+//   });
 
-class workerDataResponse{
-  late final String? message;
-  late workerData? data;
+//   userDataResponse.fromJson(Map<String, dynamic> json) {
+//     message = json['message'];
+//     data = (json != null) ? userData.fromJson(json) : null;
+//   }
+// }
 
-  workerDataResponse({
-    required this.message,
-    required this.data,
-  });
+// class workerDataResponse{
+//   late final String? message;
+//   late workerData? data;
 
-  workerDataResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    data = (json != null) ? workerData.fromJson(json) : null;
-  }
-}
+//   workerDataResponse({
+//     required this.message,
+//     required this.data,
+//   });
+
+//   workerDataResponse.fromJson(Map<String, dynamic> json) {
+//     message = json['message'];
+//     data = (json != null) ? workerData.fromJson(json) : null;
+//   }
+// }
 
 
 class userData {
@@ -48,6 +48,7 @@ class userData {
   late String name=firstName+" "+lastName;
   late String username;
   late String location;
+  late String? city;
   late String email;
   late String? phonenumber;
   late String? image;
@@ -62,6 +63,7 @@ class userData {
     required this.username,
     required this.email,
     required this.location,
+    required city,
     this.image,
     this.phonenumber,
     this.request,
@@ -80,6 +82,9 @@ class userData {
       ?json["phoneNumber"]
       :null;
       location=json["location"];
+      city=(json["city"]!=null)
+      ?json["city"]
+      :null;
       image=(json["profilePicture"]!=null)
       ? json["profilePicture"]
       : null;
@@ -119,6 +124,7 @@ class workerData {
   late String name=firstName+" "+lastName;
   late String username;
   late String location;
+  late String city;
   late String email;
   late String? phonenumber;
   late String? image;
@@ -136,6 +142,7 @@ class workerData {
     required this.username,
     required this.email,
     required this.location,
+    required this.city,
     this.image,
     this.phonenumber,
     this.rating,
@@ -154,6 +161,7 @@ class workerData {
       email=json["email"];
       phonenumber=json["phoneNumber"];
       location=json["location"];
+      city=json["city"];
       if (json.containsKey('overAllRating')) {
       rating = json["overAllRating"];
       }

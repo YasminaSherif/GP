@@ -4,11 +4,11 @@ abstract class SignInStates {}
 class SignInInitialState extends SignInStates{}
 class SignInLoadingState extends SignInStates{}
 class SignInUserSuccessfulState extends SignInStates{
-  userDataResponse userResponse;
+  userData userResponse;
   SignInUserSuccessfulState(this.userResponse);
 }
 class SignInWorkerSuccessfulState extends SignInStates{
-  workerDataResponse workerResponse;
+  workerData workerResponse;
   SignInWorkerSuccessfulState(this.workerResponse);
 }
 class SignInFailState extends SignInStates{}

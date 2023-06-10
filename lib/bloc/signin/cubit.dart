@@ -3,7 +3,7 @@ import 'dart:convert' as convert;
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortestpages/models/loginDataResponse.dart';
+import 'package:fortestpages/models/persons.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../src/const.dart';
@@ -16,7 +16,7 @@ class SignInCubit extends Cubit<SignInStates>
 
   static SignInCubit get(context) => BlocProvider.of(context);
   
-    userDataResponse? loginResponse;
+    userData? loginResponse;
     login(String email, String password) async {
     emit(SignInLoadingState());
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Auth/Login');
@@ -34,17 +34,18 @@ class SignInCubit extends Cubit<SignInStates>
             "password": password
           }),
           );
+          
       if (response.statusCode == 200) {
-        jsonResponse =
-            convert.jsonDecode(response.body) as Map<String, dynamic>;
+        jsonResponse = 
+         convert.jsonDecode(response.body) as Map<String, dynamic>;
         if(jsonResponse["roles"] == 0){
-         loginResponse = userDataResponse.fromJson(jsonResponse);
-         
+         loginResponse = userData.fromJson(jsonResponse);
+
         emit(SignInUserSuccessfulState(loginResponse!));
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }
         else{
-        workerDataResponse workerResponse = workerDataResponse.fromJson(jsonResponse);
+        workerData workerResponse = workerData.fromJson(jsonResponse);
         emit(SignInWorkerSuccessfulState(workerResponse));
         }
       }

@@ -10,7 +10,7 @@ import 'package:fortestpages/services/methods/navigation.dart';
 // import '../../../core/styles/texts/app_text_styles.dart';
 
 import '../../../bloc/workerData/cubit.dart';
-import '../../../models/loginDataResponse.dart';
+import '../../../models/persons.dart';
 import '../messages_screen_worker.dart';
 import '../styles/texts/app_text_styles.dart';
 

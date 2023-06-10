@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/userData/cubit.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
-import '../../../models/loginDataResponse.dart';
+
+import '../../../models/persons.dart';
 import '../messages_screen_user.dart';
 import '../styles/texts/app_text_styles.dart';
 

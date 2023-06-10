@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 import 'package:fortestpages/pages/auth/SignIn.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,12 +30,22 @@ class _RegisterFormState extends State<RegisterForm> {
   String lastname = '';
   String username = '';
   String location = '';
+  String city = '';
   String email = '';
   String password = '';
   String confirmP = '';
   String phoneNumber = '';
   int? value;
   int? value2;
+  String? value3;
+  var confirmPass;
+  bool _obscureText = true;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   // DropDown 1
   final items = ['مستخدم', 'صنايعى'];
@@ -49,6 +58,7 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       );
 
+  // DropDown 2
   final special = [
     'نجار',
     'حداد',
@@ -60,7 +70,6 @@ class _RegisterFormState extends State<RegisterForm> {
     'محاره',
     'ستائر'
   ];
-
   DropdownMenuItem<int> buildMenuItem2(String item) => DropdownMenuItem(
       value: special.indexOf(item),
       child: Text(
@@ -68,21 +77,28 @@ class _RegisterFormState extends State<RegisterForm> {
         style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
       ));
 
-  RegisterCubit cubit = RegisterCubit();
+  // DropDown 3
+  final ourCity = ['القاهره', 'الاسكندرية', 'الجيزة', 'حلوان'];
+  DropdownMenuItem<String> buildMenuItem3(String inCity) => DropdownMenuItem(
+    value: inCity,
+      child: Text(
+        inCity,
+        style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+      ));
 
+  RegisterCubit cubit = RegisterCubit();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is AlreadyRegisteredState) {
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('الحساب مسجل بالفعل')));
-          navigateAndNotBack(context, SignIn());
+               SnackBar(content: Text(state.msg)));
         } else if (state is RegisterUserSuccessfulState) {
-          Constant.saveData(key: "id", value: state.userResponse.data!.id);
+          Constant.saveData(key: "userId", value: state.userResponse.id);
           navigateAndNotBack(context, const HomeLayout());
         } else if (state is RegisterWorkerSuccessfulState) {
-          Constant.saveData(key: "id", value: state.workerResponse.data!.id);
+          Constant.saveData(key: "workerId", value: state.workerResponse.id);
           navigateAndNotBack(context, const CraftHomeLayout());
         } else if (state is RegisterFailState) {
           ScaffoldMessenger.of(context)
@@ -94,18 +110,18 @@ class _RegisterFormState extends State<RegisterForm> {
 
         Widget bottomSheet() {
           return Container(
-            height: 100.h,
+            height: 100,
             width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.symmetric(horizontal: 20.r, vertical: 20.r),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'اختر صوره شخصيه',
-                    style: TextStyle(fontSize: 20.0.sp),
+                    style: TextStyle(fontSize: 20.0),
                   ),
-                  SizedBox(
-                    height: 20.h,
+                  const SizedBox(
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -138,9 +154,7 @@ class _RegisterFormState extends State<RegisterForm> {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: AppBar(
-              title: const Text(
-                'انشاء حساب',
-              ),
+              title: const Text('انشاء حساب'),
               centerTitle: true,
               backgroundColor: const Color.fromRGBO(217, 173, 48, 1),
               elevation: 0,
@@ -152,18 +166,8 @@ class _RegisterFormState extends State<RegisterForm> {
               child: Form(
                 key: formKey,
                 child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    // Container(
-                    //   width: 400,
-                    //   height: 200,
-                    //   margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                    //   decoration: const BoxDecoration(
-                    //       color: Colors.white,
-                    //       image: DecorationImage(
-                    //           image: AssetImage('assets/Sign-In.png'))
-                    //   ),
-                    // ),
+
                     const SizedBox(
                       height: 3,
                     ),
@@ -186,7 +190,7 @@ class _RegisterFormState extends State<RegisterForm> {
                               ],
                               shape: BoxShape.circle,
                               image: cubitImage.image == null
-                                  ? DecorationImage(
+                                  ? const DecorationImage(
                                       fit: BoxFit.fill,
                                       image: AssetImage('assets/OIP.jpg'),
                                     )
@@ -228,7 +232,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -236,17 +240,21 @@ class _RegisterFormState extends State<RegisterForm> {
                         //Last name
                         Expanded(
                           child: buildTextFormField(
-                            validator: (lastName) {
-                              if (lastName!.isEmpty ||
-                                  lastName.length < 2 ||
-                                  lastName.length > 15) {
-                                return 'الاسم يجب ان لا يزيد عن 8 احرف';
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'يرجى ادخال اسم عائلتك';
                               }
+                              if (value.length < 2) {
+                                return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                              }
+                              if (value.length > 15) {
+                                return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                              }
+                              return null;
                             },
                             hintText: 'الاسم الاخير',
                             onSaved: (value) {
                               lastname = value!;
-                              print(lastname);
                             },
                             obscureText: false,
                             icon: const Icon(
@@ -259,17 +267,21 @@ class _RegisterFormState extends State<RegisterForm> {
                         // first name
                         Expanded(
                           child: buildTextFormField(
-                            validator: (firstName) {
-                              if (firstName!.isEmpty ||
-                                  firstName.length < 2 ||
-                                  firstName.length > 15) {
-                                return 'الاسم الاول يجب ان يكون بين حرفين حتى 8 احرف';
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'يرجى ادخال اسمك الاول';
                               }
+                              if (value.length < 2) {
+                                return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                              }
+                              if (value.length > 15) {
+                                return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                              }
+                              return null;
                             },
                             hintText: 'الاسم الاول',
                             onSaved: (value) {
                               firstname = value!;
-                              print(firstname);
                             },
                             obscureText: false,
                             icon: const Icon(
@@ -282,16 +294,21 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     const SizedBox(
-                      height: 6,
+                      height: 8,
                     ),
                     // User Name
                     buildTextFormField(
-                      validator: (username) {
-                        if (username!.isEmpty ||
-                            username.length < 2 ||
-                            username.length > 15) {
-                          return 'Enter a username';
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'يرجى ادخال اسم المستخدم';
                         }
+                        if (value.length < 2) {
+                          return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                        }
+                        if (value.length > 20) {
+                          return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                        }
+                        return null;
                       },
                       hintText: 'اسم المستخدم',
                       onSaved: (value) {
@@ -304,39 +321,99 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                     ),
                     const SizedBox(
-                      height: 6,
-                    ),
-                    // Location
-                    buildTextFormField(
-                      validator: (location) {
-                        if (location!.isEmpty ||
-                            location.length < 3 ||
-                            location.length > 15) {
-                          return 'Enter valid location';
-                        }
-                      },
-                      hintText: 'موقعك',
-                      onSaved: (value) {
-                        location = value!;
-                      },
-                      obscureText: false,
-                      icon: const Icon(
-                        Icons.location_on,
-                        color: Colors.amberAccent,
-                      ),
+                      height: 8,
                     ),
 
+                    Row(
+                      children: [
+
+                        // CITY
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            validator: (value) =>
+                            value == null ? 'اختر مدينه من فضلك' : null,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: 'المدينة',
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 10),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+
+                              icon: const Icon(
+                                Icons.location_on_outlined,
+                                color: Colors.black,
+                              ),
+                              suffixIcon: const Icon(
+                                Icons.location_city_sharp,
+                                color: Colors.orange,
+                              ),
+                            ),
+
+                            value: value3,
+                            items: ourCity.map(buildMenuItem3).toList(),
+
+                            onChanged: (value) {
+                              cubit.registerCityChanged(value!);
+                              this.value3 = value;
+                            },
+
+                            onSaved: (value) {
+                              cubit.registerCityChanged(value!);
+                              this.value3 = value;
+                            },
+                          ),
+                        ),
+
+                        // Location
+                        Expanded(
+                          child: buildTextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'يرجى ادخال موقعك';
+                              }
+                              if (value.length < 2) {
+                                return 'موقعك يجب ان يحتوي على حرفين على الأقل';
+                              }
+                              if (value.length > 15) {
+                                return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                              }
+                              return null;
+                            },
+                            hintText: 'موقعك',
+                            onSaved: (value) {
+                              location = value!;
+                            },
+                            obscureText: false,
+                            icon: const Icon(
+                              Icons.location_on,
+                              color: Colors.amberAccent,
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+
+
                     const SizedBox(
-                      height: 6,
+                      height: 8,
                     ),
                     // email
                     buildTextFormField(
-                      validator: (email) {
-                        if (email!.isEmpty ||
-                            !email.contains('@') ||
-                            !email.contains('.com')) {
-                          return 'Invalid E-mail';
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'يرجى ادخال البريد الالكتروني';
                         }
+                        final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',);
+                        // if (!emailRegex.hasMatch(value)) {
+                        //   return 'البريد الالكتروني غير صالح';
+                        // }
+                        return null;
                       },
                       hintText: 'الايميل',
                       onSaved: (value) {
@@ -350,14 +427,31 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     const SizedBox(
-                      height: 6,
+                      height: 8,
                     ),
                     // PASSWORD
                     buildTextFormField(
-                      validator: (password) {
-                        if (password!.isEmpty || password.length < 6) {
-                          return 'Password should be at least 6 char ';
+                      validator: (value) {
+                        confirmPass = value;
+                        if (value == null || value.isEmpty) {
+                          return 'يرجى ادخال كلمة المرور';
                         }
+                        if (value.length < 6 || value.length > 15) {
+                          return 'يجب أن تكون كلمة المرور بين 6 و 15 حرفًا';
+                        }
+                        final capitalRegex = RegExp(r'[A-Z]');
+                        final lowercaseRegex = RegExp(r'[a-z]');
+                        final numberRegex = RegExp(r'[0-9]');
+                        if (!capitalRegex.hasMatch(value) ) {
+                          return 'يجب أن تحتوي كلمة المرور على حرف كبير';
+                        }
+                        if (!lowercaseRegex.hasMatch(value)) {
+                          return 'يجب أن تحتوي كلمةعلى حرف صغير ';
+                        }
+                        if (!numberRegex.hasMatch(value)) {
+                          return 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+                        }
+                        return null;
                       },
                       isSuffix: true,
                       hintText: 'كلمة السر',
@@ -365,22 +459,30 @@ class _RegisterFormState extends State<RegisterForm> {
                         password = value!;
                       },
                       obscureText: true,
-                      icon: const Icon(
-                        Icons.remove_red_eye_outlined,
+
+                      icon: Icon(
+                            _obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Colors.amberAccent,
                       ),
+                      onPressed: _toggle,
                     ),
 
                     const SizedBox(
-                      height: 6,
+                      height: 8,
                     ),
                     //Confirm
                     buildTextFormField(
-                      validator: (confirm) {
-                        if (confirm!.isEmpty ||
-                            confirm.length < 6 /*|| password != confirmP*/) {
-                          return 'Password should be match ';
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'يرجى ادخال تأكيد كلمة المرور';
                         }
+                        if (value != confirmPass) {
+                          return 'كلمة المرور غير متطابقة';
+                        }
+
+                        return null;
                       },
                       isSuffix: true,
                       hintText: 'تأكيد كلمة السر',
@@ -388,22 +490,28 @@ class _RegisterFormState extends State<RegisterForm> {
                         confirmP = value!;
                       },
                       obscureText: true,
-                      icon: const Icon(
-                        Icons.remove_red_eye_outlined,
+                      icon: Icon(
+                        _obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Colors.amberAccent,
                       ),
+                      onPressed: _toggle,
                     ),
 
                     const SizedBox(
-                      height: 6,
+                      height: 8,
                     ),
                     // PHONE NUMBER
                     buildTextFormField(
                       validator: (phone) {
-                        if (phone!.isEmpty ||
-                            RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
-                          return 'phone number should be 12';
+                        if (phone == null || phone.isEmpty) {
+                          return 'يرجى ادخال رقم المحمول';
                         }
+                        if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
+                          return 'يرجى ادخال رقم محمول صحيح';
+                        }
+                        return null;
                       },
                       isSuffix: false,
                       hintText: 'رقم المحمول',
@@ -454,8 +562,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       height: 2,
                     ),
                     DropdownButtonFormField<int>(
-                      // validator: (value) =>
-                      //     value == null ? 'Please select a speciality' : null,
+
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -487,20 +594,23 @@ class _RegisterFormState extends State<RegisterForm> {
                     (state is RegisterLoadingState)
                         ? const Center(child: CircularProgressIndicator())
                         : FormButton(
-                            width: 300.w,
+                            width: 300,
+                            height: 50,
                             child: const Text(
                               'تسجيل',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             onPressed: () {
-                              formKey.currentState!.save();
                               final isValid = formKey.currentState!.validate();
                               if (isValid) {
+                                formKey.currentState!.save();
                                 cubit.Register(
                                     firstname,
                                     lastname,
                                     username,
                                     location,
+                                    value3!,
                                     email,
                                     password,
                                     confirmP,
@@ -509,13 +619,11 @@ class _RegisterFormState extends State<RegisterForm> {
                                     value2,
                                     cubitImage.fileImage);
 
-                                formKey.currentState!.save();
-
-                                //   ScaffoldMessenger.of(context).showSnackBar(
-                                //       const SnackBar(
-                                //           content: Text('يوجد خطأ بالمعلومات المدخله')));
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('يوجد خطأ بالمعلومات المدخله')));
                               }
-                              print(firstname);
                             },
                           ),
 

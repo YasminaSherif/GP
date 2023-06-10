@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fortestpages/models/loginDataResponse.dart';
+import 'package:fortestpages/models/persons.dart';
 import 'package:fortestpages/models/reviews.dart';
 
 class ratingItem extends StatelessWidget {

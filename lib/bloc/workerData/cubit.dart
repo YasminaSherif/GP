@@ -5,7 +5,7 @@ import '../../models/request.dart';
 import '../../src/const.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import '../../models/loginDataResponse.dart';
+import '../../models/persons.dart';
 import 'dart:convert';
 import 'dart:convert' as convert;
 part 'states.dart';
@@ -19,7 +19,7 @@ class workerDataCubit extends Cubit<workerDataStates>
   List<workerData>? workerResponse;
     getworker() async {
     emit(GetworkerDataLoading());
-    var url = Uri.https('hicraftapi20.azurewebsites.net', '/api/Craft/GetCraftById', {'id': Constant.getData(key: 'id')});
+    var url = Uri.https('hicraftapi20.azurewebsites.net', '/api/Craft/GetCraftById', {'id': Constant.getData(key: 'workerId')});
     http.Response response;
     Map<String, dynamic> jsonMap;
     try {
@@ -68,7 +68,7 @@ class workerDataCubit extends Cubit<workerDataStates>
   updateWorker({String? firstName, String? lastName,String? bio,  String?  username, String? location, String? phoneNumber, File? profilePic,File? workImage}) async {
   emit(UpdateProfileLoading());
   var client = http.Client();
-  var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/EditCraft?CraftManId=${Constant.getData(key: 'id')}');
+  var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/EditCraft?CraftManId=${Constant.getData(key: 'workerId')}');
   var response;
   dynamic jsonResponse;
   if(firstName==null && lastName==null &&  bio==null &&  username==null && location==null && phoneNumber==null&& profilePic==null && workImage==null){
@@ -191,7 +191,7 @@ class workerDataCubit extends Cubit<workerDataStates>
   List<requests>? accepted;
   GetRequests() async {
     emit(getRequestLoadingsState());
-    var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/GetAllRequests?UserId=${Constant.getData(key: 'id')}');
+    var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/GetAllRequests?UserId=${Constant.getData(key: 'workerId')}');
     http.Response response;
     List<dynamic> jsonResponse;
     try {
@@ -369,6 +369,9 @@ if (usersToChat!=null && !usersToChat!.any((item) => item.id == user![0]!.id) ) 
   workerUpdateResponse=null;
   usersToChat=null;
 
+
+  Constant.removeData(
+                    key: "workerId");                  
  }
 
 

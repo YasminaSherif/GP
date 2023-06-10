@@ -6,9 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../bloc/chat/chat_cubit.dart';
 
-import '../../models/loginDataResponse.dart';
+
 import '../../models/message.dart';
 
+import '../../models/persons.dart';
 import 'components/received_message_item.dart';
 import 'components/sent_message_item.dart';
 import 'styles/colors/app_colors.dart';

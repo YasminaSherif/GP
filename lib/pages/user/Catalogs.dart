@@ -30,7 +30,7 @@ class Catalogs extends StatelessWidget {
           }
         } ,
         builder: (context, state){
-           var cubit=mainCubit.get(context);
+           var cubit=userDataCubit.get(context);
           return Scaffold(
             body: ListView(
               children: [

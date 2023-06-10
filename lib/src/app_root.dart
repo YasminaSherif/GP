@@ -25,7 +25,6 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context) => SignInCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => userDataCubit()),
-        BlocProvider(create: (context) => mainCubit()),
         BlocProvider(create: (context) => workerDataCubit()),
         BlocProvider(create: (context) => CraftCubit()),
         BlocProvider(create: (context) => ChatCubit())

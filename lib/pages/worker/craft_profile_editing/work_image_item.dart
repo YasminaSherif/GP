@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 
-import '../../../models/loginDataResponse.dart';
+import '../../../models/persons.dart';
 
 class WorkImageItem extends StatefulWidget {
   WorkImageItem({Key? key,required this.image}) : super(key: key);

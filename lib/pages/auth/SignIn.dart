@@ -30,17 +30,17 @@ class SignIn extends StatelessWidget {
         listener:(context, state){
           if(state is SignInUserSuccessfulState){
             Constant.saveData(
-                    key: "id", value: state.userResponse.data!.id);
+                    key: "userId", value: state.userResponse.id);
             navigateAndNotBack(context,const HomeLayout());
           }
           if(state is SignInWorkerSuccessfulState){
             Constant.saveData(
-                    key: "id", value: state.workerResponse.data!.id);
+                    key: "workerId", value: state.workerResponse.id);
             navigateAndNotBack(context,const CraftHomeLayout());
           }
           if(state is SignInFailState){
              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                  content: Text('invalid Credentials')));
+                                  content: Text('معلومات خاطئه')));
           }
           
         },

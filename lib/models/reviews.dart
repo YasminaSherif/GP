@@ -1,4 +1,4 @@
-import 'loginDataResponse.dart';
+import 'persons.dart';
 
 class reviews{
     late int id;

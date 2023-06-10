@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fortestpages/models/persons.dart';
 import 'package:fortestpages/pages/user/settings.dart';
 
-import '../../../bloc/mainUser/cubit.dart';
+
+import '../../../bloc/userData/cubit.dart';
 import '../../../services/methods/navigation.dart';
 import '../Catalogs.dart';
 import '../best_workers_of_category.dart';
@@ -15,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   String search='';
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<mainCubit, mainStates>(
+    return BlocConsumer<userDataCubit, userDataStates>(
           listener: ( context,state) {
             if(state is getWorkersSuccessState){
             navigateWithBack(context,const BestWorkersOfCategory());
@@ -33,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           }
           },
           builder: ( context,  state){
-            var cubit=mainCubit.get(context);
+            var cubit=userDataCubit.get(context);
     return Container(
         color: Colors.grey[250],
         child: Column(

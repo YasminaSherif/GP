@@ -41,3 +41,12 @@ class getWorkerDataForRequestFaillState extends userDataStates{}
 class deleteRequestLoadingsState extends userDataStates{}
 class deleteRequestSuccessState extends userDataStates{}
 class deleteRequestFaillState extends userDataStates{}
+
+
+class getWorkersLoadingsState extends userDataStates{}
+class getWorkersSuccessState extends userDataStates{}
+class getWorkersFaillState extends userDataStates{}
+
+class searchLoadingsState extends userDataStates{}
+class searchSuccessState extends userDataStates{}
+class searchFaillState extends userDataStates{}

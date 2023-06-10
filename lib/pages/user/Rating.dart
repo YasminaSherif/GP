@@ -5,7 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fortestpages/pages/user/craft_profile/craft_profile.dart';
 import '../../bloc/mainUser/cubit.dart';
 import '../../bloc/userData/cubit.dart';
-import '../../models/loginDataResponse.dart';
+import '../../models/persons.dart';
 import '../../services/methods/navigation.dart';
 
 

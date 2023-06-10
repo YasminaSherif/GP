@@ -4,17 +4,19 @@ import 'package:fortestpages/pages/user/workerItem.dart';
 import '../../bloc/mainUser/cubit.dart';
 import 'package:flutter/material.dart';
 
+import '../../bloc/userData/cubit.dart';
+
 class BestWorkersOfCategory extends StatelessWidget {
   const BestWorkersOfCategory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<mainCubit, mainStates>(
+    return BlocConsumer<userDataCubit, userDataStates>(
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
-        var cubit=mainCubit.get(context);
+        var cubit=userDataCubit.get(context);
     return  Scaffold(
        body: Container(
           color: Colors.grey[250],

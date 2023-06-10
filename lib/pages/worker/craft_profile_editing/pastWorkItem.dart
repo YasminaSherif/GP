@@ -3,8 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:full_screen_image/full_screen_image.dart';
-
-import '../../../models/loginDataResponse.dart';
+import '../../../models/persons.dart';
 
 class pastWorkItem extends StatelessWidget {
    pastWorkItem({super.key,required this.image});
