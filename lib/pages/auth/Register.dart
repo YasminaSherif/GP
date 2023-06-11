@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 import 'package:fortestpages/pages/auth/SignIn.dart';
 import 'package:image_picker/image_picker.dart';
@@ -40,6 +41,7 @@ class _RegisterFormState extends State<RegisterForm> {
   String? value3;
   var confirmPass;
   bool _obscureText = true;
+  bool showSecondDropdown = false;
 
   void _toggle() {
     setState(() {
@@ -107,7 +109,7 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       builder: (context, state) {
         var cubit = RegisterCubit.get(context);
-
+       // var cu = userDataCubit.get(context);
         Widget bottomSheet() {
           return Container(
             height: 100,
@@ -133,7 +135,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             setState(() {});
                           },
                           icon: const Icon(Icons.camera),
-                          label: const Text('Camera')),
+                          label: const Text('الكاميرا',style: TextStyle(color: Colors.black, fontFamily: 'Tajawal'))),
                       TextButton.icon(
                           onPressed: () async {
                             await cubitImage.takePhoto(ImageSource.gallery);
@@ -141,7 +143,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             setState(() {});
                           },
                           icon: const Icon(Icons.image),
-                          label: const Text('Gallery'))
+                          label: const Text('المعرض',style: TextStyle(color: Colors.black, fontFamily: 'Tajawal')))
                     ],
                   )
                 ],
@@ -152,9 +154,9 @@ class _RegisterFormState extends State<RegisterForm> {
 
         return Scaffold(
           appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(50),
+            preferredSize: const Size.fromHeight(60),
             child: AppBar(
-              title: const Text('انشاء حساب'),
+              title: const Text('انشاء حساب', style: TextStyle(color: Colors.black, fontSize: 25,fontFamily: 'Tajawal')),
               centerTitle: true,
               backgroundColor: const Color.fromRGBO(217, 173, 48, 1),
               elevation: 0,
@@ -169,7 +171,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   children: <Widget>[
 
                     const SizedBox(
-                      height: 3,
+                      height: 12,
                     ),
                     // photo
                     Center(
@@ -177,15 +179,15 @@ class _RegisterFormState extends State<RegisterForm> {
                         children: [
                           //the img
                           Container(
-                            width: 130,
-                            height: 130,
+                            width: 130.w,
+                            height: 130.h,
                             decoration: BoxDecoration(
                               border: Border.all(width: 4, color: Colors.white),
                               boxShadow: [
                                 BoxShadow(
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2.r,
+                                  blurRadius: 7.r,
+                                  color: Colors.grey.withOpacity(0.45),
                                 )
                               ],
                               shape: BoxShape.circle,
@@ -198,7 +200,6 @@ class _RegisterFormState extends State<RegisterForm> {
                                       fit: BoxFit.cover,
                                       image: FileImage(
                                           File(cubitImage.image!.path).absolute
-                                          //File(cubit.image?.path ?? '')
                                           ),
                                     ),
                             ),
@@ -208,8 +209,8 @@ class _RegisterFormState extends State<RegisterForm> {
                               bottom: 0,
                               right: 0,
                               child: Container(
-                                height: 40,
-                                width: 40,
+                                height: 40.w,
+                                width: 40.h,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border:
@@ -233,7 +234,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Row(
                       children: [
@@ -294,7 +295,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     const SizedBox(
-                      height: 8,
+                      height: 15,
                     ),
                     // User Name
                     buildTextFormField(
@@ -321,11 +322,38 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 15,
                     ),
 
                     Row(
                       children: [
+
+                        // Location
+                        Expanded(
+                          child: buildTextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'يرجى ادخال موقعك';
+                              }
+                              if (value.length < 2) {
+                                return 'موقعك يجب ان يحتوي على حرفين على الأقل';
+                              }
+                              if (value.length > 15) {
+                                return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                              }
+                              return null;
+                            },
+                            hintText: 'المنطقة',
+                            onSaved: (value) {
+                              location = value!;
+                            },
+                            obscureText: false,
+                            icon: const Icon(
+                              Icons.location_on,
+                              color: Colors.amberAccent,
+                            ),
+                          ),
+                        ),
 
                         // CITY
                         Expanded(
@@ -343,10 +371,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
 
-                              icon: const Icon(
-                                Icons.location_on_outlined,
-                                color: Colors.black,
-                              ),
+
                               suffixIcon: const Icon(
                                 Icons.location_city_sharp,
                                 color: Colors.orange,
@@ -368,32 +393,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           ),
                         ),
 
-                        // Location
-                        Expanded(
-                          child: buildTextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'يرجى ادخال موقعك';
-                              }
-                              if (value.length < 2) {
-                                return 'موقعك يجب ان يحتوي على حرفين على الأقل';
-                              }
-                              if (value.length > 15) {
-                                return 'الاسم يجب ان لا يزيد عن 15 حرف';
-                              }
-                              return null;
-                            },
-                            hintText: 'موقعك',
-                            onSaved: (value) {
-                              location = value!;
-                            },
-                            obscureText: false,
-                            icon: const Icon(
-                              Icons.location_on,
-                              color: Colors.amberAccent,
-                            ),
-                          ),
-                        ),
+
 
                       ],
                     ),
@@ -401,7 +401,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
 
                     const SizedBox(
-                      height: 8,
+                      height: 15,
                     ),
                     // email
                     buildTextFormField(
@@ -427,7 +427,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     const SizedBox(
-                      height: 8,
+                      height: 15,
                     ),
                     // PASSWORD
                     buildTextFormField(
@@ -470,7 +470,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     const SizedBox(
-                      height: 8,
+                      height: 15,
                     ),
                     //Confirm
                     buildTextFormField(
@@ -500,7 +500,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     const SizedBox(
-                      height: 8,
+                      height: 15,
                     ),
                     // PHONE NUMBER
                     buildTextFormField(
@@ -526,10 +526,10 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
 
                     // DropDown 1
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 9),
                     DropdownButtonFormField<int>(
                       validator: (value) =>
-                          value == null ? 'Please select user type' : null,
+                          value == null ? 'اختر من فضلك' : null,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -548,8 +548,15 @@ class _RegisterFormState extends State<RegisterForm> {
                       value: value,
                       items: items.map(buildMenuItem).toList(),
                       onChanged: (value) {
+                        setState(() {
+                          this.value = value;
+                          if(value == 1){
+                            showSecondDropdown = true;}
+                          else{
+                            showSecondDropdown = false;
+                          }
+                        });
                         cubit.userTypeChanged(value!);
-                        this.value = value;
                       },
                       onSaved: (value) {
                         cubit.userTypeChanged(value!);
@@ -561,34 +568,36 @@ class _RegisterFormState extends State<RegisterForm> {
                     const SizedBox(
                       height: 2,
                     ),
-                    DropdownButtonFormField<int>(
 
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: 'اختصاصك',
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 18, horizontal: 10),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
+                    if(showSecondDropdown)
+                      DropdownButtonFormField<int>(
+
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'اختصاصك',
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 18, horizontal: 10),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.medical_services,
+                            color: Colors.orange,
+                          ),
                         ),
-                        prefixIcon: const Icon(
-                          Icons.medical_services,
-                          color: Colors.orange,
-                        ),
+                        value: value2,
+                        items: special.map(buildMenuItem2).toList(),
+                        onChanged: (value) {
+                          cubit.specialityChanged(value!);
+                          this.value2 = value;
+                        },
+                        onSaved: (value) {
+                          cubit.specialityChanged(value);
+                          this.value2 = value;
+                        },
                       ),
-                      value: value2,
-                      items: special.map(buildMenuItem2).toList(),
-                      onChanged: (value) {
-                        cubit.specialityChanged(value!);
-                        this.value2 = value;
-                      },
-                      onSaved: (value) {
-                        cubit.specialityChanged(value);
-                        this.value2 = value;
-                      },
-                    ),
 
                     const SizedBox(height: 20, width: 0),
                     (state is RegisterLoadingState)
@@ -599,7 +608,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             child: const Text(
                               'تسجيل',
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Tajawal'),
                             ),
                             onPressed: () {
                               final isValid = formKey.currentState!.validate();
@@ -637,7 +646,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             child: const Text('تسجيل الدخول',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w900,
-                                    decoration: TextDecoration.underline))),
+                                    decoration: TextDecoration.underline,))),
                         const Text('لديك حساب؟'),
                       ],
                     ),

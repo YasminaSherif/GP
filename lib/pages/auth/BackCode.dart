@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 
 
@@ -17,15 +18,15 @@ class BackCode extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffF6F6F6),
       body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
+        padding:  EdgeInsets.only(left: 10.r, right: 10.r),
         child: Form(
           key: formKey,
           child: ListView(
             children: [
               Container(
-                width: 400,
-                height: 200,
-                margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                width: 400.w,
+                height: 200.h,
+                margin:  EdgeInsets.fromLTRB(0, 0, 0, 20.r),
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(

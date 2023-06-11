@@ -69,7 +69,7 @@ class Code extends StatelessWidget {
                     animationType: AnimationType.fade,
                     validator: (v) {
                       if (v!.length < 3) {
-                        return "I'm from validator";
+                        return "ادخل الكود المرسل";
                       } else {
                         return null;
                       }
@@ -207,9 +207,9 @@ class Code extends StatelessWidget {
                             fontSize: 16,fontFamily: 'Tajawal'),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "لم تستلم الكود؟",
-                      style: TextStyle(color: Colors.black54, fontSize: 15,fontFamily: 'Tajawal'),
+                      style: TextStyle(color: Colors.black54, fontSize: 15.sp,fontFamily: 'Tajawal'),
                     ),
 
                   ],

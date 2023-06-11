@@ -7,29 +7,29 @@ import '../../bloc/signin/cubit.dart';
 import 'Send_Code.dart';
 import 'buildTextFormField.dart';
 
-
-
 class ForgetPassword extends StatelessWidget {
   ForgetPassword({Key? key}) : super(key: key);
   final formKey = GlobalKey<FormState>();
   String email = '';
+
   @override
   Widget build(BuildContext context) {
-
     //String password = '';
 
-    return BlocConsumer<SignInCubit, SignInStates>
-      (
-      listener: (context, state){
-        if(state is ForgetPasswordSuccessfulState){
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text(' تم ارسال الكود')));
-          navigateWithBack(context, Code(email: state.email,));
+    return BlocConsumer<SignInCubit, SignInStates>(
+      listener: (context, state) {
+        if (state is ForgetPasswordSuccessfulState) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text(' تم ارسال الكود')));
+          navigateWithBack(
+              context,
+              Code(
+                email: state.email,
+              ));
         }
       },
-      builder: (context, state){
-
-        var cubit=SignInCubit.get(context);
+      builder: (context, state) {
+        var cubit = SignInCubit.get(context);
         return Scaffold(
           backgroundColor: const Color(0xffF6F6F6),
           body: Form(
@@ -44,14 +44,21 @@ class ForgetPassword extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         image: DecorationImage(
-                            image: AssetImage('assets/Sign-In.png'))
-                    ),
+                            image: AssetImage('assets/Sign-In.png'))),
                   ),
                 ),
 
-                const Text('استرجاع كلمة السر',
-                  textAlign: TextAlign.center ,style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-                const SizedBox(height: 60,),
+                const Text(
+                  'استرجاع كلمة السر',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Tajawal'),
+                ),
+                const SizedBox(
+                  height: 60,
+                ),
                 //email
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
@@ -60,7 +67,9 @@ class ForgetPassword extends StatelessWidget {
                       if (value!.isEmpty) {
                         return 'يرجى ادخال البريد الالكتروني';
                       }
-                      final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',);
+                      final emailRegex = RegExp(
+                        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+                      );
                       if (!emailRegex.hasMatch(value)) {
                         return 'البريد الالكتروني غير صالح';
                       }
@@ -78,7 +87,6 @@ class ForgetPassword extends StatelessWidget {
                   ),
                 ),
 
-
                 const SizedBox(
                   height: 50,
                 ),
@@ -90,11 +98,13 @@ class ForgetPassword extends StatelessWidget {
                       child: const Text(
                         'ارسال الكود',
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Tajawal'),
                       ),
                       onPressed: () {
                         var isValid = formKey.currentState!.validate();
-                        if(isValid){
+                        if (isValid) {
                           formKey.currentState!.save();
                           cubit.ForgetPassword(email);
                         }
