@@ -31,7 +31,7 @@ class _ImagePickerState extends State<ImagePicker> {
   String? lastname;
   String? area;
   String? phoneNum;
-  String? _selectedCity;
+  String? _selectedCity ;
 
   final ourCity = ['القاهره', 'الاسكندرية', 'الجيزة', 'حلوان'];
   DropdownMenuItem<String> buildMenuItem3(String inCity) => DropdownMenuItem(
@@ -61,6 +61,7 @@ class _ImagePickerState extends State<ImagePicker> {
       username = cubituser.userResponse![0].username;
       area = cubituser.userResponse![0].area;
       phoneNum = cubituser.userResponse![0].phonenumber;
+      //_selectedCity = cubituser.userResponse![0].city!;
       Widget bottomSheet() {
         return Container(
           height: 100.h,
@@ -163,7 +164,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                   image: cubit.image == null &&
                                           cubituser.userResponse![0].image ==
                                               null
-                                      ? DecorationImage(
+                                      ? const DecorationImage(
                                           fit: BoxFit.cover,
                                           image: AssetImage(
                                               'assets/images/grey_circle.png'),
@@ -234,12 +235,17 @@ class _ImagePickerState extends State<ImagePicker> {
                                     //Last name
                                     Expanded(
                                       child: buildTextFormField(
-                                        validator: (lastName) {
-                                          if (lastName!.isEmpty ||
-                                              lastName.length < 2 ||
-                                              lastName.length > 15) {
-                                            return 'الاسم يجب ان لا يزيد عن 8 احرف';
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'يرجى ادخال اسم عائلتك';
                                           }
+                                          if (value.length < 2) {
+                                            return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                                          }
+                                          if (value.length > 15) {
+                                            return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                                          }
+                                          return null;
                                         },
                                         onSaved: (value) {
                                           if (value!.isEmpty) {
@@ -260,12 +266,17 @@ class _ImagePickerState extends State<ImagePicker> {
                                     // first name
                                     Expanded(
                                       child: buildTextFormField(
-                                        validator: (firstName) {
-                                          if (firstName!.isEmpty ||
-                                              firstName.length < 2 ||
-                                              firstName.length > 15) {
-                                            return 'الاسم الاول يجب ان يكون بين حرفين حتى 8 احرف';
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'يرجى ادخال اسمك الاول';
                                           }
+                                          if (value.length < 2) {
+                                            return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                                          }
+                                          if (value.length > 15) {
+                                            return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                                          }
+                                          return null;
                                         },
                                         onSaved: (value) {
                                           if (value!.isEmpty) {
@@ -332,7 +343,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                         decoration: InputDecoration(
                                           filled: true,
                                           fillColor: Colors.white,
-                                          hintText: 'المدينة',
+                                          hintText: cubituser.userResponse![0].city!,
                                           contentPadding: const EdgeInsets.symmetric(
                                               vertical: 15, horizontal: 10),
                                           border: OutlineInputBorder(
