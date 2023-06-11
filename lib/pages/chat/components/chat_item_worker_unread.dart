@@ -11,7 +11,7 @@ import '../messages_screen_worker.dart';
 
 
 class ChatItem extends StatelessWidget {
-  userData user;
+  person user;
 
   ChatItem({Key? key, required this.user}) : super(key: key);
 

@@ -13,7 +13,7 @@ class requests{
     late String? customerName;
     late String? workerName;
     late var rating;
-    requests(this.id,this.customerId,this.workerId,this.details,this.status);
+    requests({required this.id,required this.city,required this.area,required this.customerImage,required this.customerName, required this.customerId,required this.workerId,required this.details,required this.status});
 
     requests.fromJson(Map<String,dynamic> json){
       id=json["id"];

@@ -182,15 +182,13 @@ class userDataCubit extends Cubit<userDataStates>
           );
       if (response.statusCode == 200) {
         
-        requests request=requests(
-          0000,userResponse![0].id,worker.id,details,0
-        );
-        if (panding!=null) {
-  panding!.add(request);
-}else{
-  panding=[request];
-}
-         GetRequests();
+        
+//         if (panding!=null) {
+//   panding!.add(request);
+// }else{
+//   panding=[request];
+// }
+        //  GetRequests();
         emit(sendRequestSuccessState());
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }

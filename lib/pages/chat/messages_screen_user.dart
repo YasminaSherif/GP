@@ -11,15 +11,19 @@ import 'styles/colors/app_colors.dart';
 import 'styles/texts/app_text_styles.dart';
 
 class MessagesScreen extends StatefulWidget {
+  List<Message>? messages;
   String receiverId;
   String receiverName;
-  userData user;
-
+  String senderName;
+  String senderId;
   MessagesScreen(
       {Key? key,
+      required this.messages,
       required this.receiverId,
       required this.receiverName,
-      required this.user})
+      required this.senderId,
+      required this.senderName
+      })
       : super(key: key);
 
   @override
@@ -33,8 +37,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ChatCubit.get(context).getMessages(
-        senderId: widget.user.id, receiverId: widget.receiverId);
+    
   }
 
   @override
@@ -65,14 +68,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
             child: Column(
               children: [
                 Expanded(
-                  child: (cubit.messages == null)
+                  child: (widget.messages == null)
                       ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
                           reverse: true,
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) =>
                               (cubit.messages![index].senderId ==
-                                      widget.user.id)
+                                      widget.senderId)
                                   ? SentMessageItem(
                                       message: cubit.messages![index].message,
                                       date: cubit.messages![index].time,
@@ -118,10 +121,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                           onTap: () {
                             if (messageController.text.isNotEmpty) {
                               Message message = Message(
-                                  senderName: widget.user.name,
+                                  senderName: widget.senderName,
                                   time: Timestamp.now(),
                                   message: messageController.text,
-                                  senderId: widget.user.id);
+                                  senderId: widget.senderId);
                               cubit.sendMessage(
                                   message: message,
                                   receiverId: widget.receiverId);

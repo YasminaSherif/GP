@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/workerData/cubit.dart';
 import '../../bloc/chat/chat_cubit.dart';
 import '../../bloc/userData/cubit.dart';
+import '../../models/persons.dart';
 import 'components/chat_item_user.dart';
+import 'components/chat_item_user_unread.dart';
 
 class ChatsScreen extends StatelessWidget {
   @override
@@ -50,10 +52,11 @@ class ChatsScreen extends StatelessWidget {
          (cubit.workersToChat == null)
             ? const Center(child: CircularProgressIndicator())
             : (cubit.workersToChat!.isEmpty)
-                ? const Text("No Users Found")
+                ? const Text("لا يوجد محادثات سابقه")
                 : ListView.separated(
+                    
                     itemBuilder: (context, index) =>
-                        ChatItem(worker: cubit.workersToChat![index]),
+                        ChatListItem(receiver: cubit.workersToChat![index], senderId:cubit.userResponse![0].id, senderName: cubit.userResponse![0].name ,),
                         separatorBuilder: (context, index) =>
                                              Divider(height: 15.h),
                     itemCount: cubit.workersToChat!.length)
@@ -66,4 +69,73 @@ class ChatsScreen extends StatelessWidget {
       },
     );
   }
+
+}
+
+
+class ChatListItem extends StatefulWidget {
+  final person receiver;
+  final String senderId;
+  final String senderName;
+  ChatListItem({
+    required this.receiver,
+    required this.senderId,
+    required this.senderName,
+  });
+
+  @override
+  _ChatListItemState createState() => _ChatListItemState();
+}
+
+class _ChatListItemState extends State<ChatListItem> {
+  late ChatCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit = ChatCubit.get(context);
+    cubit.getMessages(
+      senderId: widget.senderId,
+      receiverId: widget.receiver.id,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ChatCubit, ChatState>(
+      bloc: cubit,
+      builder: (context, state) {
+        if (state is GetMessagesSuccessfulState) {
+          if (cubit.messages != null) {
+            if (cubit.lastUnreadMessage != null) {
+              return ChatItemUnread(
+                receiver: widget.receiver,
+                senderId: widget.senderId,
+                senderName: widget.senderName,
+                msg: cubit.lastUnreadMessage!,
+                messages: cubit.messages!,
+              );
+            } else if (cubit.lastReadMessage != null ||
+                cubit.messages!.isNotEmpty) {
+              return ChatItem(
+                receiver: widget.receiver,
+                senderId: widget.senderId,
+                senderName: widget.senderName,
+                msg: cubit.lastReadMessage!,
+                messages: cubit.messages!,
+              );
+            }
+          }
+        }
+        return ChatItem(
+          receiver: widget.receiver,
+          senderId: widget.senderId,
+          senderName: widget.senderName,
+          msg: '',
+          messages: [],
+        );
+      },
+    );
+  }
+
 }

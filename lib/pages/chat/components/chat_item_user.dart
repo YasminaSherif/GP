@@ -6,14 +6,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/bloc/userData/cubit.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
 
+import '../../../bloc/chat/chat_cubit.dart';
+import '../../../models/message.dart';
 import '../../../models/persons.dart';
 import '../messages_screen_user.dart';
 
 
 class ChatItem extends StatelessWidget {
-  workerData worker;
-
-  ChatItem({Key? key, required this.worker}) : super(key: key);
+  List<Message>? messages;
+  person receiver;
+  String senderId;
+  String senderName;
+  String msg;
+  ChatItem({Key? key, required this.receiver, required this.senderId,required this.senderName,required this.msg,required this.messages}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +27,15 @@ class ChatItem extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        var cubit = userDataCubit.get(context);
+       
         return InkWell(
           onTap: () {
-            navigateWithBack(context, MessagesScreen(
-                receiverId: worker.id,
-                receiverName: worker.name,
-                user: cubit.userResponse![0],
-              ),
+            navigateWithBack(context, MessagesScreen
+            (messages: messages,
+             receiverId: receiver.id,
+             receiverName: receiver.name,
+             senderId: senderId,
+             senderName: senderName),
             );
           },
           child: Padding(
@@ -39,8 +45,8 @@ class ChatItem extends StatelessWidget {
                  Expanded(
                    child: Column(
                     children: [
-                      Text(worker.name,  style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),),
-                       Text('رجاء متي موعد تنفيذ الطلب  تحديداتحديداتحديداتحديداتحديدا',
+                      Text(receiver.name,  style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),),
+                       Text(msg,
                        style: TextStyle(fontSize: 10.sp,fontFamily: 'Tajawal'),
                          textDirection: TextDirection.rtl,
                          maxLines: 1,
@@ -57,8 +63,8 @@ class ChatItem extends StatelessWidget {
                
                 CircleAvatar(
                   radius: 25.0.r,
-                  backgroundImage:worker.image != null
-        ? MemoryImage(base64Decode(worker.image!))
+                  backgroundImage:receiver.image != null
+        ? MemoryImage(base64Decode(receiver.image!))
         : null,
     backgroundColor: Colors.grey,
                 ),

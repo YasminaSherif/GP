@@ -14,8 +14,12 @@ class ChatCubit extends Cubit<ChatState> {
   static ChatCubit get(context) => BlocProvider.of(context);
 
   List<Message>? messages;
+  String? lastUnreadMessage;
+  String? lastReadMessage;
   void getMessages({required String senderId, required String receiverId}) {
     messages = null;
+    lastUnreadMessage=null;
+    lastReadMessage=null;
     emit(GetMessagesLoadingState());
     FirebaseFirestore.instance
         .collection('users')
@@ -29,6 +33,20 @@ class ChatCubit extends Cubit<ChatState> {
       messages = List.from(event.docs)
           .map((e) => Message.fromCollection(e.data()))
           .toList();
+    if (messages != null) {
+        String? lastUnread = messages!.lastWhere(
+          (message) => message.isRead == false).message;
+      if (lastUnread != null) {
+        lastUnreadMessage = lastUnread;
+      } else {
+        String? lastRead = messages!.lastWhere(
+            (message) => message.isRead == true).message;
+        if (lastRead != null) {
+          lastReadMessage = lastRead;
+        }
+      }
+    }
+      messages!.forEach((message) => message.isRead = true);
       emit(GetMessagesSuccessfulState());
     }).onError((error) {
       emit(GetMessagesErrorState("حدث خطأ اثناء تحميل الرسائل"));
