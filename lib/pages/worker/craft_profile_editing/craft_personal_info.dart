@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../bloc/editUser/cubit.dart';
 import '../../../bloc/workerData/cubit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -86,7 +87,7 @@ class _ImagePickerState extends State<ImagePicker> {
                           setState(() {});
                         },
                         icon: const Icon(Icons.camera),
-                        label: const Text('Camera')),
+                        label:  const Text('الكاميرا', style: TextStyle(fontFamily: 'Tajawal'),)),
                     TextButton.icon(
                         onPressed: () async {
                           await cubit.takePhoto(ImageSource.gallery);
@@ -94,7 +95,7 @@ class _ImagePickerState extends State<ImagePicker> {
                           setState(() {});
                         },
                         icon: const Icon(Icons.image),
-                        label: const Text('Gallery'))
+                        label: const Text('المعرض', style: TextStyle(fontFamily: 'Tajawal')))
                   ],
                 )
               ],
@@ -113,15 +114,16 @@ class _ImagePickerState extends State<ImagePicker> {
                 backgroundColor: const Color.fromRGBO(217, 173, 48, 1),
                 toolbarHeight: 100,
                 elevation: 0,
-                title: const Padding(
-                  padding: EdgeInsets.only(left: 60, right: 5),
+                title: Padding(
+                  padding: EdgeInsets.only(left: 60.r, right: 5.r),
                   child: Text(
                     'معلومات شخصية',
                     textAlign: TextAlign.right,
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 23,
-                        color: Colors.black),
+                        fontSize: 23.sp,
+                        color: Colors.black,
+                    fontFamily: "Tajawal"),
                   ),
                 ),
                 leading: IconButton(
@@ -134,7 +136,7 @@ class _ImagePickerState extends State<ImagePicker> {
                     )),
               ),
               body: Container(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: EdgeInsets.only(left: 15.r, right: 15.r, top: 10.r),
                 child: GestureDetector(
                   onTap: () {
                     FocusScope.of(context).unfocus();
@@ -147,15 +149,15 @@ class _ImagePickerState extends State<ImagePicker> {
                           child: Stack(
                             children: [
                               Container(
-                                width: 130,
-                                height: 130,
+                                width: 130.w,
+                                height: 130.h,
                                 decoration: BoxDecoration(
                                   border:
                                       Border.all(width: 4, color: Colors.white),
                                   boxShadow: [
                                     BoxShadow(
-                                      spreadRadius: 2,
-                                      blurRadius: 10,
+                                      spreadRadius: 2.r,
+                                      blurRadius: 7.r,
                                       color: Colors.grey.withOpacity(0.5),
                                     )
                                   ],
@@ -163,7 +165,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                   image: cubit.image == null &&
                                           cubituser.workerResponse![0].image ==
                                               null
-                                      ? DecorationImage(
+                                      ? const DecorationImage(
                                           fit: BoxFit.cover,
                                           image: AssetImage(
                                               'assets/grey_circle.png'),
@@ -233,12 +235,17 @@ class _ImagePickerState extends State<ImagePicker> {
                                     //Last name
                                     Expanded(
                                       child: buildTextFormField(
-                                        validator: (lastName) {
-                                          if (lastName!.isEmpty ||
-                                              lastName.length < 2 ||
-                                              lastName.length > 15) {
-                                            return 'الاسم يجب ان لا يزيد عن 8 احرف';
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'يرجى ادخال اسم عائلتك';
                                           }
+                                          if (value.length < 2) {
+                                            return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                                          }
+                                          if (value.length > 15) {
+                                            return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                                          }
+                                          return null;
                                         },
                                         onSaved: (value) {
                                           if (value!.isEmpty) {
@@ -259,12 +266,17 @@ class _ImagePickerState extends State<ImagePicker> {
                                     // first name
                                     Expanded(
                                       child: buildTextFormField(
-                                        validator: (firstName) {
-                                          if (firstName!.isEmpty ||
-                                              firstName.length < 2 ||
-                                              firstName.length > 15) {
-                                            return 'الاسم الاول يجب ان يكون بين حرفين حتى 8 احرف';
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'يرجى ادخال اسم الاول';
                                           }
+                                          if (value.length < 2) {
+                                            return 'الاسم يجب ان يحتوي على حرفين على الأقل';
+                                          }
+                                          if (value.length > 15) {
+                                            return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                                          }
+                                          return null;
                                         },
                                         onSaved: (value) {
                                           if (value!.isEmpty) {
@@ -290,6 +302,16 @@ class _ImagePickerState extends State<ImagePicker> {
 
                                 //email
                                 buildTextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'يرجى ادخال البريد الالكتروني';
+                                    }
+                                    final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',);
+                                    // if (!emailRegex.hasMatch(value)) {
+                                    //   return 'البريد الالكتروني غير صالح';
+                                    // }
+                                    return null;
+                                  },
                                   onSaved: (value) {
                                     username =
                                         value?.isEmpty == true ? null : value;
@@ -305,7 +327,17 @@ class _ImagePickerState extends State<ImagePicker> {
                                 const SizedBox(
                                   height: 10,
                                 ),
+                                // phone number
                                 buildTextFormField(
+                                  validator: (phone) {
+                                    if (phone == null || phone.isEmpty) {
+                                      return 'يرجى ادخال رقم المحمول';
+                                    }
+                                    if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
+                                      return 'يرجى ادخال رقم محمول صحيح';
+                                    }
+                                    return null;
+                                  },
                                   onSaved: (value) {
                                     phoneNum =
                                         value?.isEmpty == true ? null : value;
@@ -324,58 +356,72 @@ class _ImagePickerState extends State<ImagePicker> {
 
                                 Row(
                                   children: [
-                                    buildTextFormField(
-                                      onSaved: (value) {
-                                        area =
-                                        value?.isEmpty == true ? null : value;
-                                      },
-                                      hintText: area ?? "شبراااا",
-                                      obscureText: false,
-                                      icon: const Icon(
-                                        Icons.location_on_outlined,
-                                        color: Colors.amberAccent,
-                                      ),
-                                    ),
-
+                                    //location
                                     Expanded(
-                                      child: DropdownButtonFormField<String>(
-                                        validator: (value) =>
-                                        value == null ? 'اختر مدينه من فضلك' : null,
-                                        decoration: InputDecoration(
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          hintText: cubituser.workerResponse![0].city!,
-                                          contentPadding: const EdgeInsets.symmetric(
-                                              vertical: 15, horizontal: 10),
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-
-                                          icon: const Icon(
-                                            Icons.location_on_outlined,
-                                            color: Colors.black,
-                                          ),
-                                          suffixIcon: const Icon(
-                                            Icons.location_city_sharp,
-                                            color: Colors.orange,
-                                          ),
-                                        ),
-
-                                        value: _selectedCity,
-                                        items: ourCity.map(buildMenuItem3).toList(),
-
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _selectedCity = value;
-                                          });
+                                      flex: 1,
+                                      child: buildTextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'يرجى ادخال موقعك';
+                                          }
+                                          if (value.length < 2) {
+                                            return 'موقعك يجب ان يحتوي على حرفين على الأقل';
+                                          }
+                                          if (value.length > 15) {
+                                            return 'الاسم يجب ان لا يزيد عن 15 حرف';
+                                          }
+                                          return null;
                                         },
-
                                         onSaved: (value) {
-                                          _selectedCity = value;
+                                          area =
+                                          value?.isEmpty == true ? null : value;
                                         },
+                                        hintText: area ?? "شبراااا",
+                                        obscureText: false,
+                                        icon: const Icon(
+                                          Icons.location_on_outlined,
+                                          color: Colors.amberAccent,
+                                        ),
                                       ),
                                     ),
+                                    //dropdown
+                                    Expanded(
+                                      flex: 1,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 15.r),
+                                        child: DropdownButtonFormField<String>(
+                                          validator: (value) =>
+                                          value == null ? 'اختر مدينه من فضلك' : null,
+                                          decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Colors.white,
+                                            hintText: cubituser.workerResponse![0].city! ?? 'not exit',
+                                            contentPadding: const EdgeInsets.symmetric(
+                                                vertical: 15, horizontal: 10),
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+
+                                            suffixIcon: const Icon(
+                                              Icons.location_city_sharp,
+                                              color: Colors.orange,
+                                            ),
+                                          ),
+                                          value: _selectedCity,
+                                          items: ourCity.map(buildMenuItem3).toList(),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _selectedCity = value;
+                                            });
+                                          },
+                                          onSaved: (value) {
+                                            _selectedCity = value;
+                                          },
+                                        ),
+                                      ),
+                                    ),
+
                                   ],
                                 ),
                                 //location
@@ -393,14 +439,16 @@ class _ImagePickerState extends State<ImagePicker> {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     FormButton(
-                                        width: 100,
-                                        height: 50,
+                                        width: 100.w,
+                                        height: 50.h,
                                         child: const Text(
                                           'الغاء',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 16.5),
+                                              fontSize: 16.5,
+                                              fontFamily: 'Tajawal'
+                                          ),
                                         ),
                                         onPressed: () {
                                           Navigator.pop(context);
@@ -408,37 +456,26 @@ class _ImagePickerState extends State<ImagePicker> {
                                     FormButton(
                                         width: 100,
                                         height: 50,
-                                        child: const Text(
+                                        child: Text(
                                           'حفظ التغيرات',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 16.5),
+                                              fontSize: 16.5.sp,
+                                              fontFamily: 'Tajawal'),
                                         ),
                                         onPressed: () {
-                                          formKey.currentState!.save();
-
-                                          cubituser.updateWorker(
-                                              firstName: firstname,
-                                              lastName: lastname,
-                                              username: username,
-                                              area: area,
-                                              phoneNumber: phoneNum,
-                                              profilePic: cubit.fileImage);
-                                          // final isValid =
-                                          //     formKey.currentState!.validate();
-                                          // if (isValid) {
-                                          //   formKey.currentState!.save();
-                                          //   ScaffoldMessenger.of(context)
-                                          //       .showSnackBar(const SnackBar(
-                                          //           content: Text(
-                                          //               'You have registered')));
-                                          // } else {
-                                          //   ScaffoldMessenger.of(context)
-                                          //       .showSnackBar(const SnackBar(
-                                          //           content: Text(
-                                          //               'invalid Credentials')));
-                                          // }
+                                          var isValid = formKey.currentState!.validate();
+                                          if(isValid) {
+                                            formKey.currentState!.save();
+                                            cubituser.updateWorker(
+                                                firstName: firstname,
+                                                lastName: lastname,
+                                                username: username,
+                                                area: area,
+                                                phoneNumber: phoneNum,
+                                                profilePic: cubit.fileImage);
+                                          }
                                         }),
                                   ],
                                 ),
@@ -448,7 +485,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                       navigateWithBack(
                                           context, ChangePassword());
                                     },
-                                    child: const Text('تغير كلمة المرور'))
+                                    child: const Text('تغير كلمة المرور',style: TextStyle(fontFamily: 'Tajawal')))
                               ],
                             ),
                           ),

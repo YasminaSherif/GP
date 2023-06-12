@@ -62,27 +62,10 @@ class SignIn extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        // Center(
-                        //   child: Stack(
-                        //     children: [
-                        //       Container(
-                        //         width: 130,
-                        //         height: 130,
-                        //         decoration: BoxDecoration(
-                        //             border: Border.all(width: 4, color: Colors.white),
-                        //             image: const DecorationImage(
-                        //               fit: BoxFit.cover,
-                        //               image: AssetImage('assets/og-sign-in.png'),
-                        //             )
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
                         Container(
                           width: 400.w,
                           height: 200.h,
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          margin:  EdgeInsets.fromLTRB(0, 0, 0, 20.r),
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               image: DecorationImage(
@@ -96,7 +79,7 @@ class SignIn extends StatelessWidget {
                               padding:  EdgeInsets.only(top: 11.r, bottom: 25.r),
                               child: Text(
                                 'تسجيل الدخول',
-                                style: TextStyle( fontWeight: FontWeight.bold, fontSize: 25.sp ),),
+                                style: TextStyle( fontWeight: FontWeight.bold, fontSize: 25.sp, fontFamily: 'Tajawal'),),
                             )),
                         
                         // email
@@ -142,7 +125,7 @@ class SignIn extends StatelessWidget {
                             const Text('تسجيل',
                             style: TextStyle(
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold),)
+                                    fontWeight: FontWeight.bold, fontFamily: 'Tajawal'),)
                         ),
 
                          SizedBox(height: 10.h,),
@@ -150,7 +133,7 @@ class SignIn extends StatelessWidget {
                           onPressed: (){
                            navigateWithBack(context,ForgetPassword());
                           },
-                          child:  Text('نسيت كلمة المرور', style: TextStyle(fontSize: 16.sp, color: Colors.black,decoration: TextDecoration.underline),),
+                          child:  Text('نسيت كلمة المرور', style: TextStyle( fontSize: 16.sp, color: Colors.blue.shade600,decoration: TextDecoration.underline),),
                         ),
 
                         Row(
@@ -163,7 +146,11 @@ class SignIn extends StatelessWidget {
                               },
                               child:  Text('انشاء حساب جديد', style: TextStyle(fontSize: 14.sp, color: Colors.black,decoration: TextDecoration.underline),),
                             ),
-                            const Text('عندك حساب ؟'),
+                             Text('عندك حساب؟',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold, fontFamily: 'Tajawal')),
                           ],
                         )
 
