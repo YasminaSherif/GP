@@ -4,28 +4,29 @@ class requests{
     late int id;
     late String details;
     late int status;
-    late String city;
-    late String area;
+    String? location;
     late String customerId;
     late String workerId;
-    late String? customerImage;
-    late String? workerImage;
-    late String? customerName;
-    late String? workerName;
+     String? customerImage;
+     String? workerImage;
+     String? customerName;
+     String? workerName;
     late var rating;
-    requests({required this.id,required this.city,required this.area,required this.customerImage,required this.customerName, required this.customerId,required this.workerId,required this.details,required this.status});
+    requests({required this.id,required this.location,required this.customerImage, this.customerName,this.workerName, required this.customerId,required this.workerId,required this.details,required this.status});
 
     requests.fromJson(Map<String,dynamic> json){
+
       id=json["id"];
       customerId=json['customerId'];
       workerId=json['craftmanId'];
-      customerImage = json?['customerProfilePicture'] != null ? customerImage : null;
-      workerImage = json?['craftManProfilePicture'] != null ? workerImage : null;
-      rating = json?['rating'] != null ? rating : null;
-      customerName = json['customerName'] != null ? workerName : null;
-      workerName = json['craftName'] != null ? customerName : null;
+      customerImage = json?['customerProfilePicture'] != null ? json['customerProfilePicture'] : null;
+      workerImage = json?['craftManProfilePicture'] != null ? json['craftManProfilePicture'] : null;
+      rating = json?['rating'] != null ? json['rating'] : 0;
+      customerName = json?['customerName'] != null ? json['customerName'] : null;
+      workerName = json?['craftName'] != null ? json['craftName'] : null;
       details=json["details"];
       status=json['status'];
+      location=json['location'] !=null ? json['location']:null;
 
   }
 //   Map<String, dynamic> toJson() {

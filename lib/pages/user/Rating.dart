@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fortestpages/customized/FormButton.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fortestpages/pages/user/craft_profile/craft_profile.dart';
+import 'package:fortestpages/pages/user/userHome/home_layout.dart';
 
 import '../../bloc/userData/cubit.dart';
 import '../../models/persons.dart';
@@ -21,6 +22,7 @@ class Rating extends StatelessWidget {
         if (state is sendReviewSuccessState) {
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('تم ارسال التقييم،شكرا لك')));
+            navigateWithBack(context, HomeLayout());
         }
         if (state is sendReviewFaillState) {
           ScaffoldMessenger.of(context).showSnackBar(

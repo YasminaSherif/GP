@@ -56,6 +56,7 @@ class userDataCubit extends Cubit<userDataStates>
   List<requests>? panding;
   List<requests>? accepted;
   List<requests>? declined;
+  List<requests>? finished;
   List<person>? workersToChat;
   GetRequests() async {
     emit(getRequestLoadingsState());
@@ -73,16 +74,16 @@ class userDataCubit extends Cubit<userDataStates>
         panding=allRequests.where((r) => r.status == 0).toList();
         accepted=allRequests.where((r) => r.status == 1).toList();
         declined=allRequests.where((r) => r.status == 2).toList(); 
+        finished=allRequests.where((r) => r.status == 3).toList(); 
         if(accepted!=null){
         for(var item in accepted!){
-                  List<String> nameParts = item.workerName!.split(" ");
+                  List<String> nameParts = item.workerName!.split("  ");
           String firstName = nameParts[0];
           String lastName = nameParts[1];
          person Person = person(id: item.workerId, firstName: firstName, lastName: lastName, image: item.workerImage);
         if (workersToChat!=null && !workersToChat!.any((worker) => worker.id == item.workerId!)) {
         workersToChat!.add(Person);
           }else if(workersToChat==null){
-            
            workersToChat=[Person];
           }}}
         
@@ -116,12 +117,6 @@ class userDataCubit extends Cubit<userDataStates>
        declined = [];
     }
   }
-
-
-
-
-
-
 
 
   deleteRequest (String customerid,requests req)async{
@@ -381,15 +376,7 @@ class userDataCubit extends Cubit<userDataStates>
             convert.jsonDecode(response.body);
           worker = [workerData.fromJson(jsonMap)];
 
-          for (var item in worker![0].review!) {
-          if (item.user == null) {
-           await getUser(item.customerId);
-          item.user = user![0];
-        }
-        if (item.worker == null) {
-          item.worker = worker![0];
-        }
-      }
+
 
         emit(getWorkerSuccessState());
       }
@@ -409,97 +396,6 @@ class userDataCubit extends Cubit<userDataStates>
 
     }
   }
-
-  List<workerData>? workerForRequest;
-  getWorkerDataForRequest(String workerId) async {
-    workerForRequest = null;
-    emit(getWorkerDataForRequestLoadingsState());
-    var url='https://hicraftapi20.azurewebsites.net/api/Craft/GetCraftById?id=${workerId}';
-    http.Response response;
-    Map<String, dynamic> jsonMap;
-
-    try {
-      response = await http.get(Uri.parse(url),
-          headers: {
-            "Accept": "application/json",
-            "content-type":"application/json"
-          },
-          );
-      if (response.statusCode == 200) {
-        
-       jsonMap =
-            convert.jsonDecode(response.body);
-          worker = [workerData.fromJson(jsonMap)];
-
-      //     for (var item in worker![0].review!) {
-      //     if (item.user == null) {
-      //      await getUser(item.customerId);
-      //     item.user = user![0];
-      //   }
-      //   if (item.worker == null) {
-      //     item.worker = worker![0];
-      //   }
-      // }
-
-        emit(getWorkerDataForRequestSuccessState());
-      }
-      else{
-        emit(getWorkerDataForRequestFaillState());
-      }
-    } on FormatException {
-      print("format exception");
-      emit(getWorkerDataForRequestFaillState());
-    } on SocketException {
-      print("problem in connecting to internet");
-      emit(getWorkerDataForRequestFaillState());
-
-    } catch (e) {
-      print(e);
-      emit(getWorkerDataForRequestFaillState());
-
-    }
-  }
-
-List<person>? user;
-    getUser(String customerid) async {
-      user=null;
-    //  emit(GetUserDataLoading());
-    var url ='https://hicraftapi20.azurewebsites.net/api/Customer/GetCustomerById?id=${customerid}';
-    http.Response response;
-    // List<dynamic> jsonResponse;
-    Map<String, dynamic> jsonMap;
-
-    try {
-      response = await http.get(Uri.parse(url),
-          headers: {
-            "Accept": "*/*",
-            "content-type":"application/json"
-          },
-          );
-      if (response.statusCode == 200) {
-        
-        jsonMap =
-            convert.jsonDecode(response.body);
-          user = [person.fromJson(jsonMap)];
-        // emit(GetUserDataSuccessful());
-      }
-      else{
-        emit(GetUserDataError());
-      }
-    } on FormatException {
-      print("format exception");
-      emit(GetUserDataError());
-    } on SocketException {
-      //getUser();
-      print("problem in connecting to internet");
-      emit(GetUserDataError());
-
-    } catch (e) {
-      print(e);
-      emit(GetUserDataError());
-
-    }}
-  
 
 List<workerData>? catResponse;
     getWorkers(int cateId) async {
@@ -572,14 +468,53 @@ else{
 }
     }
 
+finishRequest (requests requestt)async{
+    emit(finishRequestLoadingsState());
+    var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/FinishRequest');
+    
+      var response;
+     dynamic jsonResponse;
+     try {
+    var request = http.MultipartRequest('PUT', url);
+    request.headers['content-type'] = 'multipart/form-data';
+    request.fields['UserId'] =userResponse![0].id;
+    request.fields['RequestId']=requestt.id.toString();
+    response = await request.send();
+    if (response.statusCode == 200) {
+      accepted!.removeWhere((request) => request.id == requestt.id);
+      if(finished!=null){
+      finished!.add(requestt);}else{
+        finished!=[requestt];
+      }
+      emit(finishRequestSuccessState());
+      //client.close();
+    } else {
+      print("error code is");
+      print(jsonResponse['status']);
+    }
+  } on FormatException {
+    print("format exception");
+    emit(finishRequestFaillState());
+  } on SocketException {
+    print("problem in connecting to internet");
+    emit(finishRequestFaillState());
+  } catch (e) {
+    print(e);
+    emit(finishRequestFaillState());
+  }
+}
+
+
+
+
+
  logout(){
   userResponse=null;
   panding =null;
   accepted=null;
   declined=null;
   worker=null;
-  workerForRequest=null;
-  user=null;
+
   userUpdateResponse=null;
   workersToChat=null;
     Constant.removeData(

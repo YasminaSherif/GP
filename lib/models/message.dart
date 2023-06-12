@@ -5,13 +5,13 @@ class Message {
   late final String message;
   late final Timestamp time;
   late final String senderName;
-  late bool? isRead;
+  late  bool isRead;
   Message({
     required this.senderId,
     required this.time,
     required this.message,
     required this.senderName,
-    this.isRead =false
+    required this.isRead
   });
 
   Message.fromCollection(Map<String, dynamic> collection) {
@@ -28,6 +28,7 @@ class Message {
       'message': message,
       'time': time,
       'senderName': senderName,
+      'isRead':isRead
     };
   }
 }

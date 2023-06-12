@@ -122,13 +122,21 @@ class _MessagesScreenState extends State<MessagesScreen> {
                         child: InkWell(
                           onTap: () {
                             if (messageController.text.isNotEmpty) {
-                              Message message = Message(
+                              Message messageMe = Message(
                                   senderName: widget.worker.name,
                                   time: Timestamp.now(),
                                   message: messageController.text,
-                                  senderId: widget.worker.id);
+                                  senderId: widget.worker.id,
+                                  isRead: false);
+                                  Message messageHim = Message(
+                                  senderName: widget.worker.name,
+                                  time: Timestamp.now(),
+                                  message: messageController.text,
+                                  senderId: widget.worker.id,
+                                  isRead: false);
                               cubit.sendMessage(
-                                  message: message,
+                                  messageMe: messageMe,
+                                  messageHim: messageHim,
                                   receiverId: widget.receiverId);
                               messageController.text = "";
                             }

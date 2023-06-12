@@ -64,7 +64,7 @@ class PreviousRequests extends StatelessWidget {
                             right: 10.0.r,
                             top: 8.0.r,
                           ),
-                          child: Text('الطلبات السابقه',
+                          child: Text('الطلبات المنتهيه',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 18.0.sp,
@@ -72,14 +72,14 @@ class PreviousRequests extends StatelessWidget {
                             ),
                           ),
                         ),
-                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState)
+                        (state is getRequestLoadingsState)
                 ? const Center(child: CircularProgressIndicator(color: Color(0xffD9AD30),))
-            :  ( cubit.accepted!=null && cubit.accepted!.isNotEmpty)
+            :  ( cubit.finished!=null && cubit.finished!.isNotEmpty)
                        ? Expanded(
                           child: ListView.separated(
-                            itemBuilder:(context, index)=> DoneOrderItem(request: cubit.accepted![index],),
+                            itemBuilder:(context, index)=> DoneOrderItem(request: cubit.finished![index],),
                             separatorBuilder:(context, index)=> SizedBox(height: 11.h) ,
-                            itemCount: cubit.accepted!.length,
+                            itemCount: cubit.finished!.length,
                           ),
                         )
                         : Padding(
@@ -122,7 +122,7 @@ class PreviousRequests extends StatelessWidget {
                             ),
                           ),
                         ),
-                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState )
+                        (state is getRequestLoadingsState  )
                 ? const Center(child: CircularProgressIndicator(color: Color(0xffD9AD30),))
             :  (cubit.declined!=null && cubit.declined!.isNotEmpty)
                    ? 

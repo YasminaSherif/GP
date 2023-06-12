@@ -18,6 +18,12 @@ class sendRequestLoadingsState extends userDataStates{}
 class sendRequestSuccessState extends userDataStates{}
 class sendRequestFaillState extends userDataStates{}
 
+
+
+class finishRequestLoadingsState extends userDataStates{}
+class finishRequestSuccessState extends userDataStates{}
+class finishRequestFaillState extends userDataStates{}
+
 class changePasswordLoadingState extends userDataStates{}
 class changePasswordSuccessfulState extends userDataStates{}
 class changePasswordFailState extends userDataStates{}

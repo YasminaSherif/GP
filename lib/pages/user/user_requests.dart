@@ -74,7 +74,7 @@ class UserRequests extends StatelessWidget {
                           ),
                         ),
 
-                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState)
+                        (state is getRequestLoadingsState )
                 ? const Center(child: CircularProgressIndicator(color: Color(0xffD9AD30),))
             :  (cubit.panding!=null && cubit.panding!.isNotEmpty)
                    ? 
@@ -127,7 +127,7 @@ class UserRequests extends StatelessWidget {
                             ),
                           ),
                         ),
-                        (state is getRequestLoadingsState || state is getWorkerDataForRequestLoadingsState || state is getWorkerDataForRequestSuccessState)
+                        (state is getRequestLoadingsState)
                 ? const Center(child: CircularProgressIndicator(color: Color(0xffD9AD30),))
             :  ( cubit.accepted!=null && cubit.accepted!.isNotEmpty)
                        ? Expanded(

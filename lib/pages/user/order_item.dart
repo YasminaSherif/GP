@@ -148,7 +148,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                             width: 5.0.w,
                           ),
                           Text(
-                            widget.request.customerName! ,
+                            widget.request.workerName! ,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 11.0.sp,
@@ -225,7 +225,6 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
 
 
 
-
 class DoneOrderItem extends StatefulWidget {
   DoneOrderItem({Key? key, required this.request}) : super(key: key);
   requests request;
@@ -239,71 +238,87 @@ class _DoneOrderItemState extends State<DoneOrderItem> {
   Widget build(BuildContext context) {
     var cubit = userDataCubit();
     return Column(mainAxisSize: MainAxisSize.min, children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Container(
-          height: 45.0.h,
-          color: Colors.white,
-          child: Row(
-            children: [
-               SizedBox(
-                width: 10.0.w,
-              ),
-              IconButton(
-                icon: Icon(
-                  detailsIsOpened
-                      ? Icons.arrow_drop_up
-                      : Icons.arrow_drop_down,
-                  size: 30,
-                  color: Colors.grey,
+      Slidable(
+        startActionPane: ActionPane(
+          motion: const BehindMotion(),
+          children: [
+            SlidableAction(
+              icon: Icons.done,
+              backgroundColor: Colors.green,
+              onPressed: (BuildContext context) {
+                var cubit = BlocProvider.of<userDataCubit>(context);
+
+                cubit.finishRequest(widget.request);
+              },
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            height: 45.0.h,
+            color: Colors.white,
+            child: Row(
+              children: [
+                 SizedBox(
+                  width: 10.0.w,
                 ),
-                onPressed: () {
-                  setState(() {
-                    detailsIsOpened = !detailsIsOpened;
-                  });
-                  print(detailsIsOpened);
-                },
-              ),
-              const Spacer(),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0).r,
+                IconButton(
+                  icon: Icon(
+                    detailsIsOpened
+                        ? Icons.arrow_drop_up
+                        : Icons.arrow_drop_down,
+                    size: 30,
+                    color: Colors.grey,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.request.id.toString() + '#' + 'طلب',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 13.0.sp,
-                            height: 1.h,
-                            fontFamily: 'Tajawal',
-                            ),
-                      ),
-                    ],
+                  onPressed: () {
+                    setState(() {
+                      detailsIsOpened = !detailsIsOpened;
+                    });
+                    print(detailsIsOpened);
+                  },
+                ),
+                const Spacer(),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0).r,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.request.id.toString() + '#' + 'طلب',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 13.0.sp,
+                              height: 1.h,
+                              fontFamily: 'Tajawal',
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-               SizedBox(
-                width: 2.w,
-              ),
-               Padding(
-                padding: EdgeInsets.only(right: 15.r),
-                child: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 26.0.r,
+                 SizedBox(
+                  width: 2.w,
+                ),
+                 Padding(
+                  padding: EdgeInsets.only(right: 15.r),
                   child: CircleAvatar(
-                    backgroundImage: const AssetImage(
-                        "assets/day9-toolbox-removebg-preview.png"),
-                    radius: 26.0.r,
                     backgroundColor: Colors.transparent,
+                    radius: 26.0.r,
+                    child: CircleAvatar(
+                      backgroundImage: const AssetImage(
+                          "assets/day9-toolbox-removebg-preview.png"),
+                      radius: 26.0.r,
+                      backgroundColor: Colors.transparent,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -438,10 +453,6 @@ class _DoneOrderItemState extends State<DoneOrderItem> {
     ]);
   }
 }
-
-
-
-
 
 
 
