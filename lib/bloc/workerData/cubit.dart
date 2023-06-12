@@ -34,16 +34,7 @@ class workerDataCubit extends Cubit<workerDataStates>
         jsonMap =
             convert.jsonDecode(response.body);
           workerResponse = [workerData.fromJson(jsonMap)];
-          if(workerResponse![0].review!=null){
-          for (var item in workerResponse![0].review!) {
-          if (item.user == null) {
-           await getUser(item.customerId);
-          item.user = user![0];
-        }
-        // if (item.worker == null) {
-        //   item.worker = workerResponse![0];
-        // }
-        }}
+          
         emit(GetworkerDataSuccessful());
         
       }
@@ -202,25 +193,19 @@ class workerDataCubit extends Cubit<workerDataStates>
         List<requests> allRequests=jsonResponse.map((e) {
               return requests.fromJson(e);
             }).toList();
-        //     for (var request in allRequests) {
-        //   if (request.user == null) {
-        //   await getUser(request.customerId);
-        //   request.user = user![0];
-        // }
-        // // if (request.worker == null) {
-          
-        // //   request.worker = workerResponse![0];
-        // // }
-        //     }
         panding=allRequests.where((r) => r.status == 0).toList();
         accepted=allRequests.where((r) => r.status == 1).toList();
-        // if(accepted!=null){
-        // for(var item in accepted!){
-        // if (usersToChat!=null && !usersToChat!.any((user) => user.id == item.user!.id) ) {
-        // usersToChat!.add(item.user!);
-        //   }else if(usersToChat ==null){
-        //    usersToChat=[item.user!];
-        //   }}}
+        if(accepted!=null){
+        for(var item in accepted!){
+                  List<String> nameParts = item.workerName!.split("  ");
+          String firstName = nameParts[0];
+          String lastName = nameParts[1];
+         person Person = person(id: item.workerId, firstName: firstName, lastName: lastName, image: item.workerImage);
+        if (usersToChat!=null && !usersToChat!.any((user) => user.id == item.customerId!)) {
+        usersToChat!.add(Person);
+          }else if(usersToChat==null){
+           usersToChat=[Person];
+          }}}
         emit(getRequestSuccessState());
         //sharedPreferences.setString('id', jsonResponse!["id"]);
         }

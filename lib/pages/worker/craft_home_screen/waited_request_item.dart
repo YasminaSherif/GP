@@ -147,7 +147,7 @@ class _State extends State<WaitedRequestItem> {
                           ),
                         ),
                         Text(
-                          widget.request.city+","+widget.request.area,
+                          widget.request.location!,
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontFamily: 'Tajawal',

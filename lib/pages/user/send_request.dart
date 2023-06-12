@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fortestpages/pages/user/userHome/home_layout.dart';
 
 import 'package:fortestpages/pages/user/user_requests.dart';
 import 'package:fortestpages/services/methods/navigation.dart';
@@ -25,7 +26,7 @@ class Request extends StatelessWidget {
           if(state is sendRequestSuccessState){
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text('تم ارسال الطلب')));
-             navigateWithBack(context, UserRequests());
+             navigateWithBack(context, HomeLayout());
           }
           if(state is sendRequestFaillState){
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

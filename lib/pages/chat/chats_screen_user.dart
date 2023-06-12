@@ -53,13 +53,27 @@ class ChatsScreen extends StatelessWidget {
             ? const Center(child: CircularProgressIndicator())
             : (cubit.workersToChat!.isEmpty)
                 ? const Text("لا يوجد محادثات سابقه")
-                : ListView.separated(
-                    
-                    itemBuilder: (context, index) =>
-                        ChatListItem(receiver: cubit.workersToChat![index], senderId:cubit.userResponse![0].id, senderName: cubit.userResponse![0].name ,),
-                        separatorBuilder: (context, index) =>
-                                             Divider(height: 15.h),
-                    itemCount: cubit.workersToChat!.length)
+               : Expanded(
+                          child: ListView.separated(
+                            itemBuilder: (context, index) {
+                              // Create a new instance of the ChatCubit for each chat item
+                              final chatCubit = ChatCubit();
+                              chatCubit.getMessages(
+                                senderId: cubit.userResponse![0].id,
+                                receiverId: cubit.workersToChat![index].id,
+                              );
+                              return ChatListItem(
+                                receiver: cubit.workersToChat![index],
+                                senderId: cubit.userResponse![0].id,
+                                senderName: cubit.userResponse![0].name,
+                                chatcubit: chatCubit,
+                              );
+                            },
+                            separatorBuilder: (context, index) =>
+                                Divider(height: 15.h),
+                            itemCount: cubit.workersToChat!.length,
+                          ),
+                        )
 
 
               ]
@@ -77,10 +91,12 @@ class ChatListItem extends StatefulWidget {
   final person receiver;
   final String senderId;
   final String senderName;
+  final ChatCubit chatcubit;
   ChatListItem({
     required this.receiver,
     required this.senderId,
     required this.senderName,
+    required this.chatcubit
   });
 
   @override
@@ -89,33 +105,57 @@ class ChatListItem extends StatefulWidget {
 
 class _ChatListItemState extends State<ChatListItem> {
   late ChatCubit cubit;
-
+  bool isUnread = false;
   @override
   void initState() {
     super.initState();
-    cubit = ChatCubit.get(context);
+    cubit = widget.chatcubit;
     cubit.getMessages(
       senderId: widget.senderId,
       receiverId: widget.receiver.id,
     );
   }
+void changeState() {
+    setState(() {
+      isUnread = false;
+    });
+  }
 
   @override
+  
+@override
   Widget build(BuildContext context) {
     return BlocBuilder<ChatCubit, ChatState>(
       bloc: cubit,
       builder: (context, state) {
         if (state is GetMessagesSuccessfulState) {
-          if (cubit.messages != null) {
+          if (cubit.messages!.isNotEmpty) {
             if (cubit.lastUnreadMessage != null) {
-              return ChatItemUnread(
-                receiver: widget.receiver,
-                senderId: widget.senderId,
-                senderName: widget.senderName,
-                msg: cubit.lastUnreadMessage!,
-                messages: cubit.messages!,
-              );
-            } else if (cubit.lastReadMessage != null ||
+              if (isUnread) {
+                return ChatItem(
+                  receiver: widget.receiver,
+                  senderId: widget.senderId,
+                  senderName: widget.senderName,
+                  msg: cubit.lastReadMessage ?? '',
+                  messages: cubit.messages!,
+                  chatCubit: cubit,
+                );
+              } else {
+                return GestureDetector(
+                  onTap: () {
+                   changeState();
+                  },
+                  child: ChatItemUnread(
+                    receiver: widget.receiver,
+                    senderId: widget.senderId,
+                    senderName: widget.senderName,
+                    msg: cubit.lastUnreadMessage!,
+                    messages: cubit.messages!,
+                    chatCubit: cubit,
+                  ),
+                );
+              }
+            } else if (cubit.lastUnreadMessage == null &&
                 cubit.messages!.isNotEmpty) {
               return ChatItem(
                 receiver: widget.receiver,
@@ -123,6 +163,7 @@ class _ChatListItemState extends State<ChatListItem> {
                 senderName: widget.senderName,
                 msg: cubit.lastReadMessage!,
                 messages: cubit.messages!,
+                chatCubit: cubit,
               );
             }
           }
@@ -131,11 +172,11 @@ class _ChatListItemState extends State<ChatListItem> {
           receiver: widget.receiver,
           senderId: widget.senderId,
           senderName: widget.senderName,
-          msg: '',
-          messages: [],
+          msg: cubit.lastReadMessage?? '',
+          messages: cubit.messages,
+          chatCubit: cubit,
         );
       },
     );
   }
-
 }

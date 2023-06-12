@@ -45,7 +45,7 @@ reviews review;
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children:  [
-                        Text(review.user!.firstName+" "+review.user!.lastName,
+                        Text(review.customerName!,
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 10.0.sp,
@@ -73,8 +73,8 @@ reviews review;
             backgroundColor: Colors.transparent,
             radius: 17.0.r,
             child: CircleAvatar(
-              backgroundImage: MemoryImage(review.user!.image != null
-                  ? base64Decode(review.user!.image!)
+              backgroundImage: MemoryImage(review.customerImage != null
+                  ? base64Decode(review.customerImage!)
                   : Uint8List(0)),
               radius: 17.0.r,
               backgroundColor: Colors.grey,

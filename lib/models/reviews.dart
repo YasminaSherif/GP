@@ -5,20 +5,19 @@ class reviews{
     late String details;
     late String customerId;
     late String workerId;
-    late person? user;
-    late workerData? worker;
+    String? customerImage;
+     String? customerName;
     late var rateOfthisWork;
-
-    reviews(this.id,this.details,this.rateOfthisWork,this.customerId,this.workerId);
+    reviews(this.id,this.details,this.rateOfthisWork,this.customerId,this.workerId,this.customerImage,this.customerName);
 
     reviews.fromJson(Map<String,dynamic> json){
       id=json["id"];
       customerId=json['clientID'];
       workerId=json['craftmanId'];
       details=json["details"];
-      user = json?['customer'] != null ? person.fromJson(json['customer']) : null;
-      worker = json?['craftman'] != null ? workerData.fromJson(json['craftman']) : null;
+      customerName = json?['clientName'] != null ? json['clientName'] : null;
       rateOfthisWork=json["rateOFthisWork"];
+      customerImage = json?['customerProfilePicture'] != null ? json['customerProfilePicture'] : null;
       
   }
  
