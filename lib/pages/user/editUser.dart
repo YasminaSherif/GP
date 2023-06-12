@@ -248,7 +248,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                             lastname = value;
                                           }
                                         },
-                                        hintText: lastname ?? "ادارة",
+                                        hintText: lastname ?? "الاسم",
                                         obscureText: false,
                                         icon: const Icon(
                                           Icons.person,
@@ -307,7 +307,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                     username =
                                         value?.isEmpty == true ? null : value;
                                   },
-                                  hintText: username ?? "adara@gmail.com",
+                                  hintText: username ?? "name@gmail.com",
                                   obscureText: false,
                                   icon: const Icon(
                                     Icons.person_3_outlined,
@@ -378,7 +378,7 @@ class _ImagePickerState extends State<ImagePicker> {
                                     Expanded(
                                       flex: 1,
                                       child: Padding(
-                                        padding: EdgeInsets.only(right: 15.r),
+                                        padding: EdgeInsets.only(right: 10.r),
                                         child: DropdownButtonFormField<String>(
                                           validator: (value) =>
                                           value == null ? 'اختر مدينه من فضلك' : null,
