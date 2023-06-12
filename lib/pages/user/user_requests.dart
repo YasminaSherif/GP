@@ -132,7 +132,7 @@ class UserRequests extends StatelessWidget {
             :  ( cubit.accepted!=null && cubit.accepted!.isNotEmpty)
                        ? Expanded(
                           child: ListView.separated(
-                            itemBuilder:(context, index)=> RejectedOrderItem(request: cubit.accepted![index],),
+                            itemBuilder:(context, index)=> AcceptedOrderItem(request: cubit.accepted![index],),
                             separatorBuilder:(context, index)=> SizedBox(height: 11.h) ,
                             itemCount: cubit.accepted!.length,
                           ),

@@ -31,38 +31,42 @@ class Catalogs extends StatelessWidget {
       builder: (context, state) {
         var cubit = userDataCubit.get(context);
         return Scaffold(
-            body: ListView(children: [
-          Stack(
+            body: Container(child:
+          Column(
             children: [
-              Container(
-                  width: 700.w,
-                  height: 100.h,
-                  color: const Color(0xffD9AD30),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            icon: const Icon(
-                              Icons.arrow_back_outlined,
-                              color: Colors.black,
-                            )),
-                      ])),
-               Padding(
-                padding: EdgeInsets.only(left: 110.r, right: 110.r, top: 32.r),
-                child: Text('اختر فئات اخرى',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 30.sp, fontFamily: 'Tajawal')),
+              Stack(
+                children: [
+                  Container(
+                      width: 700.w,
+                      height: 100.h,
+                      color: const Color(0xffD9AD30),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back_outlined,
+                                  color: Colors.black,
+                                )),
+                          ])),
+                   Positioned(
+                    left: 100.r, 
+                    right: 100.r,
+                    top: 40.r,
+                    child: Text('اختر فئات اخرى',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20.sp, fontFamily: 'Tajawal')),
+                  ),
+                ],
               ),
-            ],
-          ),
-          Padding(
-              padding:  EdgeInsets.only(
-                top: 40.r,
-              ),
-              child: Column(children: [
+            
+          
+         SizedBox(height: 30.h,),
+               Column(
+                children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -75,8 +79,13 @@ class Catalogs extends StatelessWidget {
                             },
                             child: CircleAvatar(
                               radius: 34.r,
+                              backgroundColor: Colors.red,
+                              child: CircleAvatar(
+
+                                radius: 34.r,
                               backgroundImage:
-                                  const AssetImage('assets/img/ficraft__39.png'),
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -92,9 +101,13 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(5);
                             },
                             child: CircleAvatar(
-                              radius: 34.r,
+                             radius: 34.r,
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
                               backgroundImage:
-                                  const AssetImage('assets/img/ficraft__40.png'),
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -110,9 +123,13 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(3);
                             },
                             child:  CircleAvatar(
-                              radius: 34.r,
+                              radius: 28.r,
+                              child: CircleAvatar(
+                                backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
+                                radius: 28.r,
                               backgroundImage:
-                                  const AssetImage('assets/img/ficraft__41.png'),
+                                  const AssetImage('assets/ficraft__39_-removebg-preview.png'),
+                            ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -136,9 +153,13 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(6);
                             },
                             child: CircleAvatar(
-                              radius: 34.r,
+                             radius: 34.r,
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
                               backgroundImage:
-                                  const AssetImage('assets/img/ficraft__42.png'),
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -154,9 +175,13 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(4);
                             },
                             child: CircleAvatar(
-                              radius: 34.r,
+                             radius: 34.r,
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
                               backgroundImage:
-                                  const AssetImage('assets/img/ficraft__43.png'),
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -173,8 +198,12 @@ class Catalogs extends StatelessWidget {
                             },
                             child: CircleAvatar(
                               radius: 34.r,
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
                               backgroundImage:
-                                  const AssetImage('assets/img/ficraft__45.png'),
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -199,8 +228,12 @@ class Catalogs extends StatelessWidget {
                               },
                               child: CircleAvatar(
                                 radius: 34.r,
-                                backgroundImage:
-                                    const AssetImage('assets/img/ficraft__47.png'),
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
+                              backgroundImage:
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -217,8 +250,12 @@ class Catalogs extends StatelessWidget {
                               },
                               child: CircleAvatar(
                                 radius: 34.r,
-                                backgroundImage:
-                                    const AssetImage('assets/img/ficraft__48.png'),
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
+                              backgroundImage:
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -235,8 +272,12 @@ class Catalogs extends StatelessWidget {
                               },
                               child: CircleAvatar(
                                 radius: 34.r,
-                                backgroundImage:
-                                    const AssetImage('assets/img/ficraft__49.png'),
+                              backgroundColor: Colors.transparent,
+                              child: CircleAvatar(
+                                radius: 34.r,
+                              backgroundImage:
+                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                            ),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -245,8 +286,10 @@ class Catalogs extends StatelessWidget {
                                 style: TextStyle(fontFamily: 'Tajawal')),
                           ]),
                     ]),
-              ]))
-        ]));
+              ])
+              ])
+            )
+        );
       },
     );
   }
