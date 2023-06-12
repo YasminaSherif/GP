@@ -249,7 +249,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
               onPressed: (BuildContext context) {
                 var cubit = BlocProvider.of<userDataCubit>(context);
 
-                cubit.deleteRequest(widget.request.customerId, widget.request);
+                cubit.finishRequest( widget.request);
               },
             ),
           ],
