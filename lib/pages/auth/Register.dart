@@ -154,7 +154,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
         return Scaffold(
           appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60),
+            preferredSize: const Size.fromHeight(50),
             child: AppBar(
               title: const Text('انشاء حساب', style: TextStyle(color: Colors.black, fontSize: 25,fontFamily: 'Tajawal')),
               centerTitle: true,
@@ -392,7 +392,6 @@ class _RegisterFormState extends State<RegisterForm> {
                             },
                           ),
                         ),
-
 
 
                       ],

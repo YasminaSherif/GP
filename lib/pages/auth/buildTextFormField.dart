@@ -25,7 +25,7 @@ Widget buildTextFormField({
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
           borderSide: const BorderSide(
-            color: Colors.black,
+            color: Colors.black38,
             width: 0.7,
           ),
         ),
