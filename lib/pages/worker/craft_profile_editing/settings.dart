@@ -63,6 +63,7 @@ class CraftSetting extends StatelessWidget {
                     else
                       Positioned(
                         left: 130.0.r,
+                        right: 130.0.r,
                         top: 85.0.r,
                         child: Column(
                           children: [

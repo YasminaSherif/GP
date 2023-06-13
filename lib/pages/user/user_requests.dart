@@ -16,7 +16,12 @@ class UserRequests extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
  return BlocConsumer<userDataCubit, userDataStates>(
-          listener: ( context, state) {},
+          listener: ( context, state) {
+            if(state is finishRequestSuccessState){
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                  content: Text('تم انهاء الطلب بنجاح ')));
+            }
+          },
           builder: ( context, state){
         var cubit=userDataCubit.get(context);
         

@@ -28,7 +28,6 @@ class _ImagePickerState extends State<ImagePicker> {
   String? username;
   String? password;
   String? firstname;
-
   String? lastname;
   String? area;
   String? phoneNum;
@@ -465,17 +464,18 @@ class _ImagePickerState extends State<ImagePicker> {
                                               fontFamily: 'Tajawal'),
                                         ),
                                         onPressed: () {
-                                          var isValid = formKey.currentState!.validate();
-                                          if(isValid) {
+                                          //var isValid = formKey.currentState!.validate();
+                                         
                                             formKey.currentState!.save();
                                             cubituser.updateWorker(
                                                 firstName: firstname,
                                                 lastName: lastname,
                                                 username: username,
+                                                city: _selectedCity,
                                                 area: area,
                                                 phoneNumber: phoneNum,
                                                 profilePic: cubit.fileImage);
-                                          }
+                                          
                                         }),
                                   ],
                                 ),

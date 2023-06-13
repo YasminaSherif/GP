@@ -9,7 +9,7 @@ import 'package:fortestpages/services/methods/navigation.dart';
 import '../../../bloc/chat/chat_cubit.dart';
 import '../../../models/message.dart';
 import '../../../models/persons.dart';
-import '../messages_screen_user.dart';
+import '../messages_screen.dart';
 
 class ChatItemUnread extends StatelessWidget {
   final List<Message>? messages;
@@ -59,7 +59,7 @@ class ChatItemUnread extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 40.r),
                     child: const CircleAvatar(
-                      radius: 7,
+                      radius: 4,
                       backgroundColor: Colors.redAccent,
                     ),
                   ),
@@ -70,7 +70,7 @@ class ChatItemUnread extends StatelessWidget {
                         Text(
                           receiver.name,
                           style: TextStyle(
-                            fontSize: 13.sp,
+                            fontSize: 16.sp,
                             fontFamily: 'Tajawal',
                             fontWeight: FontWeight.bold,
                           ),
@@ -78,7 +78,7 @@ class ChatItemUnread extends StatelessWidget {
                         Text(
                           msg,
                           style: TextStyle(
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                             fontFamily: 'Tajawal',
                           ),
                           textDirection: TextDirection.rtl,

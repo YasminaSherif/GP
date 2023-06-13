@@ -21,7 +21,7 @@ class SentMessageItem extends StatelessWidget {
             maxWidth: MediaQuery.of(context).size.width * 0.6,
             minWidth: MediaQuery.of(context).size.width * 0.2),
         decoration: BoxDecoration(
-          color: AppColors.primaryColor.withOpacity(
+          color: const Color.fromRGBO(217, 173, 48, 1).withOpacity(
             .2,
           ),
           borderRadius: BorderRadiusDirectional.only(
