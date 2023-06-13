@@ -16,7 +16,7 @@ class Catalogs extends StatelessWidget {
         value: item,
         child: Text(
           item,
-          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15.sp),
         ),
       );
 
@@ -37,8 +37,8 @@ class Catalogs extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                      width: 700.w,
-                      height: 100.h,
+                      
+                      height: 117.h,
                       color: const Color(0xffD9AD30),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -51,20 +51,14 @@ class Catalogs extends StatelessWidget {
                                   Icons.arrow_back_outlined,
                                   color: Colors.black,
                                 )),
-                          ])),
-                   Positioned(
-                    left: 100.r, 
-                    right: 100.r,
-                    top: 40.r,
-                    child: Text('اختر فئات اخرى',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20.sp, fontFamily: 'Tajawal')),
-                  ),
+                          ]
+                          )
+                          ),
                 ],
               ),
             
           
-         SizedBox(height: 30.h,),
+         SizedBox(height: 20.h,),
                Column(
                 children: [
                 Row(
@@ -78,17 +72,16 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(1);
                             },
                             child: CircleAvatar(
-                              radius: 34.r,
-                              backgroundColor: Colors.red,
+                              radius: 28.r, 
                               child: CircleAvatar(
-
-                                radius: 34.r,
+                                radius: 28.r,
+                              backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft39.png'),
                             ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                           SizedBox(height: 8.h),
                           const Text('نجار',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontFamily: 'Tajawal')),
@@ -101,16 +94,16 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(5);
                             },
                             child: CircleAvatar(
-                             radius: 34.r,
-                              backgroundColor: Colors.transparent,
+                             radius: 28.r,
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
+                                backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft40.png'),
                             ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                           SizedBox(height: 8.h),
                           const Text('سباك',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontFamily: 'Tajawal')),
@@ -125,22 +118,22 @@ class Catalogs extends StatelessWidget {
                             child:  CircleAvatar(
                               radius: 28.r,
                               child: CircleAvatar(
-                                backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                                 radius: 28.r,
+                                backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/ficraft__39_-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft41.png'),
                             ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                           SizedBox(height: 8.h),
                           const Text('كهربائى',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontFamily: 'Tajawal')),
                         ]),
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
+                 SizedBox(
+                  height: 30.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -153,16 +146,17 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(6);
                             },
                             child: CircleAvatar(
-                             radius: 34.r,
+                             radius: 28.r,
                               backgroundColor: Colors.transparent,
-                              child: CircleAvatar(
-                                radius: 34.r,
+                              child:  CircleAvatar(
+                                radius: 28.r,
+                                backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft42.png'),
                             ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                           SizedBox(height: 8.h),
                           const Text('نقاش',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontFamily: 'Tajawal')),
@@ -175,16 +169,17 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(4);
                             },
                             child: CircleAvatar(
-                             radius: 34.r,
+                             radius: 28.r,
                               backgroundColor: Colors.transparent,
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
+                                 backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft43.png'),
                             ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                           SizedBox(height: 8.h),
                           const Text('تعقيم و نظافة',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontFamily: 'Tajawal')),
@@ -197,24 +192,25 @@ class Catalogs extends StatelessWidget {
                               cubit.getWorkers(9);
                             },
                             child: CircleAvatar(
-                              radius: 34.r,
+                              radius: 28.r,
                               backgroundColor: Colors.transparent,
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
+                             backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft44.png'),
                             ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                           SizedBox(height: 8.h),
                           const Text('ستائر',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontFamily: 'Tajawal')),
                         ]),
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
+                 SizedBox(
+                  height: 30.h,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -227,16 +223,17 @@ class Catalogs extends StatelessWidget {
                                 cubit.getWorkers(2);
                               },
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
                               backgroundColor: Colors.transparent,
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
+                                backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft45.png'),
                             ),
                               ),
                             ),
-                            const SizedBox(height: 8),
+                             SizedBox(height: 8.h),
                             const Text('حداد',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontFamily: 'Tajawal')),
@@ -249,16 +246,17 @@ class Catalogs extends StatelessWidget {
                                 cubit.getWorkers(7);
                               },
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
                               backgroundColor: Colors.transparent,
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
+                               backgroundColor: const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft46.png'),
                             ),
                               ),
                             ),
-                            const SizedBox(height: 8),
+                             SizedBox(height: 8.h),
                             const Text('زجاج',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontFamily: 'Tajawal')),
@@ -271,16 +269,17 @@ class Catalogs extends StatelessWidget {
                                 cubit.getWorkers(8);
                               },
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
                               backgroundColor: Colors.transparent,
                               child: CircleAvatar(
-                                radius: 34.r,
+                                radius: 28.r,
+                                backgroundColor:const Color.fromRGBO(104, 140, 40, 1),
                               backgroundImage:
-                                  const AssetImage('assets/day9-toolbox-removebg-preview.png'),
+                                  const AssetImage('assets/ficraft47.png'),
                             ),
                               ),
                             ),
-                            const SizedBox(height: 8),
+                             SizedBox(height: 8.h),
                             const Text('محارة',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontFamily: 'Tajawal')),
