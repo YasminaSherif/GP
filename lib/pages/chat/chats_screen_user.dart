@@ -5,8 +5,8 @@ import 'package:fortestpages/bloc/workerData/cubit.dart';
 import '../../bloc/chat/chat_cubit.dart';
 import '../../bloc/userData/cubit.dart';
 import '../../models/persons.dart';
-import 'components/chat_item_user.dart';
-import 'components/chat_item_user_unread.dart';
+import 'components/chat_item_read.dart';
+import 'components/chat_item_unread.dart';
 
 class ChatsScreen extends StatelessWidget {
   @override

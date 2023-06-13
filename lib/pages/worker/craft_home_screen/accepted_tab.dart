@@ -19,9 +19,9 @@ class AcceptedTap extends StatelessWidget {
         var cubit = workerDataCubit.get(context);
         return Container(
           color: Colors.grey[250],
-          child: (state is getRequestLoadingsState)
+          child: (state is getRequestLoadingsState || cubit.accepted == null)
               ? const Center(child: CircularProgressIndicator())
-              : (cubit.accepted != null && cubit.accepted!.isNotEmpty)
+              : (cubit.accepted?.isNotEmpty == true)
                   ? Column(
                     children: [
                       Expanded(

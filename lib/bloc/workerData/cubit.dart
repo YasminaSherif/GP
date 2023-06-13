@@ -56,7 +56,7 @@ class workerDataCubit extends Cubit<workerDataStates>
   }
   
   workerData? workerUpdateResponse;
-  updateWorker({String? firstName, String? lastName,String? bio,  String?  username, String? area, String? phoneNumber, File? profilePic,File? workImage}) async {
+  updateWorker({String? firstName, String? lastName,String? bio,  String?  username, String? area,String? city, String? phoneNumber, File? profilePic,File? workImage}) async {
   emit(UpdateProfileLoading());
   var client = http.Client();
   var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/EditCraft?CraftManId=${Constant.getData(key: 'workerId')}');
@@ -78,7 +78,7 @@ class workerDataCubit extends Cubit<workerDataStates>
      (lastName != null) ? request.fields['LastName'] = lastName.trim(): request.fields['LastName'] =  workerResponse![0].lastName;
     
      (area != null) ? request.fields['Location'] = area.trim():request.fields['Location'] = workerResponse![0].area!;
-    
+    (city != null) ? request.fields['city'] = city.trim():request.fields['city'] = workerResponse![0].city!;
      (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = workerResponse![0].username!;
     
      (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber.trim(): request.fields['PhonNumber'] = workerResponse![0].phonenumber!;
@@ -183,6 +183,8 @@ class workerDataCubit extends Cubit<workerDataStates>
   List<requests>? accepted;
   GetRequests() async {
     emit(getRequestLoadingsState());
+    panding=[];
+    accepted=[];
     var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Craft/GetAllRequests?UserId=${Constant.getData(key: 'workerId')}');
     http.Response response;
     List<dynamic> jsonResponse;
@@ -197,10 +199,10 @@ class workerDataCubit extends Cubit<workerDataStates>
         accepted=allRequests.where((r) => r.status == 1).toList();
         if(accepted!=null){
         for(var item in accepted!){
-                  List<String> nameParts = item.workerName!.split("  ");
+                  List<String> nameParts = item.customerName!.split("  ");
           String firstName = nameParts[0];
           String lastName = nameParts[1];
-         person Person = person(id: item.workerId, firstName: firstName, lastName: lastName, image: item.workerImage);
+         person Person = person(id: item.customerId, firstName: firstName, lastName: lastName, image: item.customerImage);
         if (usersToChat!=null && !usersToChat!.any((user) => user.id == item.customerId!)) {
         usersToChat!.add(Person);
           }else if(usersToChat==null){
@@ -347,6 +349,7 @@ if (usersToChat!=null && !usersToChat!.any((item) => item.id == user![0]!.id) ) 
   }
 }
 
+  
  logout(){
   workerResponse=null;
   panding =null;

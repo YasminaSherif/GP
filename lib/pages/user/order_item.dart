@@ -114,7 +114,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Container(
-            height: 65.0.h,
+            height: 40.0.h,
             color: Colors.white,
             child: Row(
               children: [ 
@@ -199,7 +199,7 @@ class _PandingOrderItemState extends State<PandingOrderItem > {
                     padding: EdgeInsets.only(right: 15),
                     child: CircleAvatar(
                       backgroundColor: Colors.transparent,
-                      radius: 26.0.r,
+                      radius: 24.0.r,
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         radius: 20.0.r,
@@ -347,7 +347,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                             const Icon(
                               Icons.star_rate,
                               color: Colors.amber,
-                              size: 18.0,
+                              size: 15.0,
                             ),
                             Text(
                               widget.request.rating.toString(),
@@ -403,7 +403,7 @@ class _AcceptedOrderItemState extends State<AcceptedOrderItem> {
                     padding: EdgeInsets.only(right: 15),
                     child: CircleAvatar(
                       backgroundColor: Colors.transparent,
-                      radius: 26.0.r,
+                      radius: 24.0.r,
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         radius: 20.0.r,

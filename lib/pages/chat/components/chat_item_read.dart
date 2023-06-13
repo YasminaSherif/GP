@@ -9,7 +9,7 @@ import 'package:fortestpages/services/methods/navigation.dart';
 import '../../../bloc/chat/chat_cubit.dart';
 import '../../../models/message.dart';
 import '../../../models/persons.dart';
-import '../messages_screen_user.dart';
+import '../messages_screen.dart';
 
 class ChatItem extends StatelessWidget {
   final List<Message>? messages;
@@ -50,45 +50,48 @@ class ChatItem extends StatelessWidget {
               ),
             );
           },
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.r),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        receiver.name,
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          fontFamily: 'Tajawal',
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.r),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          receiver.name,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontFamily: 'Tajawal',
+                          ),
                         ),
-                      ),
-                      Text(
-                        msg,
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          fontFamily: 'Tajawal',
+                        Text(
+                          msg,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontFamily: 'Tajawal',
+                          ),
+                          textDirection: TextDirection.rtl,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        textDirection: TextDirection.rtl,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 10.h,
-                ),
-                CircleAvatar(
-                  radius: 25.0.r,
-                  backgroundImage: receiver.image != null
-                      ? MemoryImage(base64Decode(receiver.image!))
-                      : null,
-                  backgroundColor: Colors.grey,
-                ),
-              ],
+                  SizedBox(
+                    width: 10.h,
+                  ),
+                  CircleAvatar(
+                    radius: 25.0.r,
+                    backgroundImage: receiver.image != null
+                        ? MemoryImage(base64Decode(receiver.image!))
+                        : null,
+                    backgroundColor: Colors.grey,
+                  ),
+                ],
+              ),
             ),
           ),
         );

@@ -209,7 +209,7 @@ class _ImagePickerState extends State<ImagePicker> {
                         ),
                         SizedBox(height: 20.h),
                         Text(
-                          'عشان تغير اى من معلوماتك الشخصية دوس عليها',
+                          'لتغيير اي من المعلومات برجاء الضغط عليها',
                           textAlign: TextAlign.center,
                           style:
                               TextStyle(fontSize: 17.sp, color: Colors.black,fontFamily: 'Tajawal'),
@@ -444,23 +444,19 @@ class _ImagePickerState extends State<ImagePicker> {
                                           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.5.sp,fontFamily: 'Tajawal'),
                                         ),
                                         onPressed: () {
-                                          var isValid = formKey.currentState!.validate();
-                                          if(isValid){
+                                          //var isValid = formKey.currentState!.validate();
+                                         
                                             formKey.currentState!.save();
                                             cubituser.updateUser(
                                                 firstName: firstname,
                                                 lastName: lastname,
                                                 username: username,
                                                 area: area,
+                                                city: _selectedCity,
                                                 phoneNumber: phoneNum,
                                                 imageFile: cubit.fileImage);
-                                          }
-                                          else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(const SnackBar(
-                                                    content: Text(
-                                                        'invalid Credentials')));
-                                          }
+                                          
+                                          
                                         }),
                                   ],
                                 ),

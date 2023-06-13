@@ -52,7 +52,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   Widget build(BuildContext context) {
    
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: const Color.fromRGBO(217, 173, 48, 1),
       appBar: AppBar(
         title: Text(
           widget.receiverName,

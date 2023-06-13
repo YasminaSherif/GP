@@ -204,7 +204,7 @@ class userDataCubit extends Cubit<userDataStates>
   }
 
     person? userUpdateResponse;
-    updateUser({String? firstName, String? lastName, String? username, String? area, String? phoneNumber, File? imageFile}) async {
+    updateUser({String? firstName, String? lastName, String? username, String? area,String? city, String? phoneNumber, File? imageFile}) async {
   emit(UpdateProfileLoading());
   var client = http.Client();
   var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/EditCustomer?CustomerId=${Constant.getData(key: 'userId')}');
@@ -221,7 +221,7 @@ class userDataCubit extends Cubit<userDataStates>
     
      (lastName != null) ? request.fields['LastName'] = lastName.trim(): request.fields['LastName'] =  userResponse![0].lastName;
      (username != null) ? request.fields['UserName'] = username.trim(): request.fields['UserName'] = userResponse![0].username!;
-    
+    (city != null) ? request.fields['city'] = city.trim(): request.fields['city'] = userResponse![0].city!;
      (area != null) ? request.fields['Location'] = area.trim(): request.fields['Location'] = userResponse![0].area!;
      (phoneNumber != null)? request.fields['PhonNumber'] = phoneNumber.trim() : request.fields['PhonNumber'] = userResponse![0].phonenumber!;
     
@@ -278,6 +278,7 @@ class userDataCubit extends Cubit<userDataStates>
     emit(UpdateProfileError());
   }
 }
+
 
   changePassword(String password,String conPassword) async {
     emit(changePasswordLoadingState());
@@ -470,15 +471,15 @@ else{
 
 finishRequest (requests requestt)async{
     emit(finishRequestLoadingsState());
-    var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/FinishRequest');
+    var url = Uri.parse('https://hicraftapi20.azurewebsites.net/api/Customer/FinishRequest?UserId=${userResponse![0].id.toString()}&RequestId=${requestt.id.toString()}');
     
       var response;
      dynamic jsonResponse;
      try {
     var request = http.MultipartRequest('PUT', url);
     request.headers['content-type'] = 'multipart/form-data';
-    request.fields['UserId'] =userResponse![0].id;
-    request.fields['RequestId']=requestt.id.toString();
+    // request.fields['UserId'] =userResponse![0].id;
+    // request.fields['RequestId']=requestt.id.toString();
     response = await request.send();
     if (response.statusCode == 200) {
       accepted!.removeWhere((request) => request.id == requestt.id);
